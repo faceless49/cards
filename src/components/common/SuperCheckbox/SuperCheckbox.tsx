@@ -4,7 +4,7 @@ import React, {
   InputHTMLAttributes,
 } from "react";
 // @ts-ignore
-import styles from "./Super.module.scss";
+import styles from "./SuperCheckbox.module.scss";
 // тип пропсов обычного инпута
 type DefaultInputPropsType = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

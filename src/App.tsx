@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { NavLink, Route, Routes } from "react-router-dom";
+import {SuperInputText} from './components/common/SuperInputText/SuperInputText';
+import {SuperButton} from './components/common/SuperButton/SuperButton';
+import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <NavLink to={"/"}>Main</NavLink>---
+        <NavLink to={"/login"}>Login</NavLink>---
+        <NavLink to={"/registration"}>Form Registration</NavLink>---
+        <NavLink to={"/profile"}>Profile</NavLink>---
+        <NavLink to={"/restore"}>restore</NavLink>---
+        <NavLink to={"/newPass"}>newPass</NavLink>---
+        <NavLink to={"/restore"}>restore</NavLink>---
+        <NavLink to={"/test"}>Test</NavLink>
+      </div>
+      <Routes>
+        <Route path={"/*"} element={<div>404</div>} />
+
+        <Route path={"/"} element={<div>Main</div>} />
+        <Route path={"/login"} element={<div>login</div>} />
+        <Route path={"/registration"} element={<div>registration</div>} />
+        <Route path={"/profile"} element={<div>profile</div>} />
+        <Route path={"/restore"} element={<div>restore</div>} />
+        <Route path={"/newPass"} element={<div>newPass</div>} />
+        <Route path={"/restore"} element={<div>restore</div>} />
+        <Route path={"/test"} element={<div><SuperInputText/><SuperButton>Push</SuperButton><SuperCheckbox/></div>} />
+      </Routes>
     </div>
   );
 }
