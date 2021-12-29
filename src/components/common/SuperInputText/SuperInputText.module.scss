@@ -1,0 +1,27 @@
+.finalInputClassName {
+  padding: 0 5px;
+}
+
+.inputClass {
+
+    //background-color: #1A2226;
+    border: none;
+    border-bottom: 2px solid #0DB8DE;
+    font-weight: bold;
+    outline: 0;
+    margin: 10px 0;
+    padding-left: 0;
+}
+.errorInput {
+  border: none;
+  border-bottom: 2px solid darkred;
+  background: transparent;
+  outline: none;
+  color: #ECF0F5;
+
+}
+
+.error {
+  font-size: 10px;
+  color: darkred;
+}

@@ -1,0 +1,21 @@
+.default {
+    padding: 5px 10px;
+    border-color: #0DB8DE;
+    background-color: transparent;
+    color: #0DB8DE;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.default:disabled {
+    background-color: transparent;
+    border-color: darkgray;
+    color: gray;
+
+}
+
+.default ~ .red {
+    background: red;
+    padding: 5px 10px;
+    font-weight: bold;
+}
