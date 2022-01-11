@@ -1,4 +1,6 @@
 import React, { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+
+
 //@ts-ignore
 import styles from "./SuperButton.module.scss";
 // тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
@@ -10,6 +12,9 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 type SuperButtonPropsType = DefaultButtonPropsType & {
   red?: boolean;
 };
+
+
+
 
 export const SuperButton: React.FC<SuperButtonPropsType> = ({
   red,
