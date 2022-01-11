@@ -5,6 +5,7 @@ import {SuperButton} from './components/common/SuperButton/SuperButton';
 import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
 import {Register} from "./components/Register/Register";
 import axios from "axios";
+import {RegisterComponent} from "./components/Register/RegisterComponent";
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
 
         <Route path={"/"} element={<div>Main</div>} />
         <Route path={"/login"} element={<div>login</div>} />
-        <Route path={"/registration"} element={<Register/>} />
+        <Route path={"/registration"} element={<RegisterComponent/>} />
         <Route path={"/profile"} element={<div>profile</div>} />
         <Route path={"/restore"} element={<div>restore</div>} />
         <Route path={"/newPass"} element={<div>newPass</div>} />
