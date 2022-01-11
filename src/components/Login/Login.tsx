@@ -4,33 +4,30 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
-import {passwordLoginAC, setIsLoggedInAC, usernameLoginAC} from "../../reducers/loginReducer";
+import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
 
 export const Login = () => {
     const dispatch = useDispatch();
 
-    const storeIsLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)
-    const storeUsername = useSelector<AppRootStateType, string>(state => state.login.username)
-    const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)
+    /*const storeIsLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)*/
+    /* const storeUsername = useSelector<AppRootStateType, string>(state => state.login.username)
+     const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)*/
 
 
-    const [value, setValue] = useState<boolean>(storeIsLoggedIn)
-    const [username, setUsername] = useState<string>(storeUsername)
-    const [password, setPassword] = useState<string>(storePassword)
+    /*    const [value, setValue] = useState<boolean>(storeIsLoggedIn)*/
+    const [username, setUsername] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
-    const onChangeUsername = () => {
+
+    const onChangeUsername =
         (e: ChangeEvent<HTMLInputElement>) => {
             setUsername(e.currentTarget.value)
         }
-    }
-    const onChangePassword = () => {
+
+    const onChangePassword =
         (e: ChangeEvent<HTMLInputElement>) => {
             setPassword(e.currentTarget.value)
         }
-    }
-
-
-
 
     const onClickForgotPassword = () => {
         return console.log('redirect')
@@ -40,9 +37,12 @@ export const Login = () => {
     }
 
     const onClickLogin = () => {
-        dispatch(usernameLoginAC(username))
-        dispatch(passwordLoginAC(password))
-        dispatch(setIsLoggedInAC(value))
+        const data = {
+            email: username,
+            password: password,
+            rememberMe: true, //  todo checkbox create
+        }
+        dispatch(loginTC(data))
     }
 
     return (<div className="login-wrapper">
@@ -55,7 +55,7 @@ export const Login = () => {
             <p>Username</p>
             <SuperInputText value={username} onChange={onChangeUsername}/>
             <p>Password</p>
-            <SuperInputText value={password} onChange={onChangePassword}/>
+            <SuperInputText type={'password'} value={password} onChange={onChangePassword}/>
         </div>
 
         <div>
