@@ -1,17 +1,20 @@
-import React, {ChangeEvent, useState} from 'react'
-import './login.module.css';
+//@ts-ignore
+import s from "./Login.module.scss";
+import {NavLink} from 'react-router-dom';
+import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
+import Title from "../common/Title/Title";
 
 export const Login = () => {
     const dispatch = useDispatch();
 
     /*const storeIsLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)*/
     /* const storeUsername = useSelector<AppRootStateType, string>(state => state.login.username)
-     const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)*/
+    const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)*/
 
 
     /*    const [value, setValue] = useState<boolean>(storeIsLoggedIn)*/
@@ -45,28 +48,31 @@ export const Login = () => {
         dispatch(loginTC(data))
     }
 
-    return (<div className="login-wrapper">
+    return (
+    
+    <div className={s.loginWrapper}>
 
-        <h1>It-Incubator</h1>
+        {/* <h1>It-Incubator</h1> */}
+        <Title/>
+        <h3 className={s.subtitle}>Sign In</h3>
 
-        <h2>Sign In</h2>
-
-        <div>
-            <p>Username</p>
+        <div className={s.formBox} style={{textAlign:"left", marginBottom:"38px"}}>
+            <p className={s.span}>Email</p>
             <SuperInputText value={username} onChange={onChangeUsername}/>
-            <p>Password</p>
+            <p className={s.span}>Password</p>
             <SuperInputText type={'password'} value={password} onChange={onChangePassword}/>
         </div>
 
-        <div>
-            <SuperButton onClick={onClickForgotPassword}> Forgot password</SuperButton>
-        </div>
+
+        
+            <a className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</a>
+        
 
         <div>
-            <SuperButton onClick={onClickLogin}>Login</SuperButton>
+            <SuperButton onClick={onClickLogin} style={{marginTop: '92px'}}>Login</SuperButton>
         </div>
 
-        <p>Don't have an account?</p>
+        <span>Don't have an account?</span>
 
         <div>
             <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
