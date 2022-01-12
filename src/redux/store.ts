@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   app: appReducer,
   login: loginReducer,
-  restore: restoreReducer,
+  restore: restoreReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))

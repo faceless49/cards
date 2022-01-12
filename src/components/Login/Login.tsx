@@ -1,11 +1,9 @@
 import React, {ChangeEvent, useState} from 'react'
 import './login.module.css';
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
-import {SuperButton} from "../common/SuperButton/SuperButton";
-import {SuperInputText} from "../common/SuperInputText/SuperInputText";
-import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
-import {Route} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {SuperButton} from '../common/SuperButton/SuperButton';
+import {SuperInputText} from '../common/SuperInputText/SuperInputText';
+import {loginTC} from '../../reducers/loginReducer';
 
 export const Login = () => {
     const dispatch = useDispatch();
