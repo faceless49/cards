@@ -1,12 +1,13 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
-import "./login.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import { SuperButton } from "../common/SuperButton/SuperButton";
-import { SuperInputText } from "../common/SuperInputText/SuperInputText";
-import { loginTC } from "../../reducers/loginReducer";
-import { AppRootStateType } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
-import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
+//@ts-ignore
+import s from "./Login.module.scss";
+import {NavLink} from 'react-router-dom';
+import React, {ChangeEvent, useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../redux/store";
+import {SuperButton} from "../common/SuperButton/SuperButton";
+import {SuperInputText} from "../common/SuperInputText/SuperInputText";
+import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
+import Title from "../common/Title/Title";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -26,28 +27,31 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
 
-  const onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  };
+    const onChangeUsername =
+        (e: ChangeEvent<HTMLInputElement>) => {
+            setUsername(e.currentTarget.value)
+        }
 
-  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
+    const onChangePassword =
+        (e: ChangeEvent<HTMLInputElement>) => {
+            setPassword(e.currentTarget.value)
+        }
 
-  const onChangeRememberMe = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log("remember me");
-    /*setChecked(e.currentTarget.value);*/ //  todo checkbox RememberMe create
-  };
+    const onClickForgotPassword = () => {
+        return console.log('redirect')
+    }
+    const onClickSignUp = () => {
+        return console.log('redirect')
+    }
 
-  const onClickLogin = () => {
-    const data = {
-      email: username,
-      password: password,
-      rememberMe: true,
-    };
-    dispatch(loginTC(data));
-  };
-
+    const onClickLogin = () => {
+        const data = {
+            email: username,
+            password: password,
+            rememberMe: true, //  todo checkbox create
+        }
+        dispatch(loginTC(data))
+    }
   const onClickForgotPassword = () => {
     return navigate("/restore");
   };
@@ -56,41 +60,37 @@ export const Login = () => {
     return navigate("/registration");
   };
 
-  return (
-    <div className="login-wrapper">
-      <h1>It-Incubator</h1>
+    return (
 
-      <h2>Sign In</h2>
+    <div className={s.loginWrapper}>
 
-      <div>
-        <p>Username</p>
-        <SuperInputText value={username} onChange={onChangeUsername} />
-        <p>Password</p>
-        <SuperInputText
-          type={"password"}
-          value={password}
-          onChange={onChangePassword}
-        />
-        <p>remember me</p>
-        <SuperCheckbox type={"checkbox"} onChange={onChangeRememberMe} />
-      </div>
 
-      <div>
-        <SuperButton onClick={onClickForgotPassword}>
-          {" "}
-          Forgot password
-        </SuperButton>
-      </div>
+        {/* <h1>It-Incubator</h1> */}
+        <Title/>
+        <h3 className={s.subtitle}>Sign In</h3>
 
-      <div>
-        <SuperButton onClick={onClickLogin}>Login</SuperButton>
-      </div>
+        <div className={s.formBox} style={{textAlign:"left", marginBottom:"38px"}}>
+            <p className={s.span}>Email</p>
+            <SuperInputText value={username} onChange={onChangeUsername}/>
+            <p className={s.span}>Password</p>
+            <SuperInputText type={'password'} value={password} onChange={onChangePassword}/>
+        </div>
 
-      <p>Don't have an account?</p>
 
-      <div>
-        <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
-      </div>
-    </div>
-  );
-};
+
+            <a className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</a>
+
+
+        <div>
+            <SuperButton onClick={onClickLogin} style={{marginTop: '92px'}}>Login</SuperButton>
+        </div>
+
+        <span>Don't have an account?</span>
+
+        <div>
+            <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
+        </div>
+
+    </div>)
+}
+

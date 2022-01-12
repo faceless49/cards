@@ -1,4 +1,5 @@
 import React from "react";
+import './App.css';
 import { NavLink, Route, Routes } from "react-router-dom";
 import {SuperInputText} from './components/common/SuperInputText/SuperInputText';
 import {SuperButton} from './components/common/SuperButton/SuperButton';
@@ -6,6 +7,7 @@ import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
 import {Login} from "./components/Login/Login";
 import {Forgot} from './components/Forgot/Forgot';
 import {ApproveEmail} from './components/Forgot/ApproveEmail';
+
 
 function App() {
   return (
