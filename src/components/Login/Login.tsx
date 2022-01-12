@@ -1,6 +1,5 @@
 //@ts-ignore
 import s from "./Login.module.scss";
-import {NavLink} from 'react-router-dom';
 import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
@@ -60,7 +59,7 @@ export const Login = () => {
             <p className={s.span}>Email</p>
             <SuperInputText value={username} onChange={onChangeUsername}/>
             <p className={s.span}>Password</p>
-            <SuperInputText type={'password'} value={password} onChange={onChangePassword}/>
+            <SuperInputText type={'password'} value={password} onChange={onChangePassword} />
         </div>
 
 
