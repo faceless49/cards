@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
-import { SuperInputText } from "./components/common/SuperInputText/SuperInputText";
-import { SuperButton } from "./components/common/SuperButton/SuperButton";
-import { SuperCheckbox } from "./components/common/SuperCheckbox/SuperCheckbox";
-import { Login } from "./components/Login/Login";
+import {SuperInputText} from './components/common/SuperInputText/SuperInputText';
+import {SuperButton} from './components/common/SuperButton/SuperButton';
+import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
+import {Login} from "./components/Login/Login";
 
 function App() {
   return (
@@ -28,16 +28,7 @@ function App() {
         <Route path={"/restore"} element={<div>restore</div>} />
         <Route path={"/newPass"} element={<div>newPass</div>} />
         <Route path={"/restore"} element={<div>restore</div>} />
-        <Route
-          path={"/test"}
-          element={
-            <div>
-              <SuperInputText />
-              <SuperButton>Push</SuperButton>
-              <SuperCheckbox />
-            </div>
-          }
-        />
+        <Route path={"/test"} element={<div><SuperInputText/><SuperButton>Push</SuperButton><SuperCheckbox/></div>} />
       </Routes>
     </div>
   );
