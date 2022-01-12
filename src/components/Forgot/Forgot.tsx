@@ -4,8 +4,7 @@ import { SuperButton } from "../common/SuperButton/SuperButton";
 import { SuperInputText } from "../common/SuperInputText/SuperInputText";
 import { forgotPassword } from "../../reducers/restore";
 import { useAppSelector } from "../../redux/store";
-import { ApproveEmail } from "./ApproveEmail";
-import {Navigate, NavLink, Route, useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const Forgot = () => {
   const dispatch = useDispatch();
@@ -14,8 +13,13 @@ export const Forgot = () => {
     (state) => state.restore.emailSuccess
   );
 
-  const [email, setEmail] = useState<string>("");
+  useEffect(() => {
+    if (emailSuccess) {
+      navigate("/approve");
+    }
+  }, [emailSuccess]);
 
+  const [email, setEmail] = useState<string>("");
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
@@ -25,11 +29,6 @@ export const Forgot = () => {
     e.preventDefault();
     dispatch(forgotPassword(email));
   };
-    useEffect(() => {
-        if (emailSuccess) {
-            navigate('/approve')
-        }
-    },[emailSuccess])
 
   return (
     <div className="forgot-wrapper">
