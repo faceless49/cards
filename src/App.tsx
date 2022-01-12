@@ -4,6 +4,7 @@ import {SuperInputText} from './components/common/SuperInputText/SuperInputText'
 import {SuperButton} from './components/common/SuperButton/SuperButton';
 import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
 import {Login} from "./components/Login/Login";
+import {Forgot} from './components/Forgot/Forgot';
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/registration"} element={<div>registration</div>} />
         <Route path={"/profile"} element={<div>profile</div>} />
-        <Route path={"/restore"} element={<div>restore</div>} />
+        <Route path={"/restore"} element={<Forgot/>} />
         <Route path={"/newPass"} element={<div>newPass</div>} />
         <Route path={"/restore"} element={<div>restore</div>} />
         <Route path={"/test"} element={<div><SuperInputText/><SuperButton>Push</SuperButton><SuperCheckbox/></div>} />

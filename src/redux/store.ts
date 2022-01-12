@@ -5,12 +5,14 @@ import {authReducer} from '../reducers/auth';
 import {profileReducer} from '../reducers/profile';
 import {appReducer} from '../reducers/app';
 import {loginReducer} from "../reducers/loginReducer";
+import {restoreReducer} from '../reducers/restore';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   app: appReducer,
   login: loginReducer,
+  restore: restoreReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
