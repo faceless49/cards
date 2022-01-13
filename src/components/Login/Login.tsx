@@ -7,6 +7,7 @@ import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
 import Title from "../common/Title/Title";
+import Subtitle from "../common/Subtitle/Subtitle";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -60,13 +61,12 @@ export const Login = () => {
   };
 
     return (
-
+    
     <div className={s.loginWrapper}>
-
 
         {/* <h1>It-Incubator</h1> */}
         <Title/>
-        <h3 className={s.subtitle}>Sign In</h3>
+        <Subtitle subtitle="Sign in"/>
 
         <div className={s.formBox} style={{textAlign:"left", marginBottom:"38px"}}>
             <p className={s.span}>Email</p>
@@ -76,9 +76,9 @@ export const Login = () => {
         </div>
 
 
-
+        
             <a className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</a>
-
+        
 
         <div>
             <SuperButton onClick={onClickLogin} style={{marginTop: '92px'}}>Login</SuperButton>
