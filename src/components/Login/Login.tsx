@@ -1,11 +1,11 @@
 //@ts-ignore
 import s from "./Login.module.scss";
-import React, {ChangeEvent, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {AppRootStateType} from "../../redux/store";
-import {SuperButton} from "../common/SuperButton/SuperButton";
-import {SuperInputText} from "../common/SuperInputText/SuperInputText";
-import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
+import React, { ChangeEvent, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { AppRootStateType } from "../../redux/store";
+import { SuperButton } from "../common/SuperButton/SuperButton";
+import { SuperInputText } from "../common/SuperInputText/SuperInputText";
+import { loginTC, setIsLoggedInAC } from "../../reducers/loginReducer";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 
@@ -49,32 +49,38 @@ export const Login = () => {
     }
 
     return (
-    
-    <div className={s.loginWrapper}>
 
-        <Title/>
-        <Subtitle subtitle="Sign in"/>
+        <div className={s.loginWrapper}>
 
-        <div className={s.formBox} style={{textAlign:"left", marginBottom:"38px"}}>
-            <p className={s.span}>Email</p>
-            <SuperInputText value={username} onChange={onChangeUsername}/>
-            <p className={s.span}>Password</p>
-            <SuperInputText type={'password'} value={password} onChange={onChangePassword} />
-        </div>
+            <Title />
+            <Subtitle subtitle="Sign in" />
 
-        
-            <a className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</a>
-        
-        <div>
-            <SuperButton onClick={onClickLogin} style={{marginTop: '92px'}}>Login</SuperButton>
-        </div>
+            <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
+                <p className={s.span}>Email</p>
+                <SuperInputText value={username} onChange={onChangeUsername} />
+                <p className={s.span}>Password</p>
+                <SuperInputText type={'password'} value={password} onChange={onChangePassword} />
+            </div>
 
-        <span>Don't have an account?</span>
+            
+                <SuperButton onClick={onClickForgotPassword}>
+                    {" "}
+                    Forgot password
+                </SuperButton>
+            
 
-        <div>
-            <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
-        </div>
+            {/* <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</Navlink> */}
 
-    </div>)
+            <div>
+                <SuperButton onClick={onClickLogin} style={{ marginTop: '92px' }}>Login</SuperButton>
+            </div>
+
+            <span>Don't have an account?</span>
+
+            <div>
+                <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
+            </div>
+
+        </div>)
 }
 
