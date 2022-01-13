@@ -31,6 +31,7 @@ export const Registration: React.FC<RegistrationTypeProps> =
             onChangeEmail(e.currentTarget.value)
         }
 
+
         const onChangePasswordValue = (e: ChangeEvent<HTMLInputElement>) => {
             onChangePassword(e.currentTarget.value)
         }
