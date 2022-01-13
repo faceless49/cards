@@ -1,9 +1,10 @@
 import { Dispatch } from "redux";
-import { ForgotRequestType, restoreAPI } from "../api/restore-api";
+import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from '../api/restore-api';
 
 const initState = {
   email: null as string | null,
   emailSuccess: false,
+  newPassword: false,
 };
 type InitStateType = typeof initState;
 
@@ -28,6 +29,10 @@ export const setReceiverEmail = (email: string) =>
 
 export const getEmailSuccess = (success: boolean) =>
   ({ type: "restore/GET-EMAIL-SUCCESS", success } as const);
+
+export const changePasswordSuccess = (newPassword: boolean) =>
+  ({ type: "restore/SEND-RECOVERY-EMAIL", newPassword } as const);
+
 // TC
 
 let recoveryMessageAddress = `<div style="padding: 15px">Password recovery link: <a href='http://localhost:3000/#/set-new-password/$token$'>click here</a></div>`;
@@ -43,12 +48,26 @@ export const forgotPassword =
       const response = await restoreAPI.forgotPassword(requestObj);
       dispatch(setReceiverEmail(email));
       dispatch(getEmailSuccess(response.data.success));
+      dispatch(changePasswordSuccess(false))
       console.log(response);
     } catch (e) {
       console.log(e);
     }
   };
 
+export const setNewPassword = (password: string, token: string) => async (dispatch: Dispatch<RestoreActionsType>) => {
+  try {
+    let requestObj: SetNewPasswordRequestType = {
+      password: password,
+      resetPasswordToken: token
+    }
+    await restoreAPI.recoveryPassword(requestObj)
+    dispatch(changePasswordSuccess(true))
+  } catch (e) {
+    console.log(e)
+  }
+}
+
 type RestoreActionsType =
   | ReturnType<typeof setReceiverEmail>
-  | ReturnType<typeof getEmailSuccess>;
+  | ReturnType<typeof getEmailSuccess> | ReturnType<typeof changePasswordSuccess>
