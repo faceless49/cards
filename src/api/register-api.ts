@@ -2,13 +2,17 @@ import {instance} from "./index";
 
 
 export const registerApi = {
-    register(data: RegisterParamsType) {
+    register(data: RegisterRequestType) {
         return instance.post('auth/register', data)
     },
 }
 
-export type RegisterParamsType = {
+export type RegisterRequestType = {
     email: string;
     password: string;
-    // rememberMe?:boolean;
 }
+//
+// export type RegisterResponseType = {
+//     error?: string;
+//     addUser:{}
+// }

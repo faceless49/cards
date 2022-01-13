@@ -1,13 +1,10 @@
-//@ts-ignore
-import s from "./Login.module.scss";
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useState} from 'react'
+import './login.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {loginTC, setIsLoggedInAC} from "../../reducers/loginReducer";
-import Title from "../common/Title/Title";
-import Subtitle from "../common/Subtitle/Subtitle";
 
 export const Login = () => {
   const dispatch = useDispatch();
