@@ -31,7 +31,6 @@ export const NewPassword = () => {
       navigate("/approve");
     }
   }, [changePasswordSuccess]);
-debugger
   return (
     <div>
       <form>

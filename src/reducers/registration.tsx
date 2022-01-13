@@ -17,7 +17,6 @@ export const registrationReducer = (state: InitialStateType = initialState, acti
         case  'registration/PASSWORD-ERROR':
             return {...state, passwordError: action.error}
         case 'registration/IS-REGISTRATION' :
-            debugger
             return {...state, isRegistration: action.isRegistration}
         case 'registration/TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
@@ -50,7 +49,6 @@ export const setErrorRequest = (errorRequestValue: string) =>
 
 export const registerTC = (data: RegisterRequestType) => (dispatch: Dispatch<RegistrationActionsType>) => {
     // dispatch(toggleIsFetching(true))
-    debugger
     registerApi.register(data)
         .then(() => {
             dispatch(toggleIsRegistration(true))
