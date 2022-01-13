@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import {SuperInputText} from './components/common/SuperInputText/SuperInputText';
 import {SuperButton} from './components/common/SuperButton/SuperButton';
