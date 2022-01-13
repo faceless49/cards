@@ -3,15 +3,11 @@ import { NavLink, Route, Routes } from "react-router-dom";
 import {SuperInputText} from './components/common/SuperInputText/SuperInputText';
 import {SuperButton} from './components/common/SuperButton/SuperButton';
 import {SuperCheckbox} from './components/common/SuperCheckbox/SuperCheckbox';
-<<<<<<<<< Temporary merge branch 1
-import {Register} from "./components/Register/Register";
-import axios from "axios";
-=========
 import {Login} from "./components/Login/Login";
-import {RegistrationContainer} from "./components/Register/RegisterContainer";
+import {Forgot} from './components/Forgot/Forgot';
+import {ApproveEmail} from './components/Forgot/ApproveEmail';
 
 function App() {
-
   return (
     <div className="App">
       <div>
