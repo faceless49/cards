@@ -27,6 +27,7 @@ export const registrationReducer = (state: InitialStateType = initialState, acti
             return state
     }
 };
+
 export type SetEmailErrorType = ReturnType<typeof setEmailError>
 export const setEmailError = (error: null | string) =>
     ({type: 'registration/EMAIL-ERROR', error} as const)
