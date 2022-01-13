@@ -56,7 +56,7 @@ export const registerTC = (data: RegisterRequestType) => (dispatch: Dispatch<Reg
         })
         .catch(e => {
             dispatch(setErrorRequest(e.response.data.error))
-            console.log(e.response.data.error)
+            // console.log(e.response.data.error)
         })
         .finally(() => {
             dispatch(toggleIsFetching(false))

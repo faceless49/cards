@@ -27,12 +27,6 @@ export const Registration: React.FC<RegistrationTypeProps> =
          onChangeReplayPassword
      }) => {
 
-        // const [confirmPassword, setConfirmPassword] = useState<string>('')
-        // const emailError = useSelector<AppRootStateType, string | null>(state => state.auth.emailError)
-        // const passwordError = useSelector<AppRootStateType, string | null>(state => state.auth.passwordError)
-        // const isRegistration = useSelector<AppRootStateType, boolean>(state => state.auth.isRegistration)
-
-
         const onChangeEmailValue = (e: ChangeEvent<HTMLInputElement>) => {
             onChangeEmail(e.currentTarget.value)
         }
