@@ -1,14 +1,26 @@
-import React, {ChangeEvent, useState} from 'react'
-import './login.module.css';
-import {useDispatch} from 'react-redux';
-import {SuperButton} from '../common/SuperButton/SuperButton';
-import {SuperInputText} from '../common/SuperInputText/SuperInputText';
-import {loginTC} from '../../reducers/loginReducer';
+import React, { ChangeEvent, useEffect, useState } from "react";
+import "./login.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { SuperButton } from "../common/SuperButton/SuperButton";
+import { SuperInputText } from "../common/SuperInputText/SuperInputText";
+import { loginTC } from "../../reducers/loginReducer";
+import { AppRootStateType } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  /*const storeIsLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn)*/
+  const isLoggedIn = useSelector<AppRootStateType, boolean>(
+    (state) => state.login.isLoggedIn
+  );
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+  }, [isLoggedIn]);
+
   /* const storeUsername = useSelector<AppRootStateType, string>(state => state.login.username)
      const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)*/
 
@@ -26,11 +38,11 @@ export const Login = () => {
 
   const onClickForgotPassword = () => {
     //todo create redirects
-    return console.log("redirect");
+    return navigate("/restore");
   };
   const onClickSignUp = () => {
     // todo create redirects
-    return console.log("redirect");
+    return navigate("/registration");
   };
 
   const onClickLogin = () => {
