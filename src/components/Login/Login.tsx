@@ -6,6 +6,7 @@ import { SuperInputText } from "../common/SuperInputText/SuperInputText";
 import { loginTC } from "../../reducers/loginReducer";
 import { AppRootStateType } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
+import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const Login = () => {
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [checked, setChecked] = useState<boolean>(false);
 
   const onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
@@ -32,21 +34,26 @@ export const Login = () => {
     setPassword(e.currentTarget.value);
   };
 
-  const onClickForgotPassword = () => {
-    return navigate("/restore");
-  };
-
-  const onClickSignUp = () => {
-    return navigate("/registration");
+  const onChangeRememberMe = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log("remember me");
+    /*setChecked(e.currentTarget.value);*/ //  todo checkbox RememberMe create
   };
 
   const onClickLogin = () => {
     const data = {
       email: username,
       password: password,
-      rememberMe: true, //  todo checkbox RememberMe create
+      rememberMe: true,
     };
     dispatch(loginTC(data));
+  };
+
+  const onClickForgotPassword = () => {
+    return navigate("/restore");
+  };
+
+  const onClickSignUp = () => {
+    return navigate("/registration");
   };
 
   return (
@@ -64,6 +71,8 @@ export const Login = () => {
           value={password}
           onChange={onChangePassword}
         />
+        <p>remember me</p>
+        <SuperCheckbox type={"checkbox"} onChange={onChangeRememberMe} />
       </div>
 
       <div>
