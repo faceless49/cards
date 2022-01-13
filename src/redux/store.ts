@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   register:registrationReducer
 })
 
+
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
