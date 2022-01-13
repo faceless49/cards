@@ -21,10 +21,6 @@ export const Login = () => {
     }
   }, [isLoggedIn]);
 
-  /* const storeUsername = useSelector<AppRootStateType, string>(state => state.login.username)
-     const storePassword = useSelector<AppRootStateType, string>(state => state.login.password)*/
-
-  /*    const [value, setValue] = useState<boolean>(storeIsLoggedIn)*/
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
