@@ -64,32 +64,35 @@ export const Login = () => {
     
     <div className={s.loginWrapper}>
 
-        {/* <h1>It-Incubator</h1> */}
         <Title/>
         <Subtitle subtitle="Sign in"/>
 
-        <div className={s.formBox} style={{textAlign:"left", marginBottom:"38px"}}>
-            <p className={s.span}>Email</p>
-            <SuperInputText value={username} onChange={onChangeUsername}/>
-            <p className={s.span}>Password</p>
-            <SuperInputText type={'password'} value={password} onChange={onChangePassword} />
-        </div>
+            <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
+                <p className={s.span}>Email</p>
+                <SuperInputText value={username} onChange={onChangeUsername} />
+                <p className={s.span}>Password</p>
+                <SuperInputText type={'password'} value={password} onChange={onChangePassword} />
+            </div>
 
 
-        
-            <a className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</a>
-        
+                <SuperButton onClick={onClickForgotPassword}>
+                    {" "}
+                    Forgot password
+                </SuperButton>
 
-        <div>
-            <SuperButton onClick={onClickLogin} style={{marginTop: '92px'}}>Login</SuperButton>
-        </div>
 
-        <span>Don't have an account?</span>
+            {/* <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</Navlink> */}
 
-        <div>
-            <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
-        </div>
+            <div>
+                <SuperButton onClick={onClickLogin} style={{ marginTop: '92px' }}>Login</SuperButton>
+            </div>
 
-    </div>)
+            <span>Don't have an account?</span>
+
+            <div>
+                <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
+            </div>
+
+        </div>)
 }
 
