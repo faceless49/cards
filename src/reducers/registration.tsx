@@ -48,7 +48,7 @@ export const setErrorRequest = (errorRequestValue: string) =>
     ({type: 'registration/ERROR-REQUEST', errorRequestValue} as const)
 
 export const registerTC = (data: RegisterRequestType) => (dispatch: Dispatch<RegistrationActionsType>) => {
-    dispatch(toggleIsFetching(true))
+    // dispatch(toggleIsFetching(true))
     debugger
     registerApi.register(data)
         .then(() => {
@@ -59,7 +59,7 @@ export const registerTC = (data: RegisterRequestType) => (dispatch: Dispatch<Reg
             // console.log(e.response.data.error)
         })
         .finally(() => {
-            dispatch(toggleIsFetching(false))
+            // dispatch(toggleIsFetching(false))
         })
 
 }
