@@ -1,5 +1,9 @@
 import { Dispatch } from "redux";
-import {ForgotRequestType, restoreAPI, SetNewPasswordRequestType} from '../api/restore-api';
+import {
+  ForgotRequestType,
+  restoreAPI,
+  RecoverRequestType
+} from "../api/restore-api";
 
 const initState = {
   email: null as string | null,
@@ -17,6 +21,8 @@ export const restoreReducer = (
       return { ...state, email: action.email };
     case "restore/GET-EMAIL-SUCCESS":
       return { ...state, emailSuccess: action.success };
+    case "restore/SEND-RECOVERY-EMAIL":
+      return { ...state, newPassword: action.newPassword };
     default:
       return state;
   }
@@ -48,26 +54,29 @@ export const forgotPassword =
       const response = await restoreAPI.forgotPassword(requestObj);
       dispatch(setReceiverEmail(email));
       dispatch(getEmailSuccess(response.data.success));
-      dispatch(changePasswordSuccess(false))
+      dispatch(changePasswordSuccess(false));
       console.log(response);
     } catch (e) {
       console.log(e);
     }
   };
 
-export const setNewPassword = (password: string, token: string) => async (dispatch: Dispatch<RestoreActionsType>) => {
-  try {
-    let requestObj: SetNewPasswordRequestType = {
-      password: password,
-      resetPasswordToken: token
+export const setNewPassword =
+  (password: string, token: string) =>
+  async (dispatch: Dispatch<RestoreActionsType>) => {
+    try {
+      let requestObj: RecoverRequestType = {
+        password: password,
+        resetPasswordToken: token,
+      };
+      await restoreAPI.recoveryPassword(requestObj);
+      dispatch(changePasswordSuccess(true));
+    } catch (e) {
+      console.log(e);
     }
-    await restoreAPI.recoveryPassword(requestObj)
-    dispatch(changePasswordSuccess(true))
-  } catch (e) {
-    console.log(e)
-  }
-}
+  };
 
 type RestoreActionsType =
   | ReturnType<typeof setReceiverEmail>
-  | ReturnType<typeof getEmailSuccess> | ReturnType<typeof changePasswordSuccess>
+  | ReturnType<typeof getEmailSuccess>
+  | ReturnType<typeof changePasswordSuccess>;

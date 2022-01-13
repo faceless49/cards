@@ -29,8 +29,3 @@ export type RecoverRequestType = {
   password: string;
   resetPasswordToken: string;
 };
-
-export type SetNewPasswordRequestType = {
-  password: string
-  resetPasswordToken: string
-}

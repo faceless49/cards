@@ -17,7 +17,7 @@ export const Forgot = () => {
     if (emailSuccess) {
       navigate("/approve");
     }
-  }, [emailSuccess]);
+  }, []);
 
   const [email, setEmail] = useState<string>("");
 

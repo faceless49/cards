@@ -27,22 +27,14 @@ export const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
 
-    const onChangeUsername =
-        (e: ChangeEvent<HTMLInputElement>) => {
-            setUsername(e.currentTarget.value)
-        }
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  };
 
-    const onChangePassword =
-        (e: ChangeEvent<HTMLInputElement>) => {
-            setPassword(e.currentTarget.value)
-        }
+  const onClickSignUp = () => {
+    return console.log("redirect");
+  };
 
-    const onClickForgotPassword = () => {
-        return console.log('redirect')
-    }
-    const onClickSignUp = () => {
-        return console.log('redirect')
-    }
 
     const onClickLogin = () => {
         const data = {
@@ -61,7 +53,7 @@ export const Login = () => {
   };
 
     return (
-    
+
     <div className={s.loginWrapper}>
 
         <Title/>
