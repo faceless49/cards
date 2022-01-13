@@ -16,8 +16,8 @@ export type profileInitialStateType = {
 
 const initialState: profileInitialStateType = {
     _id: '',
-    email: '',
-    name: '',
+    email: 'someEmail@gmail.com',
+    name: 'Andrey',
     avatar: '',
     publicCardPacksCount: 0,
     isAdmin: false,
@@ -36,7 +36,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
         case "PROFILE/SET-PROFILE-DATA":
             return {...state, ...action.data}
         case "PROFILE/UPDATE-PROFILE-DATA":
-            return {...state, name: action.data.name, avatar: action.data.avatar}
+            return {...state, name: action.data}
         case "PROFILE/SET-PROFILE-ERROR":
             return {...state, error: action.error}
         case "PROFILE/SET-PROFILE-DELETE-DATA":
@@ -49,7 +49,7 @@ export const profileReducer = (state: InitialStateType = initialState, action: P
 export const setProfileData = (data: profileInitialStateType) => {
     return {type: 'PROFILE/SET-PROFILE-DATA', data} as const
 }
-export const updateProfileData = (data: profileInitialStateType) => {
+export const updateProfileData = (data: string) => {
     return {type: 'PROFILE/UPDATE-PROFILE-DATA', data} as const
 }
 export const setProfileError = (error: string) => {
