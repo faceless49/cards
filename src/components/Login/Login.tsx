@@ -37,11 +37,10 @@ export const Login = () => {
   };
 
   const onClickForgotPassword = () => {
-    //todo create redirects
     return navigate("/restore");
   };
+
   const onClickSignUp = () => {
-    // todo create redirects
     return navigate("/registration");
   };
 
