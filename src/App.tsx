@@ -22,6 +22,7 @@ function App() {
             <Routes>
                 <Route path={"/*"} element={<div>404</div>}/>
 
+
                 <Route path={"/"} element={<div>Main</div>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/registration"} element={<RegistrationContainer/>}/>

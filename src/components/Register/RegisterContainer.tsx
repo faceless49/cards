@@ -6,6 +6,7 @@ import {Navigate} from "react-router-dom";
 import {Registration} from "./Registration";
 
 
+
 export type RegistrationContainerTypeProps = {}
 
 export const RegistrationContainer: React.FC = () => {
