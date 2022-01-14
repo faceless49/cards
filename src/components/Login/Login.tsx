@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { SuperInputText } from "../common/SuperInputText/SuperInputText";
-import { loginTC, setIsLoggedInAC } from "../../reducers/loginReducer";
-import { useNavigate } from "react-router-dom";
+import { loginTC } from "../../reducers/loginReducer";
+import { NavLink, useNavigate } from "react-router-dom";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 
@@ -43,9 +43,9 @@ export const Login = () => {
     };
     dispatch(loginTC(data));
   };
-  const onClickForgotPassword = () => {
+  /*  const onClickForgotPassword = () => {
     return navigate("/restore");
-  };
+  };*/
 
   const onClickSignUp = () => {
     return navigate("/registration");
@@ -75,9 +75,9 @@ export const Login = () => {
         Forgot password
       </SuperButton>*/}
 
-      <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>
+      <NavLink to={"/restore"} className={s.linkTransparent}>
         Forgot password
-      </Navlink>
+      </NavLink>
 
       <div>
         <SuperButton onClick={onClickLogin} style={{ marginTop: "92px" }}>
