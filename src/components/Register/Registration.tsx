@@ -1,10 +1,13 @@
 //@ts-ignore
 import s from '../../styles/common/AuthStyles.module.scss';
+//@ts-ignore
+import style from './Register.module.scss';
 import React, {ChangeEvent} from "react";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import Subtitle from '../common/Subtitle/Subtitle';
 import Title from '../common/Title/Title';
+
 
 
 
@@ -50,24 +53,24 @@ export const Registration: React.FC<RegistrationTypeProps> =
 
                 <Title/>
                 <Subtitle subtitle="Sign up" />
-                <div>
+                <div style={{textAlign:"left"}}>
                     <div style={{color: 'red'}}>
                         {errorRequestValue}
                     </div>
                     <p>Email</p>
-                    <SuperInputText type={'email'} value={email} onChange={onChangeEmailValue}/>
+                    <SuperInputText style={{width:"100%"}} type={'email'} value={email} onChange={onChangeEmailValue}/>
                     <div style={{color: 'red'}}>{emailError}</div>
                     <p>Password</p>
-                    <SuperInputText type={'password'} value={password} onChange={onChangePasswordValue}/>
+                    <SuperInputText style={{width:"100%"}} type={'password'} value={password} onChange={onChangePasswordValue}/>
                     <div style={{color: 'red'}}>{passwordError}</div>
                     <p>Confirm password</p>
-                    <SuperInputText type={'password'} value={replayPassword} onChange={onChangeReplayPasswordValue}/>
+                    <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} onChange={onChangeReplayPasswordValue}/>
 
                 </div>
 
-                <div>
-                    <span><SuperButton onClick={onClickHandler}>Register</SuperButton></span>
-                    <span><SuperButton onClick={onClickCancel}>Cancel</SuperButton></span>
+                <div className={style.btnWrap}> 
+                <SuperButton className={style.btnLeft} onClick={onClickCancel}>Cancel</SuperButton>
+                <SuperButton className={style.btnRight} onClick={onClickHandler}>Register</SuperButton>
                 </div>
 
             </div>

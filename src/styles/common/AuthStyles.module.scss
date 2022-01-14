@@ -19,6 +19,34 @@
         opacity: 0.5;
     }
 
+    .linkTransparent {
+    width: 139px;
+    height: 40px;
+    font-family: "SFUIDisplay-Regular";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #2D2E46;;
+    outline: none;
+    text-decoration: none;
+    background-color: inherit;
+    margin-left: 210px;
+    cursor: pointer;
+}
+
+    .LinkActive {
+    font-family: 'SFUIDisplay-Regular';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #21268F;
+    outline: none;
+    text-decoration: none;
+    }
+
 
     
 
