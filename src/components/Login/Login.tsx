@@ -70,12 +70,14 @@ export const Login = () => {
         />
       </div>
 
-      <SuperButton onClick={onClickForgotPassword}>
+      {/* <SuperButton onClick={onClickForgotPassword}>
         {" "}
         Forgot password
-      </SuperButton>
+      </SuperButton>*/}
 
-      {/* <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</Navlink> */}
+      <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>
+        Forgot password
+      </Navlink>
 
       <div>
         <SuperButton onClick={onClickLogin} style={{ marginTop: "92px" }}>
