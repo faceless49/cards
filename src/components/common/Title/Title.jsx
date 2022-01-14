@@ -4,7 +4,7 @@ export default function Title() {
 
     return (
         <div className={s.title}>
-            <h2>It-incubator</h2>
+            <h2 className={s.headline}>It-incubator</h2>
         </div>
     )
 

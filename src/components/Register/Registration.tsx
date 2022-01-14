@@ -1,6 +1,11 @@
+//@ts-ignore
+import s from '../../styles/common/AuthStyles.module.scss';
 import React, {ChangeEvent} from "react";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
+import Subtitle from '../common/Subtitle/Subtitle';
+import Title from '../common/Title/Title';
+
 
 
 export type RegistrationTypeProps = {
@@ -41,8 +46,10 @@ export const Registration: React.FC<RegistrationTypeProps> =
         }
 
         return (
-            <div>
-                <h1>Sign Up</h1>
+            <div className={s.AuthShape}>
+
+                <Title/>
+                <Subtitle subtitle="Sign up" />
                 <div>
                     <div style={{color: 'red'}}>
                         {errorRequestValue}

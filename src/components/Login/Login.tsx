@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 // @ts-ignore
-import s from "./Login.module.scss";
+import s from '../../styles/common/AuthStyles.module.scss';
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -52,7 +52,7 @@ export const Login = () => {
   };
 
   return (
-    <div className={s.loginWrapper}>
+    <div className={s.AuthShape}>
       <Title />
       <Subtitle subtitle="Sign in" />
 
@@ -79,9 +79,7 @@ export const Login = () => {
           Login
         </SuperButton>
       </div>
-
       <span>Don't have an account?</span>
-
       <div>
         <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
       </div>
