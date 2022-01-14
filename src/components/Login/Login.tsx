@@ -9,6 +9,7 @@ import { loginTC } from "../../reducers/loginReducer";
 import { NavLink, useNavigate } from "react-router-dom";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
+import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -35,17 +36,18 @@ export const Login = () => {
     setPassword(e.currentTarget.value);
   };
 
+  const rememberMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.currentTarget.checked);
+  };
+
   const onClickLogin = () => {
     const data = {
       email: username,
       password: password,
-      rememberMe: true, //  todo checkbox create
+      rememberMe: checked,
     };
     dispatch(loginTC(data));
   };
-  /*  const onClickForgotPassword = () => {
-    return navigate("/restore");
-  };*/
 
   const onClickSignUp = () => {
     return navigate("/registration");
@@ -55,7 +57,6 @@ export const Login = () => {
     <div className={s.loginWrapper}>
       <Title />
       <Subtitle subtitle="Sign in" />
-
       <div
         className={s.formBox}
         style={{ textAlign: "left", marginBottom: "38px" }}
@@ -69,24 +70,16 @@ export const Login = () => {
           onChange={onChangePassword}
         />
       </div>
-
-      {/* <SuperButton onClick={onClickForgotPassword}>
-        {" "}
-        Forgot password
-      </SuperButton>*/}
-
+      <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>{" "}
       <NavLink to={"/restore"} className={s.linkTransparent}>
         Forgot password
       </NavLink>
-
       <div>
         <SuperButton onClick={onClickLogin} style={{ marginTop: "92px" }}>
           Login
         </SuperButton>
       </div>
-
       <span>Don't have an account?</span>
-
       <div>
         <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
       </div>
