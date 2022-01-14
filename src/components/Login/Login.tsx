@@ -56,14 +56,11 @@ export const Login = () => {
       <Title />
       <Subtitle subtitle="Sign in" />
 
-      <div
-        className={s.formBox}
-        style={{ textAlign: "left", marginBottom: "38px" }}
-      >
+      <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
         <p className={s.span}>Email</p>
-        <SuperInputText value={username} onChange={onChangeUsername} />
+        <SuperInputText style={{width:"100%"}} value={username} onChange={onChangeUsername} />
         <p className={s.span}>Password</p>
-        <SuperInputText
+        <SuperInputText style={{width:"100%"}}
           type={"password"}
           value={password}
           onChange={onChangePassword}
