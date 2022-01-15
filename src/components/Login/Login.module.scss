@@ -1,17 +1,21 @@
+.linkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textLight {
+    text-align: center;
+    color: #2D2E46;
+    opacity: 0.5;
+    font-family: "SFUIDisplay-Semibold";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+    margin-bottom: 7px;
+}
 
 
-// .linkTransparent {
-//     width: 139px;
-//     height: 40px;
-//     font-family: "SFUIDisplay-Regular";
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: 17px;
-//     text-align: center;
-//     color: #2D2E46;;
-//     outline: none;
-//     text-decoration: none;
-//     background-color: inherit;
-//     margin-left: 210px;
-//     cursor: pointer;
-// }

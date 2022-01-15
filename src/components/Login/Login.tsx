@@ -1,6 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 // @ts-ignore
 import s from '../../styles/common/AuthStyles.module.scss';
+// @ts-ignore
+import style from './Login.module.scss';
+import { NavLink, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -57,32 +60,33 @@ export const Login = () => {
       <Subtitle subtitle="Sign in" />
 
       <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
-        <p className={s.span}>Email</p>
-        <SuperInputText style={{width:"100%"}} value={username} onChange={onChangeUsername} />
-        <p className={s.span}>Password</p>
+        <label className={s.InputLabel}>Email</label>
+        <SuperInputText style={{width:"100%"}} value={username} placeholder="j&johnson@gmail.com" onChange={onChangeUsername} />
+        <label className={s.InputLabel}>Password</label>
         <SuperInputText style={{width:"100%"}}
           type={"password"}
           value={password}
+          placeholder="*********"
           onChange={onChangePassword}
         />
       </div>
 
-      <SuperButton onClick={onClickForgotPassword}>
+      {/* <SuperButton onClick={onClickForgotPassword}>
         {" "}
         Forgot password
-      </SuperButton>
+      </SuperButton> */}
 
-      {/* <Navlink className={s.linkTransparent} onClick={onClickForgotPassword}>Forgot password</Navlink> */}
+      <NavLink className={s.LinkBasic} to={"/restore"}>Forgot Password</NavLink>
 
-      <div>
-        <SuperButton onClick={onClickLogin} style={{ marginTop: "92px" }}>
+        <SuperButton onClick={onClickLogin} style={{ marginTop: "92px", marginBottom:"30px"}}>
           Login
         </SuperButton>
+      
+      <div className={style.linkWrap}>
+        <span className={style.textLight} style={{marginBottom:"10px"}}>Don't have an account?</span>
+        <NavLink className={s.LinkActive} to={"/registration"}>Sign Up</NavLink>
       </div>
-      <span>Don't have an account?</span>
-      <div>
-        <SuperButton onClick={onClickSignUp}>Sign Up</SuperButton>
-      </div>
+
     </div>
   );
 };

@@ -57,15 +57,18 @@ export const Registration: React.FC<RegistrationTypeProps> =
                     <div style={{color: 'red'}}>
                         {errorRequestValue}
                     </div>
-                    <p>Email</p>
-                    <SuperInputText style={{width:"100%"}} type={'email'} value={email} onChange={onChangeEmailValue}/>
+                    
+                    <label className={s.InputLabel}>Email</label>
+                    <SuperInputText style={{width:"100%"}} type={'email'} value={email} placeholder="j&johnson@gmail.com" onChange={onChangeEmailValue}/>
                     <div style={{color: 'red'}}>{emailError}</div>
-                    <p>Password</p>
-                    <SuperInputText style={{width:"100%"}} type={'password'} value={password} onChange={onChangePasswordValue}/>
+                    
+                    <label className={s.InputLabel}>Password</label>
+                    <SuperInputText style={{width:"100%"}} type={'password'} value={password} placeholder="*********" onChange={onChangePasswordValue}/>
                     <div style={{color: 'red'}}>{passwordError}</div>
-                    <p>Confirm password</p>
-                    <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} onChange={onChangeReplayPasswordValue}/>
-
+                    
+                    <label className={s.InputLabel}>Confirm password</label>
+                    <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} placeholder="*********" onChange={onChangeReplayPasswordValue}/>
+                    
                 </div>
 
                 <div className={style.btnWrap}> 

@@ -9,7 +9,7 @@
         transform: translate(-50%, -50%);
     }
 
-    .span {
+    .InputLabel {
         font-family: 'SF UI Display', sans-serif;
         font-style: normal;
         font-weight: normal;
@@ -19,7 +19,7 @@
         opacity: 0.5;
     }
 
-    .linkTransparent {
+    .LinkBasic {
     width: 139px;
     height: 40px;
     font-family: "SFUIDisplay-Regular";
@@ -33,6 +33,9 @@
     background-color: inherit;
     margin-left: 210px;
     cursor: pointer;
+    &:hover {
+        color:(#8a70d1);
+    }
 }
 
     .LinkActive {
@@ -45,6 +48,9 @@
     color: #21268F;
     outline: none;
     text-decoration: none;
+    &:hover {
+        color:#8a70d1;
+    }
     }
 
 
