@@ -11,19 +11,12 @@ import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
 
-export const Login = () => {
+export const Login = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const isLoggedIn = useSelector<AppRootStateType, boolean>(
     (state) => state.login.isLoggedIn
   );
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/profile");
-    }
-  }, [isLoggedIn]);
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -35,7 +28,6 @@ export const Login = () => {
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
-
   const rememberMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setChecked(e.currentTarget.checked);
   };
@@ -48,9 +40,12 @@ export const Login = () => {
     };
     dispatch(loginTC(data));
   };
-  /*  const onClickForgotPassword = () => {
-      return navigate("/restore");
-    };*/
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+  }, [isLoggedIn]);
 
   const onClickSignUp = () => {
     return navigate("/registration");
@@ -88,4 +83,4 @@ export const Login = () => {
       </div>
     </div>
   );
-};
+});
