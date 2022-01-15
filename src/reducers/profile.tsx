@@ -16,8 +16,8 @@ export type profileInitialStateType = {
 
 const initialState: profileInitialStateType = {
     _id: '',
-    email: 'someEmail@gmail.com',
-    name: 'Andrey',
+    email: '',
+    name: '',
     avatar: '',
     publicCardPacksCount: 0,
     isAdmin: false,
