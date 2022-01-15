@@ -17,6 +17,9 @@ export const Login = React.memo(() => {
   const isLoggedIn = useSelector<AppRootStateType, boolean>(
     (state) => state.login.isLoggedIn
   );
+  const error = useSelector<AppRootStateType, string | null>(
+    (state) => state.login.error
+  );
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -44,7 +47,9 @@ export const Login = React.memo(() => {
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/profile");
-    }
+    } /*else {
+      alert(error);
+    }*/
   }, [isLoggedIn]);
 
   const onClickSignUp = () => {
@@ -55,6 +60,7 @@ export const Login = React.memo(() => {
     <div className={s.loginWrapper}>
       <Title />
       <Subtitle subtitle="Sign in" />
+      <div>{error}</div>
       <div
         className={s.formBox}
         style={{ textAlign: "left", marginBottom: "38px" }}

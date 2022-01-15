@@ -15,6 +15,7 @@ export type LoginParamsType = {
   email: string;
   password: string;
   rememberMe: boolean;
+  error?: string;
 };
 
 export type CommonResponseType<T = {}> = {

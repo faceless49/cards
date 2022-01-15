@@ -30,12 +30,19 @@ export const setIsLoggedInAC = (value: boolean) =>
 
 export const loginTC =
   (data: LoginParamsType) => (dispatch: Dispatch<ActionsType>) => {
-    authApi.login(data).then((res) => {
-      dispatch(setIsLoggedInAC(true));
-    });
-    /*     .catch((error) => {
-        dispatch(setErrorAC("Some error occurred"));
-      });*/
+    authApi
+      .login(data)
+      .then((res) => {
+        dispatch(setIsLoggedInAC(true));
+      })
+      .catch((err) => {
+        const error = err.response
+          ? err.response.data.error
+          : err.message + " , more details in console";
+        console.log("Error: ", { ...err });
+
+        dispatch(setErrorAC(error));
+      });
   };
 
 //types
