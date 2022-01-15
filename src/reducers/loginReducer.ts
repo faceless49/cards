@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import { authApi, LoginParamsType } from "../api/login-api";
+import { setProfileData } from "./profile";
 
 export const initialState: InitialStateType = {
   isLoggedIn: false,
@@ -34,6 +35,7 @@ export const loginTC =
       .login(data)
       .then((res) => {
         dispatch(setIsLoggedInAC(true));
+        dispatch(setProfileData(res.data));
       })
       .catch((err) => {
         const error = err.response
@@ -49,9 +51,30 @@ export const loginTC =
 
 export type ActionsType =
   | ReturnType<typeof setIsLoggedInAC>
-  | ReturnType<typeof setErrorAC>;
+  | ReturnType<typeof setErrorAC>
+  | ReturnType<typeof setProfileData>;
 
 type InitialStateType = {
   isLoggedIn: boolean;
   error: string | null;
 };
+
+/*
+
+export const loginTC= (data: LoginRequestType) => async (dispatch: Dispatch) => {
+  dispatch(setAppLoading(true));
+  try {
+    const response = await api.login(data);
+    dispatch(setLoggedIn(true));
+    dispatch(setProfileData(response.data)); // Инфа для профиля
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      dispatch(setLoginError(error.response.data.error));
+    } else {
+      dispatch(setLoginError('Unknown error. Try again later'))
+    }
+  } finally {
+    dispatch(setAppLoading(false));
+  }
+}
+*/

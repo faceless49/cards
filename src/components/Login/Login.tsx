@@ -47,9 +47,7 @@ export const Login = React.memo(() => {
   useEffect(() => {
     if (isLoggedIn) {
       navigate("/profile");
-    } /*else {
-      alert(error);
-    }*/
+    }
   }, [isLoggedIn]);
 
   const onClickSignUp = () => {
