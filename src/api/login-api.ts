@@ -2,12 +2,6 @@ import { instance } from "./index";
 import { AxiosResponse } from "axios";
 
 export const authApi = {
-  /*  login(data: LoginParamsType) {
-    return instance.post<CommonResponseType<{ userId?: number | undefined }>>(
-      "auth/login",
-      data
-    );
-  },*/
   login(data: LoginParamsType) {
     return instance.post<LoginParamsType, AxiosResponse<CommonResponseType>>(
       `auth/login`,
