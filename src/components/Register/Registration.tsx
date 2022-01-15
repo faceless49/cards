@@ -53,28 +53,35 @@ export const Registration: React.FC<RegistrationTypeProps> =
 
                 <Title/>
                 <Subtitle subtitle="Sign up" />
-                <div style={{textAlign:"left"}}>
-                    <div style={{color: 'red'}}>
-                        {errorRequestValue}
+
+            <form className={style.FormBox}>
+
+                <div className={style.InputBox} style={{textAlign:"left"}}>
+                        <div style={{color: 'red'}}>
+                            {errorRequestValue}
+                        </div>
+                        
+                        <label className={s.InputLabel}>Email</label>
+                        <SuperInputText style={{width:"100%", marginBottom:"24px"}} type={'email'} value={email} placeholder="j&johnson@gmail.com" onChange={onChangeEmailValue}/>
+                        <div style={{color: 'red'}}>{emailError}</div>
+                        
+                        <label className={s.InputLabel}>Password</label>
+                        <SuperInputText style={{width:"100%", marginBottom:"24px"}} type={'password'} value={password} placeholder="*********" onChange={onChangePasswordValue}/>
+                        <div style={{color: 'red'}}>{passwordError}</div>
+                        
+                        <label className={s.InputLabel}>Confirm password</label>
+                        <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} placeholder="*********" onChange={onChangeReplayPasswordValue}/>
+                        
                     </div>
-                    
-                    <label className={s.InputLabel}>Email</label>
-                    <SuperInputText style={{width:"100%"}} type={'email'} value={email} placeholder="j&johnson@gmail.com" onChange={onChangeEmailValue}/>
-                    <div style={{color: 'red'}}>{emailError}</div>
-                    
-                    <label className={s.InputLabel}>Password</label>
-                    <SuperInputText style={{width:"100%"}} type={'password'} value={password} placeholder="*********" onChange={onChangePasswordValue}/>
-                    <div style={{color: 'red'}}>{passwordError}</div>
-                    
-                    <label className={s.InputLabel}>Confirm password</label>
-                    <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} placeholder="*********" onChange={onChangeReplayPasswordValue}/>
-                    
-                </div>
 
                 <div className={style.btnWrap}> 
                 <SuperButton className={style.btnLeft} onClick={onClickCancel}>Cancel</SuperButton>
                 <SuperButton className={style.btnRight} onClick={onClickHandler}>Register</SuperButton>
                 </div>
+                
+            </form>
+
+                
 
             </div>
 

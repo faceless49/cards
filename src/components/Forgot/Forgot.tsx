@@ -42,8 +42,9 @@ export const Forgot = () => {
       <Title />
       <Subtitle subtitle="Forgot Your Password?"/>
 
+      <form className={style.FormBox}>
         <SuperInputText placeholder={"Email"} style={{width:"100%"}} onChange={onChangeEmail} />
-      
+        
         <p className={style.textLight} style={{textAlign:"left", marginTop:"30px"}}>
             Enter your email address and we will send you further instructions
         </p>
@@ -53,7 +54,8 @@ export const Forgot = () => {
         <div className={style.linkWrap}>
           <span className={style.textLight} style={{textAlign:"center"}}>Did you remember your password?</span>
           <NavLink className={s.LinkActive} to={"/login"} style={{marginTop:"15px"}}>Try logging in</NavLink>
-      </div>
+        </div>
+      </form>
 
     </div>
   );

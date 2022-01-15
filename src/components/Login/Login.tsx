@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import s from '../../styles/common/AuthStyles.module.scss';
 // @ts-ignore
 import style from './Login.module.scss';
-import { NavLink, Route, Routes } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -55,13 +55,14 @@ export const Login = () => {
   };
 
   return (
-    <div className={s.AuthShape}>
+    <div className={s.AuthShape} style={{paddingTop:"30px"}}>
       <Title />
       <Subtitle subtitle="Sign in" />
 
+    <form className={style.FormBox}>
       <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
         <label className={s.InputLabel}>Email</label>
-        <SuperInputText style={{width:"100%"}} value={username} placeholder="j&johnson@gmail.com" onChange={onChangeUsername} />
+        <SuperInputText style={{width:"100%",marginBottom:"24px"}} value={username} placeholder="j&johnson@gmail.com" onChange={onChangeUsername} />
         <label className={s.InputLabel}>Password</label>
         <SuperInputText style={{width:"100%"}}
           type={"password"}
@@ -70,11 +71,6 @@ export const Login = () => {
           onChange={onChangePassword}
         />
       </div>
-
-      {/* <SuperButton onClick={onClickForgotPassword}>
-        {" "}
-        Forgot password
-      </SuperButton> */}
 
       <NavLink className={s.LinkBasic} to={"/restore"}>Forgot Password</NavLink>
 
@@ -86,6 +82,7 @@ export const Login = () => {
         <span className={style.textLight} style={{marginBottom:"10px"}}>Don't have an account?</span>
         <NavLink className={s.LinkActive} to={"/registration"}>Sign Up</NavLink>
       </div>
+    </form>
 
     </div>
   );
