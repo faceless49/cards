@@ -9,11 +9,10 @@ export const authApi = {
     );
   },*/
   login(data: LoginParamsType) {
-    return instance.post<
-      LoginParamsType,
-      AxiosResponse<CommonResponseType, LoginParamsType>,
-      LoginParamsType
-    >(`auth/login`, data);
+    return instance.post<LoginParamsType, AxiosResponse<CommonResponseType>>(
+      `auth/login`,
+      data
+    );
   },
 };
 
@@ -25,7 +24,7 @@ export type LoginParamsType = {
   rememberMe: boolean;
 };
 
-export type CommonResponseType<T = {}> = {
+export type CommonResponseType = {
   _id: string;
   email: string;
   name: string;
@@ -39,18 +38,3 @@ export type CommonResponseType<T = {}> = {
   rememberMe: boolean;
   error: string;
 };
-/*
-export type profileInitialStateType = {
-  _id: string
-  email: string
-  name: string
-  avatar: string
-  publicCardPacksCount: number
-  token?: string
-  created: Date | null
-  updated: Date | null
-  isAdmin: boolean
-  verified: boolean
-  rememberMe: boolean
-  error: string
-}*/

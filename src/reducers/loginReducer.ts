@@ -58,23 +58,3 @@ type InitialStateType = {
   isLoggedIn: boolean;
   error: string | null;
 };
-
-/*
-
-export const loginTC= (data: LoginRequestType) => async (dispatch: Dispatch) => {
-  dispatch(setAppLoading(true));
-  try {
-    const response = await api.login(data);
-    dispatch(setLoggedIn(true));
-    dispatch(setProfileData(response.data)); // Инфа для профиля
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      dispatch(setLoginError(error.response.data.error));
-    } else {
-      dispatch(setLoginError('Unknown error. Try again later'))
-    }
-  } finally {
-    dispatch(setAppLoading(false));
-  }
-}
-*/
