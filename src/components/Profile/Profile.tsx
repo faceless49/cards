@@ -46,9 +46,9 @@ export const Profile = () => {
 
     const selectAllHandler = (e: ChangeEvent<HTMLInputElement>) => e.currentTarget.select();
 
-    // if (!isLoggedIn) {
-    //     return <Navigate to={'/login'}/>
-    // }
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
 
 
     return (
