@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 // @ts-ignore
-import s from "../../styles/common/AuthStyles.module.scss";
+import s from '../../styles/common/AuthStyles.module.scss';
 // @ts-ignore
-import style from "./Login.module.scss";
+import style from './Login.module.scss';
+
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -16,6 +17,7 @@ import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
 export const Login = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const isLoggedIn = useSelector<AppRootStateType, boolean>(
     (state) => state.login.isLoggedIn
   );
@@ -61,8 +63,8 @@ export const Login = React.memo(() => {
     }
   }, [isLoggedIn]);
 
-  return (
-    <div className={s.AuthShape} style={{ paddingTop: "30px" }}>
+   return (
+    <div className={s.AuthShape} style={{paddingTop:"30px"}}>
       <Title />
       <Subtitle subtitle="Sign in" />
 
@@ -113,6 +115,8 @@ export const Login = React.memo(() => {
           </NavLink>
         </div>
       </form>
+
+
     </div>
   );
 });
