@@ -20,16 +20,25 @@ export const Login = React.memo(() => {
   const error = useSelector<AppRootStateType, string | null>(
     (state) => state.login.error
   );
+  const status = useSelector<AppRootStateType, string>(
+    (state) => state.login.status
+  );
+
+  const disabled = status === "loading";
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
+  const [eye, setEye] = useState<string>("password");
 
   const onChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
   };
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
+  };
+  const openEye = () => {
+    setEye(eye === "password" ? "text" : "password");
   };
   const rememberMeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setChecked(e.currentTarget.checked);
@@ -58,21 +67,32 @@ export const Login = React.memo(() => {
     <div className={s.loginWrapper}>
       <Title />
       <Subtitle subtitle="Sign in" />
-      <div>{error}</div>
       <div
         className={s.formBox}
         style={{ textAlign: "left", marginBottom: "38px" }}
       >
+        {status === "loading" && <span>{status}</span>}
+        {error && <span>{error}</span>}
         <p className={s.span}>Email</p>
-        <SuperInputText value={username} onChange={onChangeUsername} />
+        <SuperInputText
+          value={username}
+          disabled={disabled}
+          onChange={onChangeUsername}
+        />
         <p className={s.span}>Password</p>
         <SuperInputText
-          type={"password"}
+          disabled={disabled}
+          type={eye}
           value={password}
           onChange={onChangePassword}
         />
       </div>
-      <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>{" "}
+      {/*//todo eye icon here*/}
+      <SuperButton onClick={openEye}> eye icon </SuperButton>
+      <SuperCheckbox onChange={rememberMeHandler}>
+        {" "}
+        Remember me
+      </SuperCheckbox>{" "}
       <NavLink to={"/restore"} className={s.linkTransparent}>
         Forgot password
       </NavLink>
