@@ -3,7 +3,6 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 import s from '../../styles/common/AuthStyles.module.scss';
 // @ts-ignore
 import style from './Login.module.scss';
-import {NavLink} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -90,4 +89,4 @@ export const Login = React.memo(() => {
 
     </div>
   );
-};
+});
