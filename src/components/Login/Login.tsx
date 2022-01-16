@@ -70,12 +70,11 @@ export const Login = React.memo(() => {
 
       <form className={style.FormBox}>
         <span>{error}</span>
+        {status === "loading" && <span>{status}</span>}
         <div
           className={s.formBox}
           style={{ textAlign: "left", marginBottom: "38px" }}
         >
-          {status === "loading" && <span>{status}</span>}
-
           <label className={s.InputLabel}>Email</label>
           <SuperInputText
             style={{ width: "100%", marginBottom: "24px" }}
