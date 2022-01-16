@@ -1,3 +1,8 @@
+// @ts-ignore
+import s from '../../styles/common/AuthStyles.module.scss';
+// @ts-ignore
+import style from './Forgot.module.scss';
+import {NavLink} from "react-router-dom";
 import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -5,6 +10,8 @@ import { SuperInputText } from "../common/SuperInputText/SuperInputText";
 import { forgotPassword } from "../../reducers/restore";
 import { useAppSelector } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
+import Title from "../common/Title/Title";
+import Subtitle from "../common/Subtitle/Subtitle";
 
 export const Forgot = () => {
   const dispatch = useDispatch();
@@ -31,20 +38,25 @@ export const Forgot = () => {
   };
 
   return (
-    <div className="forgot-wrapper">
-      <h1>It-Incubator</h1>
+    <div className={s.AuthShape} style={{paddingBottom: "30px"}}>
+      <Title />
+      <Subtitle subtitle="Forgot Your Password?"/>
 
-      <h2>Forgot Your Password?</h2>
+      <form className={style.FormBox}>
+        <SuperInputText placeholder={"Email"} style={{width:"100%"}} onChange={onChangeEmail} />
+        
+        <p className={style.textLight} style={{textAlign:"left", marginTop:"30px"}}>
+            Enter your email address and we will send you further instructions
+        </p>
 
-      <div>
-        <SuperInputText defaultValue={"Email"} onChange={onChangeEmail} />
-      </div>
+        <SuperButton style={{marginTop:"90px", marginBottom:"30px"}} onClick={submitEmail}>Send Instructions</SuperButton>
+      
+        <div className={style.linkWrap}>
+          <span className={style.textLight} style={{textAlign:"center"}}>Did you remember your password?</span>
+          <NavLink className={s.LinkActive} to={"/login"} style={{marginTop:"15px"}}>Try logging in</NavLink>
+        </div>
+      </form>
 
-      <div>
-        <SuperButton onClick={submitEmail}> Send Instructions</SuperButton>
-      </div>
-
-      <div>Did you remember your password</div>
     </div>
   );
 };

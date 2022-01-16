@@ -27,9 +27,15 @@
 }
 
 @font-face {
-  font-family: "Poppins";
+  font-family: "Poppins-Medium";
   src: url(./fonts/Poppins-Medium.ttf) format('truetype');
   font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url(./fonts/Poppins-Bold.ttf) format('truetype');
   font-display: swap;
 }
 
