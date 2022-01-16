@@ -80,6 +80,7 @@ export const Login = React.memo(() => {
           <SuperInputText
             style={{ width: "100%", marginBottom: "24px" }}
             value={username}
+            disabled={disabled}
             placeholder="j&johnson@gmail.com"
             onChange={onChangeUsername}
           />
