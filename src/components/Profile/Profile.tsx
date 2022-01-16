@@ -55,7 +55,7 @@ export const Profile = () => {
         <div>
             <h1>Personal Information</h1>
             <div className={'avatar'}>
-                <img src={profileAvatar ? profileAvatar : 'https://e7.pngegg.com/pngimages/352/66/png-clipart-computer-icons-login-adityaram-properties-business-business-blue-people-thumbnail.png'} alt={'avatar'}/>
+                <img src={profileAvatar ? profileAvatar : 'http://s1.iconbird.com/ico/2013/11/504/w128h1281385326502profle.png'} alt={'avatar'}/>
             </div>
             <div className={'profileInfo'}>
                 {
