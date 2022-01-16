@@ -19,6 +19,7 @@ export type UserResponseType = {
     verified: boolean;
     rememberMe: boolean;
     error: string;
+    token?: string
 }
 
 export type MePutRequestType = {
