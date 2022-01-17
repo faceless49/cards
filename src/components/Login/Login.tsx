@@ -63,21 +63,25 @@ export const Login = React.memo(() => {
       <Subtitle subtitle="Sign in" />
       <div>{error}</div>
     <form className={style.FormBox}>
-      <div className={s.formBox} style={{ textAlign: "left", marginBottom: "38px" }}>
+      <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
         <label className={s.InputLabel}>Email</label>
         <SuperInputText style={{width:"100%",marginBottom:"24px"}} value={username} placeholder="j&johnson@gmail.com" onChange={onChangeUsername} />
         <label className={s.InputLabel}>Password</label>
-        <SuperInputText style={{width:"100%"}}
+        <SuperInputText style={{width:"100%", marginBottom:"5px"}}
           type={"password"}
           value={password}
           placeholder="*********"
           onChange={onChangePassword}
         />
-      </div>
-      <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>
-      <NavLink className={s.LinkBasic} to={"/restore"}>Forgot Password</NavLink>
 
-        <SuperButton onClick={onClickLogin} style={{ marginTop: "92px", marginBottom:"30px"}}>
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+        <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>
+        <NavLink className={s.LinkBasic} to={"/restore"} style={{marginLeft:"0", paddingTop:"5px"}}>Forgot Password</NavLink>
+        </div>
+        
+      </div>
+      
+        <SuperButton onClick={onClickLogin} style={{ marginTop: "72px", marginBottom:"30px"}}>
           Login
         </SuperButton>
 
