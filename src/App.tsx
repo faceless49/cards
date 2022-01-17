@@ -9,6 +9,7 @@ import {Profile} from "./components/Profile/Profile";
 import {RegistrationContainer} from './components/Register/RegisterContainer';
 import {Forgot} from './components/Forgot/Forgot';
 import {NewPassword} from './components/NewPassword/NewPassword';
+import {Packs} from "./components/Packs/Packs";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <NavLink to={"/newPass"}>newPass</NavLink>---
         <NavLink to={"/restore"}>restore</NavLink>---
         <NavLink to={"/test"}>Test</NavLink>
+        <NavLink to={"/packs"}>Packs</NavLink>
       </div>
       <Routes>
         <Route path={"/*"} element={<div>404</div>} />
@@ -33,6 +35,7 @@ function App() {
         <Route path={"/restore"} element={<Forgot/>} />
         <Route path={"/newPass"} element={<NewPassword/>}/>
         <Route path={"/test"} element={<div><SuperInputText/><SuperButton>Push</SuperButton><SuperCheckbox/></div>} />
+        <Route path={"/packs"} element={<Packs/>}/>
       </Routes>
     </div>
   );
