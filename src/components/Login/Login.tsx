@@ -1,9 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 // @ts-ignore
-import s from "../../styles/common/AuthStyles.module.scss";
+import s from '../../styles/common/AuthStyles.module.scss';
 // @ts-ignore
-import style from "./Login.module.scss";
-
+import style from './Login.module.scss';
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -63,59 +62,53 @@ export const Login = React.memo(() => {
     }
   }, [isLoggedIn]);
 
+  const onClickSignUp = () => {
+    return navigate("/registration");
+  };
+
   return (
     <div className={s.AuthShape} style={{ paddingTop: "30px" }}>
       <Title />
       <Subtitle subtitle="Sign in" />
+      <div>{error}</div>
+      {status === "loading" && <span>{status}</span>}
+    <form className={style.FormBox}>
+      <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
+        <label className={s.InputLabel}>Email</label>
+        <SuperInputText
+          style={{width:"100%",marginBottom:"24px"}}
+          value={username}
+          disabled={disabled}
+          placeholder="j&johnson@gmail.com"
+          onChange={onChangeUsername} />
+        <label className={s.InputLabel}>Password</label>
+        <SuperInputText
+          style={{ width: "100%", marginBottom: "5px" }}
+          type={eye}
+          value={password}
+          disabled={disabled}
+          placeholder="*********"
+          onChange={onChangePassword}
+        />
 
-      <form className={style.FormBox}>
-        <span>{error}</span>
-        {status === "loading" && <span>{status}</span>}
-        <div
-          className={s.formBox}
-          style={{ textAlign: "left", marginBottom: "38px" }}
-        >
-          <label className={s.InputLabel}>Email</label>
-          <SuperInputText
-            style={{ width: "100%", marginBottom: "24px" }}
-            value={username}
-            disabled={disabled}
-            placeholder="j&johnson@gmail.com"
-            onChange={onChangeUsername}
-          />
-          <label className={s.InputLabel}>Password</label>
-          <SuperInputText
-            style={{ width: "100%" }}
-            type={eye}
-            value={password}
-            disabled={disabled}
-            placeholder="*********"
-            onChange={onChangePassword}
-          />
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+        <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>
+        <NavLink className={s.LinkBasic} to={"/restore"} style={{marginLeft:"0", paddingTop:"5px"}}>
+          Forgot Password</NavLink>
         </div>
-        <SuperButton onClick={openEye}> eye icon </SuperButton>
-        <SuperCheckbox onChange={rememberMeHandler}>
-          {" "}
-          Remember me
-        </SuperCheckbox>{" "}
-        <NavLink className={s.LinkBasic} to={"/restore"}>
-          Forgot Password
-        </NavLink>
-        <SuperButton
-          onClick={onClickLogin}
-          style={{ marginTop: "92px", marginBottom: "30px" }}
-        >
+
+      </div>
+
+        <SuperButton onClick={onClickLogin} style={{ marginTop: "72px", marginBottom:"30px"}}>
           Login
         </SuperButton>
-        <div className={style.linkWrap}>
-          <span className={style.textLight} style={{ marginBottom: "10px" }}>
-            Don't have an account?
-          </span>
-          <NavLink className={s.LinkActive} to={"/registration"}>
-            Sign Up
-          </NavLink>
-        </div>
-      </form>
+
+      <div className={style.linkWrap}>
+        <span className={style.textLight} style={{marginBottom:"10px"}}>Don't have an account?</span>
+        <NavLink className={s.LinkActive} to={"/registration"}>Sign Up</NavLink>
+      </div>
+    </form>
+
     </div>
   );
 });
