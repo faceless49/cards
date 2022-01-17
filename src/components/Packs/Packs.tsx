@@ -1,5 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
-import {InitialStatePackPageType, setPacksError, setPacksSortData} from "../../reducers/packReducer";
+import {
+    getPacks,
+    InitialStatePackPageType,
+    setPacksData,
+    setPacksError,
+    setPacksSortData
+} from "../../reducers/packReducer";
 import {AppRootStateType} from "../../redux/store";
 import {useEffect} from "react";
 import {Link, Navigate} from "react-router-dom";
@@ -23,6 +29,7 @@ export const Packs = () => {
 
     useEffect(() => {
         dispatch(setPacksError(''));
+        dispatch(getPacks())
     }, [dispatch])
 
 
@@ -42,7 +49,6 @@ export const Packs = () => {
 
 
     const packList = cardPacks.map(p => {
-
         return (
             <tr key={p._id}>
                 <td>{p.name}</td>

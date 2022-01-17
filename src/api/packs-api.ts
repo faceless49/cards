@@ -2,9 +2,11 @@ import {instance} from "./index";
 import {AxiosResponse} from "axios";
 
 export const packsApi = {
-
+    getPacks(data?: GetPacksRequestType) {
+        return instance.get<GetPacksRequestType, AxiosResponse<GetPacksResponseType, GetPacksRequestType>, GetPacksRequestType>
+        (`cards/pack`, {params: data})
+    },
 }
-
 
 export type GetPacksRequestType = {
     packName?: string

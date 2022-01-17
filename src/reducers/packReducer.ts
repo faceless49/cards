@@ -1,22 +1,9 @@
-import {GetPacksRequestType} from "../api/packs-api";
+import {GetPacksRequestType, packsApi, PackType} from "../api/packs-api";
+import {Dispatch} from "redux";
+import {AppRootStateType} from "../redux/store";
+import axios from "axios";
 
-export type PackType = {
-    _id: string
-    user_id: string
-    user_name: string
-    private: boolean
-    name: string
-    path: string
-    grade: number
-    shots: number
-    cardsCount: number
-    type: string
-    rating: number
-    created: Date
-    updated: Date
-    more_id: string
-    __v: number
-}
+
 export type InitialStatePackPageType = {
     cardPacks: PackType[]
     cardPacksTotalCount: number
@@ -118,6 +105,33 @@ export const clearPacksData = () => ({type: 'PACK/CLEAR-PACKS'} as const)
 export const setPacksError = (error: string) => ({type: 'PACK/SET-ERROR', error} as const)
 export const setPacksSortData = (sort: 'up' | 'down', sortType: 'name' | 'cardsCount' | 'updated') =>
     ({type: 'PACK/SET-SORT', sort, sortType} as const)
+
+//Thunks
+
+export const getPacks = (someParams?: string) =>
+    async (dispatch: Dispatch, getState: ()=> AppRootStateType) => {
+    //dispatch(диспатч на лоадинг)
+        dispatch(setPacksError(''));
+        try {
+            const response = await packsApi.getPacks({
+                page: getState().packPage.page,
+                user_id: getState().packPage.user_id,
+                pageCount: getState().packPage.pageCount,
+                packName: someParams && someParams,
+            })
+            dispatch(setPacksData(response.data))
+        }
+        catch (err) {
+            if (axios.isAxiosError(err) && err.response) {
+                dispatch(setPacksError(err.response.data.error))
+            } else if (axios.isAxiosError(err)) {
+                dispatch(setPacksError(err.message))
+            }
+            // finally {
+            //     //dispatch(диспатч на лоадинг)
+            // }
+        }
+}
 
 type PackActionsType = ReturnType<typeof setPacksData>
     | ReturnType<typeof clearPacksData>
