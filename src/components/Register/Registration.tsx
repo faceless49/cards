@@ -42,7 +42,9 @@ export const Registration: React.FC<RegistrationTypeProps> =
 
         return (
             <div>
-                <h1>Sign Up</h1>
+                <div>
+                    <h1>Sign Up</h1>
+                </div>
                 <div>
                     <div style={{color: 'red'}}>
                         {errorRequestValue}
@@ -54,7 +56,8 @@ export const Registration: React.FC<RegistrationTypeProps> =
                     <SuperInputText type={'password'} value={password} onChange={onChangePasswordValue}/>
                     <div style={{color: 'red'}}>{passwordError}</div>
                     <p>Confirm password</p>
-                    <SuperInputText type={'password'} value={replayPassword} onChange={onChangeReplayPasswordValue}/>
+                    <SuperInputText type={'password'} value={replayPassword}
+                                    onChange={onChangeReplayPasswordValue}/>
 
                 </div>
 
@@ -62,7 +65,6 @@ export const Registration: React.FC<RegistrationTypeProps> =
                     <span><SuperButton onClick={onClickHandler}>Register</SuperButton></span>
                     <span><SuperButton onClick={onClickCancel}>Cancel</SuperButton></span>
                 </div>
-
             </div>
 
         )

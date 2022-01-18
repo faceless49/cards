@@ -6,13 +6,15 @@ import {profileReducer} from '../reducers/profile';
 import {appReducer} from '../reducers/app';
 import {loginReducer} from "../reducers/loginReducer";
 import {registrationReducer} from "../reducers/registration";
+import {restoreReducer} from "../reducers/restore";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   app: appReducer,
   login: loginReducer,
-  register:registrationReducer
+  register:registrationReducer,
+  restore : restoreReducer
 })
 
 

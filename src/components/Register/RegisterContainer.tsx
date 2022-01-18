@@ -24,7 +24,7 @@ export const RegistrationContainer: React.FC = () => {
 
     const onChangeEmail = (value: string) => {
         setEmail(value)
-        dispatch(setEmailError(''))
+        dispatch(setEmailError(null))
     }
     const onChangePassword = (value: string) => {
         setPassword(value)
