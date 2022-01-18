@@ -88,7 +88,7 @@ export const Packs = () => {
                     <div>
                         <Link to={`/cards/${p._id}`}>
                             <SuperButton>
-                                Cards
+                                Learn
                             </SuperButton>
                         </Link>
                         {
