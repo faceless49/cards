@@ -8,7 +8,7 @@ import {
     setPacksSortData, updatePack
 } from "../../reducers/packReducer";
 import {AppRootStateType} from "../../redux/store";
-import {useEffect} from "react";
+import {ChangeEvent, useEffect} from "react";
 import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
@@ -34,7 +34,17 @@ export const Packs = () => {
     }, [dispatch])
 
     const addPackHandler = () => {
-        dispatch(addPack('SUPER PACK'));
+        dispatch(addPack('SuperMega Pack'));
+    }
+
+    const checkMyHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.currentTarget.checked) {
+            dispatch(setPacksData({user_id: userId}));
+            dispatch(getPacks());
+        } else {
+            dispatch(setPacksData({user_id: ''}));
+            dispatch(getPacks());
+        }
     }
 
     const deletePackHandler = (packId: string) => dispatch(deletePack(packId));
@@ -57,7 +67,7 @@ export const Packs = () => {
 
     const packList = cardPacks.map(p => {
         const deletePack = () => deletePackHandler(p._id)
-        const updatePack = () => updatePackHandler(p._id, 'New name')
+        const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
 
         return (
             <tr key={p._id}>
@@ -134,7 +144,8 @@ export const Packs = () => {
                             <div>
                                 <label>
                                     <input type={'checkbox'}
-                                           checked={user_id !== ''}/>
+                                           checked={user_id !== ''}
+                                           onChange={checkMyHandler}/>
                                     My Packs
                                 </label>
                                 <SuperButton onClick={addPackHandler}>
