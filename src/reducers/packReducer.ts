@@ -103,6 +103,28 @@ export const packReducer = (state = initialState, action: PackActionsType): Init
                         })]
                     }
                 }
+            } else if (action.sortType === 'user_name') {
+                if (action.sort === 'up') {
+                    return {
+                        ...state, cardPacks: [...state.cardPacks.sort((a, b) => {
+                            let nameOne = a.user_name.toLocaleLowerCase();
+                            let nameTwo = b.user_name.toLocaleLowerCase();
+                            if (nameOne < nameTwo) return -1;
+                            else if (nameOne > nameTwo) return 1;
+                            else return 0
+                        })]
+                    }
+                } else {
+                    return {
+                        ...state, cardPacks: [...state.cardPacks.sort((a, b) => {
+                            let nameOne = a.user_name.toLocaleLowerCase();
+                            let nameTwo = b.user_name.toLocaleLowerCase();
+                            if (nameOne > nameTwo) return -1;
+                            else if (nameOne < nameTwo) return 1;
+                            else return 0
+                        })]
+                    }
+                }
             }
             return state
         default:
@@ -113,14 +135,14 @@ export const packReducer = (state = initialState, action: PackActionsType): Init
 export const setPacksData = (data: GetPacksRequestType) => ({type: 'PACK/SET-PACKS-DATA', data} as const)
 export const clearPacksData = () => ({type: 'PACK/CLEAR-PACKS'} as const)
 export const setPacksError = (error: string) => ({type: 'PACK/SET-ERROR', error} as const)
-export const setPacksSortData = (sort: 'up' | 'down', sortType: 'name' | 'cardsCount' | 'updated') =>
+export const setPacksSortData = (sort: 'up' | 'down', sortType: 'name' | 'cardsCount' | 'updated' | 'user_name') =>
     ({type: 'PACK/SET-SORT', sort, sortType} as const)
 
 //Thunks
 
 export const getPacks = (someParams?: string) =>
-    async (dispatch: Dispatch, getState: ()=> AppRootStateType) => {
-    //dispatch(диспатч на лоадинг)
+    async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+        //dispatch(диспатч на лоадинг)
         dispatch(setPacksError(''));
         try {
             const response = await packsApi.getPacks({
@@ -130,8 +152,7 @@ export const getPacks = (someParams?: string) =>
                 packName: someParams && someParams,
             })
             dispatch(setPacksData(response.data))
-        }
-        catch (err) {
+        } catch (err) {
             if (axios.isAxiosError(err) && err.response) {
                 dispatch(setPacksError(err.response.data.error))
             } else if (axios.isAxiosError(err)) {
@@ -141,16 +162,15 @@ export const getPacks = (someParams?: string) =>
             //     //dispatch(диспатч на лоадинг)
             // }
         }
-}
+    }
 
-export const addPack = (name:string): AppThunk => async (dispatch) => {
+export const addPack = (name: string): AppThunk => async (dispatch) => {
     //dispatch(диспатч на лоадинг)
     try {
         await packsApi.addPack(name)
         dispatch(getPacks())
-    }
-    catch (err) {
-        if (axios.isAxiosError(err) && err.response){
+    } catch (err) {
+        if (axios.isAxiosError(err) && err.response) {
             dispatch(setPacksError(err.response.data.error))
         } else if (axios.isAxiosError(err)) {
             dispatch(setPacksError(err.message))

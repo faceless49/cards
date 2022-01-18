@@ -59,6 +59,9 @@ export const Packs = () => {
     const sortUpdatedHandlerUp = () => dispatch(setPacksSortData('up', "updated"));
     const sortUpdatedHandlerDown = () => dispatch(setPacksSortData('down', "updated"));
 
+    const sortCreatedByHandlerUp = () => dispatch(setPacksSortData('up', "user_name"));
+    const sortCreatedByHandlerDown = () => dispatch(setPacksSortData('down', "user_name"));
+
     const onChangePageCountHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setPacksData({pageCount: +e.currentTarget.value}));
         dispatch(getPacks());
@@ -142,8 +145,8 @@ export const Packs = () => {
                                   title={'Updated'}/>
                         </th>
                         <th>
-                            <Sort sortHandlerUp={sortUpdatedHandlerUp}
-                                  sortHandlerDown={sortUpdatedHandlerDown}
+                            <Sort sortHandlerUp={sortCreatedByHandlerUp}
+                                  sortHandlerDown={sortCreatedByHandlerDown}
                                   title={'Created by'}/>
                         </th>
                         <th>
