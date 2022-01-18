@@ -16,19 +16,24 @@ export const RegistrationContainer: React.FC = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [replayPassword, setReplayPassword] = useState<string>('')
+    const [emailError, setEmailError] = useState<null | string>('')
+    const [passwordError, setPasswordError] = useState<null | string>('')
 
-    const emailError = useSelector<AppRootStateType, string | null>(state => state.register.emailError)
-    const passwordError = useSelector<AppRootStateType, string | null>(state => state.register.passwordError)
+
+    // const emailError = useSelector<AppRootStateType, string | null>(state => state.register.emailError)
+    // const passwordError = useSelector<AppRootStateType, string | null>(state => state.register.passwordError)
     const isRegistration = useSelector<AppRootStateType, boolean>(state => state.register.isRegistration)
     const errorRequestValue = useSelector<AppRootStateType, null | string>(state => state.register.errorRequestValue)
 
     const onChangeEmail = (value: string) => {
         setEmail(value)
-        dispatch(setEmailError(null))
+        // dispatch(setEmailError(null))
+        setEmailError(null)
     }
     const onChangePassword = (value: string) => {
         setPassword(value)
-        dispatch(setPasswordError(null))
+        // dispatch(setPasswordError(null))
+        setPasswordError(null)
     }
     const onChangeReplayPassword = (value: string) => {
         setReplayPassword(value)
@@ -43,12 +48,15 @@ export const RegistrationContainer: React.FC = () => {
             password: password,
         }
         if (email === '') {
-            return dispatch(setEmailError('Required'))
+            // return dispatch(setEmailError('Required'))
+            return setEmailError('Required')
         } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-            return dispatch(setEmailError('Invalid email address'))
+            // return dispatch(setEmailError('Invalid email address'))
+            return setEmailError('Invalid email address')
         }
         if (password.length < 8) {
-            return dispatch(setPasswordError('Password should be more than 8 characters'))
+            // return dispatch(setPasswordError('Password should be more than 8 characters'))
+            return setPasswordError('Password should be more than 8 characters')
         }
         if (!emailError && !passwordError) {
             dispatch(registerTC(data))

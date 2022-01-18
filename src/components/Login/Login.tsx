@@ -14,7 +14,6 @@ import Subtitle from "../common/Subtitle/Subtitle";
 import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
 // @ts-ignore
 import eyeIcon from '../../images/eyeIcon.svg';
-import { relative } from "path/win32";
 
 export const Login = React.memo(() => {
   const dispatch = useDispatch();
@@ -85,6 +84,14 @@ export const Login = React.memo(() => {
           placeholder="j&johnson@gmail.com"
           onChange={onChangeUsername} />
         <label className={s.InputLabel}>Password</label>
+        <SuperInputText
+          style={{ width: "100%", marginBottom: "5px" }}
+          type={eye}
+          value={password}
+          disabled={disabled}
+          placeholder="*********"
+          onChange={onChangePassword}
+        />
 
     <div className={style.psRelative}>
     <SuperInputText
@@ -95,11 +102,10 @@ export const Login = React.memo(() => {
           placeholder="*********"
           onChange={onChangePassword}
         />
-      <button className={style.EyeButton} onClick={openEye}><img src={eyeIcon}/></button> 
+      <button className={style.EyeButton} onClick={openEye}><img src={eyeIcon}/></button>
     </div>
-        
 
-        
+
 
         <div style={{display:"flex", flexDirection:"column", alignItems:"flex-start", gap:"10px"}}>
 
