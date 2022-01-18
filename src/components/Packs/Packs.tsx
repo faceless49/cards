@@ -32,7 +32,7 @@ export const Packs = () => {
   );
 
   const [searchValue, setSearchValue] = useState('')
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value)
   }
 
@@ -129,7 +129,7 @@ export const Packs = () => {
       </div>
       <div className={s.ContentMain}>
         <Subtitle subtitle="Packs list" style={{ width: "max-content" }} />
-        <SearchField searchValue={searchValue} setSearchValue={onChangeHandler}/>
+        <SearchField searchValue={searchValue} setSearchValue={onChangeSearchValue}/>
         <div className={s.contentRightTop}>
           {/*paginator*/}
           {error && <div>{error}</div>}
