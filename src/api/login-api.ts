@@ -1,9 +1,10 @@
 import { instance } from "./index";
+import { AxiosResponse } from "axios";
 
 export const authApi = {
   login(data: LoginParamsType) {
-    return instance.post<CommonResponseType<{ userId?: number }>>(
-      "auth/login",
+    return instance.post<LoginParamsType, AxiosResponse<CommonResponseType>>(
+      `auth/login`,
       data
     );
   },
@@ -17,16 +18,17 @@ export type LoginParamsType = {
   rememberMe: boolean;
 };
 
-export type CommonResponseType<T = {}> = {
+export type CommonResponseType = {
   _id: string;
   email: string;
   name: string;
-  avatar?: string;
+  avatar: string;
   publicCardPacksCount: number;
+  token?: string;
   created: Date;
   updated: Date;
   isAdmin: boolean;
   verified: boolean;
   rememberMe: boolean;
-  error?: string;
+  error: string;
 };

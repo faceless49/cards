@@ -1,3 +1,7 @@
+// @ts-ignore
+import s from '../../styles/common/AuthStyles.module.scss';
+// @ts-ignore
+import style from './NewPassword.module.scss';
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
@@ -5,6 +9,8 @@ import { setNewPassword } from "../../reducers/restore";
 import { SuperInputText } from "../common/SuperInputText/SuperInputText";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { useAppSelector } from "../../redux/store";
+import Title from "../common/Title/Title";
+import Subtitle from "../common/Subtitle/Subtitle";
 
 export const NewPassword = () => {
   const { token } = useParams<{ token: string }>();
@@ -31,26 +37,26 @@ export const NewPassword = () => {
       navigate("/approve");
     }
   }, [changePasswordSuccess]);
-debugger
   return (
-    <div>
-      <form>
-        <div>
-          <h3>Create new password</h3>
-        </div>
-        <div>
-          <SuperInputText
+
+
+    <div className={s.AuthShape}>
+      <Title />
+      <Subtitle subtitle="Create new password" />
+      <form className={style.FormBox}>
+          <SuperInputText style={{width:"100%", marginBottom:"30px"}}
             value={password}
             onChange={onChangeNewPassword}
             type={"password"}
             placeholder={"New password"}
           />
-        </div>
-        <p>Create new password and log in with it afterwards</p>
+        
+        <p className={style.textLight} style={{textAlign:"left", marginBottom:"90px"}}>Create new password and we will send you further instructions to email</p>
         <div>
-          <SuperButton onClick={submitNewPassword}>Create new password</SuperButton>
+          <SuperButton style={{marginBottom:"45px"}} onClick={submitNewPassword}>Create new password</SuperButton>
         </div>
       </form>
+
     </div>
   );
 };

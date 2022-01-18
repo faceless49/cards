@@ -3,8 +3,9 @@ import './profile.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
-import {updateProfileData} from "../../reducers/profile";
+import {updateProfileInfo} from "../../reducers/profile";
 import {SuperButton} from "../common/SuperButton/SuperButton";
+import {Navigate} from 'react-router-dom'
 
 export const Profile = () => {
     const profileName = useSelector<AppRootStateType, string>(store => store.profile.name);
@@ -14,11 +15,12 @@ export const Profile = () => {
 
     const dispatch = useDispatch();
 
-    const [name, setName] = useState(profileName);
     const [avatar, setAvatar] = useState('');
+    const [name, setName] = useState(profileName);
     const [editName, setEditName] = useState(false)
 
     const editNameHandler = () => setEditName(true);
+
     const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => setName(e.currentTarget.value.trim());
 
     const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -30,7 +32,7 @@ export const Profile = () => {
 
     const onSubmitName = () => {
         if (name && (name !== profileName)) {
-            dispatch(updateProfileData(name));
+            dispatch(updateProfileInfo({name}));
         }
         if (name.trim() === '') {
             setName(profileName);
@@ -44,12 +46,16 @@ export const Profile = () => {
 
     const selectAllHandler = (e: ChangeEvent<HTMLInputElement>) => e.currentTarget.select();
 
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
+
 
     return (
         <div>
             <h1>Personal Information</h1>
             <div className={'avatar'}>
-                <img src={profileAvatar ? profileAvatar : ')'} alt={'avatar'}/>
+                <img src={profileAvatar ? profileAvatar : 'http://s1.iconbird.com/ico/2013/11/504/w128h1281385326502profle.png'} alt={'avatar'}/>
             </div>
             <div className={'profileInfo'}>
                 {

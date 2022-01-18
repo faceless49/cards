@@ -1,35 +1,22 @@
-.loginWrapper {
-    background: #F9F9FE;
-    width: 413px;
-    padding: 25px 33px 26px 33px;
+.linkWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textLight {
     text-align: center;
-    margin: auto;
-    border-radius: 8px;
+    color: #2D2E46;
+    opacity: 0.5;
+    font-family: "SFUIDisplay-Semibold";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none;
+    margin-bottom: 7px;
 }
 
 
-.span {
-font-family: 'SF UI Display', sans-serif;
-font-style: normal;
-font-weight: normal;
-font-size: 13px;
-line-height: 20px;
-color: #24254A;
-opacity: 0.5;
-}
 
-// .linkTransparent {
-//     width: 139px;
-//     height: 40px;
-//     font-family: "SFUIDisplay-Regular";
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: 17px;
-//     text-align: center;
-//     color: #2D2E46;;
-//     outline: none;
-//     text-decoration: none;
-//     background-color: inherit;
-//     margin-left: 210px;
-//     cursor: pointer;
-// }
