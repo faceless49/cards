@@ -12,11 +12,12 @@ import {
   updatePack,
 } from "../../reducers/packReducer";
 import { AppRootStateType } from "../../redux/store";
-import { ChangeEvent, useEffect } from "react";
+import {ChangeEvent, useEffect, useState} from 'react';
 import { Link, Navigate } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
+import {SearchField} from '../SearchField/SearchField';
 
 export const Packs = () => {
   const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
@@ -29,6 +30,12 @@ export const Packs = () => {
   const userId = useSelector<AppRootStateType, string>(
     (state) => state.profile._id
   );
+
+  const [searchValue, setSearchValue] = useState('')
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.currentTarget.value)
+  }
+
 
   const dispatch = useDispatch();
 
@@ -122,7 +129,7 @@ export const Packs = () => {
       </div>
       <div className={s.ContentMain}>
         <Subtitle subtitle="Packs list" style={{ width: "max-content" }} />
-
+        <SearchField searchValue={searchValue} setSearchValue={onChangeHandler}/>
         <div className={s.contentRightTop}>
           {/*paginator*/}
           {error && <div>{error}</div>}

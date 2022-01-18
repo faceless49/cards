@@ -138,6 +138,9 @@ export const setPacksError = (error: string) => ({type: 'PACK/SET-ERROR', error}
 export const setPacksSortData = (sort: 'up' | 'down', sortType: 'name' | 'cardsCount' | 'updated' | 'user_name') =>
     ({type: 'PACK/SET-SORT', sort, sortType} as const)
 
+// search
+export const setSearchData = (value: string) => ({type: 'PACK/SET-SEARCH-DATA', value} as const)
+
 //Thunks
 
 export const getPacks = (someParams?: string) =>
