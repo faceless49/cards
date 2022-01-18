@@ -177,6 +177,23 @@ export const deletePack = (packId: string): AppThunk =>
         // }
     }
 
+export const updatePack = (packId: string, name: string): AppThunk =>
+    async (dispatch, getState: () => AppRootStateType) => {
+        //dispatch(диспатч на лоадинг)
+        try {
+            await packsApi.updatePack(packId, name);
+            dispatch(getPacks());
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                dispatch(setPacksError(error.response.data.error));
+            } else if (axios.isAxiosError(error)) {
+                dispatch(setPacksError(error.message));
+            }
+        } // finally {
+        //     //dispatch(диспатч на лоадинг)
+        // }
+    }
+
 type PackActionsType = ReturnType<typeof setPacksData>
     | ReturnType<typeof clearPacksData>
     | ReturnType<typeof setPacksError>

@@ -13,6 +13,10 @@ export const packsApi = {
     deletePack(packId: string) {
         return instance.delete<{ packId: string }>(`cards/pack`, {params: {id: packId}})
     },
+    updatePack(packId: string, name: string) {
+        return instance.put<UpdatePackType>(`cards/pack`, {cardsPack: {_id: packId, name}})
+    },
+
 }
 
 export type GetPacksRequestType = {

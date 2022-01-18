@@ -5,7 +5,7 @@ import {
     InitialStatePackPageType,
     setPacksData,
     setPacksError,
-    setPacksSortData
+    setPacksSortData, updatePack
 } from "../../reducers/packReducer";
 import {AppRootStateType} from "../../redux/store";
 import {useEffect} from "react";
@@ -34,10 +34,11 @@ export const Packs = () => {
     }, [dispatch])
 
     const addPackHandler = () => {
-         dispatch(addPack('SUPER PACK'));
+        dispatch(addPack('SUPER PACK'));
     }
 
     const deletePackHandler = (packId: string) => dispatch(deletePack(packId));
+    const updatePackHandler = (packId: string, name: string) => dispatch(updatePack(packId, name));
 
     const sortNameHandlerUp = () => dispatch(setPacksSortData('up', 'name'));
     const sortNameHandlerDown = () => dispatch(setPacksSortData('down', 'name'));
@@ -56,6 +57,8 @@ export const Packs = () => {
 
     const packList = cardPacks.map(p => {
         const deletePack = () => deletePackHandler(p._id)
+        const updatePack = () => updatePackHandler(p._id, 'New name')
+
         return (
             <tr key={p._id}>
                 <td>{p.name}</td>
@@ -75,8 +78,8 @@ export const Packs = () => {
                                 <SuperButton onClick={deletePack}>
                                     Delete
                                 </SuperButton>
-                                <SuperButton>
-                                    Update
+                                <SuperButton onClick={updatePack}>
+                                    Edit name
                                 </SuperButton>
                             </>
                         }
