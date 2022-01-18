@@ -1,5 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {
+    addPack, deletePack,
     getPacks,
     InitialStatePackPageType,
     setPacksData,
@@ -32,6 +33,11 @@ export const Packs = () => {
         dispatch(getPacks())
     }, [dispatch])
 
+    const addPackHandler = () => {
+         dispatch(addPack('SUPER PACK'));
+    }
+
+    const deletePackHandler = (packId: string) => dispatch(deletePack(packId));
 
     const sortNameHandlerUp = () => dispatch(setPacksSortData('up', 'name'));
     const sortNameHandlerDown = () => dispatch(setPacksSortData('down', 'name'));
@@ -49,6 +55,7 @@ export const Packs = () => {
 
 
     const packList = cardPacks.map(p => {
+        const deletePack = () => deletePackHandler(p._id)
         return (
             <tr key={p._id}>
                 <td>{p.name}</td>
@@ -65,7 +72,7 @@ export const Packs = () => {
                         {
                             userId === p.user_id &&
                             <>
-                                <SuperButton>
+                                <SuperButton onClick={deletePack}>
                                     Delete
                                 </SuperButton>
                                 <SuperButton>
@@ -127,7 +134,7 @@ export const Packs = () => {
                                            checked={user_id !== ''}/>
                                     My Packs
                                 </label>
-                                <SuperButton>
+                                <SuperButton onClick={addPackHandler}>
                                     Add pack
                                 </SuperButton>
                             </div>

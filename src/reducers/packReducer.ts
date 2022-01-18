@@ -1,6 +1,6 @@
 import {GetPacksRequestType, packsApi, PackType} from "../api/packs-api";
 import {Dispatch} from "redux";
-import {AppRootStateType} from "../redux/store";
+import {AppRootStateType, AppThunk} from "../redux/store";
 import axios from "axios";
 
 
@@ -142,6 +142,40 @@ export const getPacks = (someParams?: string) =>
             // }
         }
 }
+
+export const addPack = (name:string): AppThunk => async (dispatch) => {
+    //dispatch(диспатч на лоадинг)
+    try {
+        await packsApi.addPack(name)
+        dispatch(getPacks())
+    }
+    catch (err) {
+        if (axios.isAxiosError(err) && err.response){
+            dispatch(setPacksError(err.response.data.error))
+        } else if (axios.isAxiosError(err)) {
+            dispatch(setPacksError(err.message))
+        }
+    } // finally {
+    //     //dispatch(диспатч на лоадинг)
+    // }
+}
+
+export const deletePack = (packId: string): AppThunk =>
+    async (dispatch) => {
+        //dispatch(диспатч на лоадинг)
+        try {
+            await packsApi.deletePack(packId);
+            dispatch(getPacks());
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                dispatch(setPacksError(error.response.data.error));
+            } else if (axios.isAxiosError(error)) {
+                dispatch(setPacksError(error.message));
+            }
+        } // finally {
+        //     //dispatch(диспатч на лоадинг)
+        // }
+    }
 
 type PackActionsType = ReturnType<typeof setPacksData>
     | ReturnType<typeof clearPacksData>

@@ -6,6 +6,13 @@ export const packsApi = {
         return instance.get<GetPacksRequestType, AxiosResponse<GetPacksResponseType, GetPacksRequestType>, GetPacksRequestType>
         (`cards/pack`, {params: data})
     },
+    addPack(name: string) {
+        return instance.post<{}, AxiosResponse<{}, AddPackRequestType>, AddPackRequestType>
+        (`cards/pack`, {cardsPack: {name}})
+    },
+    deletePack(packId: string) {
+        return instance.delete<{ packId: string }>(`cards/pack`, {params: {id: packId}})
+    },
 }
 
 export type GetPacksRequestType = {
