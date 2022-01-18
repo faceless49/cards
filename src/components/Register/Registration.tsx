@@ -1,14 +1,6 @@
-//@ts-ignore
-import s from '../../styles/common/AuthStyles.module.scss';
-//@ts-ignore
-import style from './Register.module.scss';
 import React, {ChangeEvent} from "react";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
-import Subtitle from '../common/Subtitle/Subtitle';
-import Title from '../common/Title/Title';
-
-
 
 
 export type RegistrationTypeProps = {
@@ -49,39 +41,27 @@ export const Registration: React.FC<RegistrationTypeProps> =
         }
 
         return (
-            <div className={s.AuthShape}>
-
-                <Title/>
-                <Subtitle subtitle="Sign up" />
-
-            <form className={style.FormBox}>
-
-                <div className={style.InputBox} style={{textAlign:"left"}}>
-                        <div style={{color: 'red'}}>
-                            {errorRequestValue}
-                        </div>
-                        
-                        <label className={s.InputLabel}>Email</label>
-                        <SuperInputText style={{width:"100%", marginBottom:"24px"}} type={'email'} value={email} placeholder="j&johnson@gmail.com" onChange={onChangeEmailValue}/>
-                        <div style={{color: 'red'}}>{emailError}</div>
-                        
-                        <label className={s.InputLabel}>Password</label>
-                        <SuperInputText style={{width:"100%", marginBottom:"24px"}} type={'password'} value={password} placeholder="*********" onChange={onChangePasswordValue}/>
-                        <div style={{color: 'red'}}>{passwordError}</div>
-                        
-                        <label className={s.InputLabel}>Confirm password</label>
-                        <SuperInputText style={{width:"100%"}} type={'password'} value={replayPassword} placeholder="*********" onChange={onChangeReplayPasswordValue}/>
-                        
+            <div>
+                <h1>Sign Up</h1>
+                <div>
+                    <div style={{color: 'red'}}>
+                        {errorRequestValue}
                     </div>
+                    <p>Email</p>
+                    <SuperInputText type={'email'} value={email} onChange={onChangeEmailValue}/>
+                    <div style={{color: 'red'}}>{emailError}</div>
+                    <p>Password</p>
+                    <SuperInputText type={'password'} value={password} onChange={onChangePasswordValue}/>
+                    <div style={{color: 'red'}}>{passwordError}</div>
+                    <p>Confirm password</p>
+                    <SuperInputText type={'password'} value={replayPassword} onChange={onChangeReplayPasswordValue}/>
 
-                <div className={style.btnWrap}> 
-                <SuperButton className={style.btnLeft} onClick={onClickCancel}>Cancel</SuperButton>
-                <SuperButton className={style.btnRight} onClick={onClickHandler}>Register</SuperButton>
                 </div>
-                
-            </form>
 
-                
+                <div>
+                    <span><SuperButton onClick={onClickHandler}>Register</SuperButton></span>
+                    <span><SuperButton onClick={onClickCancel}>Cancel</SuperButton></span>
+                </div>
 
             </div>
 
