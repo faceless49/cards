@@ -2,7 +2,8 @@
 import s from "./Subtitle.module.scss";
 
 interface SubtitleProps {
-    subtitle: string
+    subtitle: string;
+
 }
 
 //Заголовок
@@ -10,9 +11,8 @@ interface SubtitleProps {
 export default function Subtitle(props: SubtitleProps) {
 
     return (
-        <div className={s.subtitleWrap}>
-            <h3 className={s.subtitle}>{props.subtitle}</h3>    
-        </div>
+        <h3 className={s.subtitle}>{props.subtitle}</h3>    
+        
     )
 
 }

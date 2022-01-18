@@ -1,3 +1,5 @@
+// @ts-ignore
+import s from './Packs.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {
     addPack, deletePack,
@@ -12,6 +14,7 @@ import {ChangeEvent, useEffect} from "react";
 import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
+import Subtitle from '../common/Subtitle/Subtitle';
 
 
 export const Packs = () => {
@@ -79,11 +82,11 @@ export const Packs = () => {
         const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
 
         return (
-            <tr key={p._id}>
-                <td>{p.name}</td>
-                <td>{p.cardsCount}</td>
-                <td>{p.updated}</td>
-                <td>{p.user_name}</td>
+            <tr className={s.tr} key={p._id}>
+                <td className={s.td}>{p.name}</td>
+                <td className={s.td}>{p.cardsCount}</td>
+                <td className={s.td}>{p.updated}</td>
+                <td className={s.td}>{p.user_name}</td>
                 <td>
                     <div>
                         <Link to={`/cards/${p._id}`}>
@@ -98,7 +101,7 @@ export const Packs = () => {
                                     Delete
                                 </SuperButton>
                                 <SuperButton onClick={updatePack}>
-                                    Edit name
+                                    Edit
                                 </SuperButton>
                             </>
                         }
@@ -109,10 +112,21 @@ export const Packs = () => {
     })
 
     return (
-        <div>
-            <section>
-                {/*paginator*/}
-                {error && <div>{error}</div>}
+    <div className={s.packsList}>
+            <div className={s.ContentAside}> 
+                <h3 className={s.TitleButtons}>Show pack cards</h3>
+                    <div className={s.btnWrap}></div> {/*для кнопок My/All*/}
+                    <h3 className={s.TitleSlider}>Number of cards</h3> 
+                    <div className={s.sliderWrap}></div> {/*для слайдера*/}
+            </div>
+        <div className={s.ContentMain}>
+
+
+        <Subtitle subtitle='Packs list'/>
+
+        <div className={s.contentRightTop}>
+            {/*paginator*/}
+            {error && <div>{error}</div>}
                 {/*Search component*/}
                 <div>
                     <span>Packs number</span>
@@ -124,52 +138,61 @@ export const Packs = () => {
                         <option value={50}>50</option>
                         <option value={100}>100</option>
                     </select>
-                    <SuperButton onClick={refreshHandler}> Refresh page</SuperButton>
+                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
                 </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>
-                            <Sort sortHandlerUp={sortNameHandlerUp}
-                                  sortHandlerDown={sortNameHandlerDown}
-                                  title={'Name'}/>
-                        </th>
-                        <th>
-                            <Sort sortHandlerUp={sortCardsCountHandlerUp}
-                                  sortHandlerDown={sortCardsCountHandlerDown}
-                                  title={'Cards Count'}/>
-                        </th>
-                        <th>
-                            <Sort sortHandlerUp={sortUpdatedHandlerUp}
-                                  sortHandlerDown={sortUpdatedHandlerDown}
-                                  title={'Updated'}/>
-                        </th>
-                        <th>
-                            <Sort sortHandlerUp={sortCreatedByHandlerUp}
-                                  sortHandlerDown={sortCreatedByHandlerDown}
-                                  title={'Created by'}/>
-                        </th>
-                        <th>
-                            <div>
-                                <label>
-                                    <input type={'checkbox'}
-                                           checked={user_id !== ''}
-                                           onChange={checkMyHandler}/>
-                                    My Packs
-                                </label>
-                                <SuperButton onClick={addPackHandler}>
-                                    Add pack
-                                </SuperButton>
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {packList}
-                    </tbody>
-                </table>
-            </section>
         </div>
+        
+            <div className={s.tableMain}>
+                <table className={s.table}>
+                        <thead className={s.tableHeader}>
+                        <tr className={s.tr}>
+                            <th className={s.th}>
+                                <Sort sortHandlerUp={sortNameHandlerUp}
+                                    sortHandlerDown={sortNameHandlerDown}
+                                    title={'Name'}/>
+                            </th>
+                            <th align="center" className={s.th}>
+                                <Sort sortHandlerUp={sortCardsCountHandlerUp}
+                                    sortHandlerDown={sortCardsCountHandlerDown}
+                                    title={'Cards'}/>
+                            </th>
+                            <th align="center" className={s.th}>
+                                <Sort sortHandlerUp={sortUpdatedHandlerUp}
+                                    sortHandlerDown={sortUpdatedHandlerDown}
+                                    title={'Last Updated'}/>
+                            </th>
+                            <th className={s.th} style={{textAlign: "center"}}>
+                                <Sort sortHandlerUp={sortCreatedByHandlerUp}
+                                    sortHandlerDown={sortCreatedByHandlerDown}
+                                    title={'Created by'}/>
+                            </th>
+                            <th>
+                                <div>
+                                    <label>
+                                        <input type={'checkbox'}
+                                            checked={user_id !== ''}
+                                            onChange={checkMyHandler}/>
+                                        My Packs
+                                    </label>
+                                    <SuperButton onClick={addPackHandler}>
+                                        Add new pack
+                                    </SuperButton>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {packList}
+                        </tbody>
+                </table>
+            </div>
+            
+        </div>
+
+                
+            
+    </div>
     )
 
 
