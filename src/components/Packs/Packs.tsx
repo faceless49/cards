@@ -59,6 +59,12 @@ export const Packs = () => {
     const sortUpdatedHandlerUp = () => dispatch(setPacksSortData('up', "updated"));
     const sortUpdatedHandlerDown = () => dispatch(setPacksSortData('down', "updated"));
 
+    const onChangePageCountHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setPacksData({pageCount: +e.currentTarget.value}));
+        dispatch(getPacks());
+    }
+
+    const refreshHandler = () => dispatch(getPacks());
 
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
@@ -107,7 +113,7 @@ export const Packs = () => {
                 {/*Search component*/}
                 <div>
                     <span>Packs number</span>
-                    <select>
+                    <select onChange={onChangePageCountHandler}>
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={30}>30</option>
@@ -115,7 +121,7 @@ export const Packs = () => {
                         <option value={50}>50</option>
                         <option value={100}>100</option>
                     </select>
-                    <SuperButton> Refresh page</SuperButton>
+                    <SuperButton onClick={refreshHandler}> Refresh page</SuperButton>
                 </div>
                 <table>
                     <thead>
