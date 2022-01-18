@@ -122,7 +122,7 @@ export const Packs = () => {
         <div className={s.ContentMain}>
 
 
-        <Subtitle subtitle='Packs list'/>
+        <Subtitle subtitle='Packs list' style={{width:"max-content"}}/>
 
         <div className={s.contentRightTop}>
             {/*paginator*/}
