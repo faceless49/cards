@@ -15,7 +15,7 @@ export type GetPacksRequestType = {
     sortPacks?: '0updated' | '1updated'
     page?: number
     pageCount?: number
-    user_id?: string
+    user_id?: string // whose paks
 }
 
 export type PackType = {

@@ -54,6 +54,7 @@ export const Packs = () => {
                 <td>{p.name}</td>
                 <td>{p.cardsCount}</td>
                 <td>{p.updated}</td>
+                <td>{p.user_name}</td>
                 <td>
                     <div>
                         <Link to={`/cards/${p._id}`}>
@@ -113,6 +114,11 @@ export const Packs = () => {
                             <Sort sortHandlerUp={sortUpdatedHandlerUp}
                                   sortHandlerDown={sortUpdatedHandlerDown}
                                   title={'Updated'}/>
+                        </th>
+                        <th>
+                            <Sort sortHandlerUp={sortUpdatedHandlerUp}
+                                  sortHandlerDown={sortUpdatedHandlerDown}
+                                  title={'Created by'}/>
                         </th>
                         <th>
                             <div>

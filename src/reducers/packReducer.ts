@@ -70,6 +70,16 @@ export const packReducer = (state = initialState, action: PackActionsType): Init
                             else return 0
                         })]
                     }
+                } else {
+                    return {
+                        ...state, cardPacks: [...state.cardPacks.sort((a, b) => {
+                            let nameOne = a.cardsCount;
+                            let nameTwo = b.cardsCount;
+                            if (nameOne < nameTwo) return -1;
+                            else if (nameOne > nameTwo) return 1;
+                            else return 0
+                        })]
+                    }
                 }
             } else if (action.sortType === 'updated') {
                 if (action.sort === 'up') {
