@@ -20,7 +20,6 @@ function App() {
                 <NavLink to={"/login"}>Login</NavLink>---
                 <NavLink to={"/registration"}>Form Registration</NavLink>---
                 <NavLink to={"/profile"}>Profile</NavLink>---
-                <NavLink to={"/restore"}>restore</NavLink>---
                 <NavLink to={"/newPass"}>newPass</NavLink>---
                 <NavLink to={"/restore"}>restore</NavLink>---
                 <NavLink to={"/test"}>Test</NavLink>

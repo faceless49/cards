@@ -94,14 +94,6 @@ export const Login = React.memo(() => {
         />
 
     <div className={style.psRelative}>
-    <SuperInputText
-          style={{ width: "100%", marginBottom: "5px"}}
-          type={eye}
-          value={password}
-          disabled={disabled}
-          placeholder="*********"
-          onChange={onChangePassword}
-        />
       <button className={style.EyeButton} onClick={openEye}><img src={eyeIcon}/></button>
     </div>
 
