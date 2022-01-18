@@ -12,6 +12,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
+// @ts-ignore
+import eyeIcon from '../../images/eyeIcon.svg';
+import { relative } from "path/win32";
 
 export const Login = React.memo(() => {
   const dispatch = useDispatch();
@@ -82,24 +85,32 @@ export const Login = React.memo(() => {
           placeholder="j&johnson@gmail.com"
           onChange={onChangeUsername} />
         <label className={s.InputLabel}>Password</label>
-        <SuperInputText
-          style={{ width: "100%", marginBottom: "5px" }}
+
+    <div className={style.psRelative}>
+    <SuperInputText
+          style={{ width: "100%", marginBottom: "5px"}}
           type={eye}
           value={password}
           disabled={disabled}
           placeholder="*********"
           onChange={onChangePassword}
         />
+      <button className={style.EyeButton} onClick={openEye}><img src={eyeIcon}/></button> 
+    </div>
+        
 
-        <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+        
+
+        <div style={{display:"flex", flexDirection:"column", alignItems:"flex-start", gap:"10px"}}>
+
         <SuperCheckbox onChange={rememberMeHandler}> Remember me</SuperCheckbox>
-        <NavLink className={s.LinkBasic} to={"/restore"} style={{marginLeft:"0", paddingTop:"5px"}}>
+        <NavLink className={s.LinkBasic} to={"/restore"} style={{marginLeft:"0"}}>
           Forgot Password</NavLink>
         </div>
 
       </div>
 
-        <SuperButton onClick={onClickLogin} style={{ marginTop: "72px", marginBottom:"30px"}}>
+        <SuperButton onClick={onClickLogin} style={{ marginTop: "65px", marginBottom:"30px"}}>
           Login
         </SuperButton>
 

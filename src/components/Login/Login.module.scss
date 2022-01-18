@@ -18,5 +18,20 @@
     margin-bottom: 7px;
 }
 
+.psRelative{
+    position: relative !important;
+}
+
+.EyeButton {
+    border:none;
+    background: inherit;
+    outline: none;
+    cursor: pointer;
+    position: absolute;
+    right: 0.5em;
+    top: -0.2em;
+    height: 24px;
+}
+
 
 
