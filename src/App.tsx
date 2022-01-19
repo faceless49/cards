@@ -32,7 +32,7 @@ function App() {
                 <Route path={"/registration"} element={<RegistrationContainer/>}/>
                 <Route path={"/profile"} element={<Profile/>}/>
                 <Route path={"/restore"} element={<Forgot/>}/>
-                <Route path={"/newPass"} element={<NewPassword/>}/>
+                <Route path={"/newPass/:token"} element={<NewPassword/>}/>
                 <Route path={"/restore"} element={<Forgot/>}/>
                 <Route path={"/test"}
                        element={<div><SuperInputText/><SuperButton>Push</SuperButton><SuperCheckbox/></div>}/>

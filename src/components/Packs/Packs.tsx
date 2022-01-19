@@ -12,12 +12,12 @@ import {
   updatePack,
 } from "../../reducers/packReducer";
 import { AppRootStateType } from "../../redux/store";
-import {ChangeEvent, useEffect, useState} from 'react';
+import { ChangeEvent, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
-import {SearchField} from '../SearchField/SearchField';
+import { SearchField } from "../SearchField/SearchField";
 
 export const Packs = () => {
   const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
@@ -31,18 +31,18 @@ export const Packs = () => {
     (state) => state.profile._id
   );
 
-  const [searchValue, setSearchValue] = useState('')
+  const [searchValue, setSearchValue] = useState("");
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value)
-  }
-
+    setSearchValue(e.currentTarget.value);
+  };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('Render pack')
     dispatch(setPacksError(""));
-    dispatch(getPacks());
-  }, [dispatch]);
+    dispatch(getPacks(searchValue));
+  }, [searchValue, dispatch]);
 
   const addPackHandler = () => {
     dispatch(addPack("SuperMega Pack"));
@@ -129,7 +129,10 @@ export const Packs = () => {
       </div>
       <div className={s.ContentMain}>
         <Subtitle subtitle="Packs list" style={{ width: "max-content" }} />
-        <SearchField searchValue={searchValue} setSearchValue={onChangeSearchValue}/>
+        <SearchField
+          searchValue={searchValue}
+          setSearchValue={onChangeSearchValue}
+        />
         <div className={s.contentRightTop}>
           {/*paginator*/}
           {error && <div>{error}</div>}

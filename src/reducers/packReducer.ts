@@ -154,6 +154,11 @@ export const packReducer = (
         }
       }
       return state;
+    case "PACK/SET-SEARCH-DATA":
+      return { ...state, cardPacks: state.cardPacks.filter((cards) =>
+          action.value === '' ? state : cards.name.toLowerCase().includes(action.value)
+        )};
+
     default:
       return state;
   }
@@ -179,6 +184,7 @@ export const getPacks =
   (someParams?: string) =>
   async (dispatch: Dispatch, getState: () => AppRootStateType) => {
     //dispatch(диспатч на лоадинг)
+    if (someParams) dispatch(setSearchData(someParams));
     dispatch(setPacksError(""));
     try {
       const response = await packsApi.getPacks({
