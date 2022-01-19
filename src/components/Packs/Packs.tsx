@@ -15,6 +15,7 @@ import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
 import Subtitle from '../common/Subtitle/Subtitle';
+import BtnActions from './BtnActions/BtnActions';
 
 
 export const Packs = () => {
@@ -88,23 +89,23 @@ export const Packs = () => {
                 <td className={s.td}>{p.updated}</td>
                 <td className={s.td}>{p.user_name}</td>
                 <td>
-                    <div>
-                        <Link to={`/cards/${p._id}`}>
-                            <SuperButton>
-                                Learn
-                            </SuperButton>
-                        </Link>
+                    <div className={s.BtnBox}>
                         {
                             userId === p.user_id &&
                             <>
-                                <SuperButton onClick={deletePack}>
-                                    Delete
-                                </SuperButton>
-                                <SuperButton onClick={updatePack}>
-                                    Edit
-                                </SuperButton>
+                                <BtnActions name='Delete'onClick={deletePack} style={{color:"#FFFFFF", backgroundColor:"#F1453D" }}/>
+                                    
+                                <BtnActions name='Edit' onClick={updatePack} style={{color:"#21268F", backgroundColor:"#D7D8EF"}}/>
                             </>
                         }
+                        <Link to={`/cards/${p._id}`}>
+                            
+                            <button>
+                                Learn
+                            </button>
+                                
+                        </Link>
+                        
                     </div>
                 </td>
             </tr>

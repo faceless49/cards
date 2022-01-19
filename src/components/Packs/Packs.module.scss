@@ -109,6 +109,15 @@
     padding: 0 24px 0 5px;
 }
 
+.BtnBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 25px;
+    justify-content: flex-end;
+}
+
+
 ::-webkit-scrollbar {
 	width: 6px;
 } 
