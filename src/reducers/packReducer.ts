@@ -1,6 +1,8 @@
 import {GetPacksRequestType, packsApi, PackType} from "../api/packs-api";
 import {Dispatch} from "redux";
 import {AppRootStateType, AppThunk} from "../redux/store";
+
+import {AppRootStateType} from "../redux/store";
 import axios from "axios";
 
 
@@ -163,6 +165,7 @@ export const getPacks = (someParams?: string) =>
             // }
         }
     }
+
 
 export const addPack = (name: string): AppThunk => async (dispatch) => {
     //dispatch(диспатч на лоадинг)

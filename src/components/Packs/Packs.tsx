@@ -2,7 +2,7 @@
 import s from './Packs.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {
-    addPack, deletePack,
+  addPack, deletePack,
     getPacks,
     InitialStatePackPageType,
     setPacksData,
@@ -15,6 +15,9 @@ import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
 import Subtitle from '../common/Subtitle/Subtitle';
+import {Paginator} from "../Paginator/Paginator";
+//@ts-ignore
+import styles from "./Packs.module.css"
 
 
 export const Packs = () => {
@@ -70,6 +73,11 @@ export const Packs = () => {
         dispatch(getPacks());
     }
 
+    const onChangedPage = (currentPage: number) => {
+        dispatch(setPacksError(''));
+        dispatch(setPacksData({page: currentPage}));
+        dispatch(getPacks());
+    }
     const refreshHandler = () => dispatch(getPacks());
 
     if (!isLoggedIn) {
@@ -87,11 +95,18 @@ export const Packs = () => {
                 <td className={s.td}>{p.cardsCount}</td>
                 <td className={s.td}>{p.updated}</td>
                 <td className={s.td}>{p.user_name}</td>
+        return (
+            <tr key={p._id}>
+                <td>{p.name}</td>
+                <td>{p.cardsCount}</td>
+                <td>{p.updated}</td>
                 <td>
                     <div>
                         <Link to={`/cards/${p._id}`}>
                             <SuperButton>
                                 Learn
+
+                                Cards
                             </SuperButton>
                         </Link>
                         {
@@ -102,6 +117,11 @@ export const Packs = () => {
                                 </SuperButton>
                                 <SuperButton onClick={updatePack}>
                                     Edit
+                                <SuperButton>
+                                    Delete
+                                </SuperButton>
+                                <SuperButton>
+                                    Update
                                 </SuperButton>
                             </>
                         }
@@ -125,12 +145,29 @@ export const Packs = () => {
         <Subtitle subtitle='Packs list' style={{width:"max-content"}}/>
 
         <div className={s.contentRightTop}>
-            {/*paginator*/}
+          <Paginator totalCount={cardPacksTotalCount}
+                     pageSize={pageCount}
+                     currentPage={page}
+                     onChangedPage={onChangedPage}/>
             {error && <div>{error}</div>}
                 {/*Search component*/}
                 <div>
                     <span>Packs number</span>
                     <select onChange={onChangePageCountHandler}>
+        <div>
+            <section>
+                <div>
+                    <Paginator totalCount={cardPacksTotalCount}
+                               pageSize={pageCount}
+                               currentPage={page}
+                               onChangedPage={onChangedPage}/>
+                </div>
+                {error && <div>{error}</div>}
+                {/*Search component*/}
+                <div className={styles.packNumberWrapper}>
+                    <span className={styles.labelSelectPageCounts}>Packs number</span>
+                    <select
+                        onChange={onChangePageCountHandler}>
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={30}>30</option>
@@ -196,4 +233,46 @@ export const Packs = () => {
     )
 
 
+                    </select>
+                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>
+                            <Sort sortHandlerUp={sortNameHandlerUp}
+                                  sortHandlerDown={sortNameHandlerDown}
+                                  title={'Name'}/>
+                        </th>
+                        <th>
+                            <Sort sortHandlerUp={sortCardsCountHandlerUp}
+                                  sortHandlerDown={sortCardsCountHandlerDown}
+                                  title={'Cards Count'}/>
+                        </th>
+                        <th>
+                            <Sort sortHandlerUp={sortUpdatedHandlerUp}
+                                  sortHandlerDown={sortUpdatedHandlerDown}
+                                  title={'Updated'}/>
+                        </th>
+                        <th>
+                            <div>
+                                <label>
+                                    <input type={'checkbox'}
+                                           checked={user_id !== ''}/>
+                                    My Packs
+                                </label>
+                                <SuperButton>
+                                    Add pack
+                                </SuperButton>
+                            </div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {packList}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    )
 }
