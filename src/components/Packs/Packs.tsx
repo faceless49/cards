@@ -81,6 +81,7 @@ export const Packs = () => {
     const packList = cardPacks.map(p => {
         const deletePack = () => deletePackHandler(p._id)
         const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
+        const getCards = () => deletePackHandler(p._id) // поменять функию
 
         return (
             <tr className={s.tr} key={p._id}>
@@ -100,9 +101,7 @@ export const Packs = () => {
                         }
                         <Link to={`/cards/${p._id}`}>
                             
-                            <button>
-                                Learn
-                            </button>
+                        <BtnActions name='Learn' onClick={getCards} style={{color:"#21268F", backgroundColor:"#D7D8EF"}}/>
                                 
                         </Link>
                         
@@ -116,7 +115,15 @@ export const Packs = () => {
     <div className={s.packsList}>
             <div className={s.ContentAside}> 
                 <h3 className={s.TitleButtons}>Show pack cards</h3>
-                    <div className={s.btnWrap}></div> {/*для кнопок My/All*/}
+                    <div className={s.btnWrap}>
+                    <label style={{display:"flex", alignItems:"center",gap:"2px"}}>
+                                        <input type={'checkbox'}
+                                            checked={user_id !== ''}
+                                            onChange={checkMyHandler}/>
+                                        My Packs
+                    
+                    </label>
+                    </div> {/*для кнопок My/All*/}
                     <h3 className={s.TitleSlider}>Number of cards</h3> 
                     <div className={s.sliderWrap}></div> {/*для слайдера*/}
             </div>
@@ -169,12 +176,7 @@ export const Packs = () => {
                             </th>
                             <th>
                                 <div>
-                                    <label>
-                                        <input type={'checkbox'}
-                                            checked={user_id !== ''}
-                                            onChange={checkMyHandler}/>
-                                        My Packs
-                                    </label>
+                                    
                                     <SuperButton onClick={addPackHandler}>
                                         Add new pack
                                     </SuperButton>

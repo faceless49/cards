@@ -63,7 +63,7 @@ export const Profile = () => {
             </div>
 
 
-            <div className={'profileInfo'}>
+            <div className={style.profileInfo}>
                 {
                     editName ?
                         <SuperInputText 
@@ -81,7 +81,7 @@ export const Profile = () => {
                 }
             </div>
 
-            <div className={'profileInfo'}> Email: {profileEmail}</div>
+            <div className={style.profileInfo}> Email: {profileEmail}</div>
 
             <div className={style.btnWrap}>
                 <SuperButton style={{background:"#D7D8EF", color:"#21268F"}} onClick={editNameHandler}>Edit</SuperButton>
