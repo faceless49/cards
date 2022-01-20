@@ -111,11 +111,7 @@ export const Packs = () => {
                         <option value={40}>40</option>
                         <option value={50}>50</option>
                     </select>
-                    <SuperButton
-                        onClick={refreshHandler}
-                    >
-                        Refresh page
-                    </SuperButton>
+                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
                 </div>
                 <table>
                     <thead>

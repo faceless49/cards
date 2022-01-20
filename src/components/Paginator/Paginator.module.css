@@ -29,3 +29,12 @@
 .page:hover {
     color: #280c77;
 }
+
+.item {
+    cursor: pointer;
+    user-select: none;
+}
+
+.item:hover {
+    color: #280c77;
+}
