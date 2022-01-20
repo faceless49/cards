@@ -2,7 +2,7 @@
 import s from './Packs.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {
-  addPack, deletePack,
+    addPack, deletePack,
     getPacks,
     InitialStatePackPageType,
     setPacksData,
@@ -10,34 +10,37 @@ import {
     setPacksSortData, updatePack
 } from "../../reducers/packReducer";
 import {AppRootStateType} from "../../redux/store";
-import {ChangeEvent, useEffect} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
 import Subtitle from '../common/Subtitle/Subtitle';
-import {Paginator} from "../Paginator/Paginator";
+import { SearchField } from "../SearchField/SearchField";
 //@ts-ignore
 import styles from "./Packs.module.css"
-
-
 export const Packs = () => {
-    const {
-        cardPacks,
-        cardPacksTotalCount,
-        page,
-        pageCount,
-        error,
-        user_id,
-    } = useSelector<AppRootStateType, InitialStatePackPageType>(state => state.packPage);
-    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn);
-    const userId = useSelector<AppRootStateType, string>(state => state.profile._id);
+  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
+    useSelector<AppRootStateType, InitialStatePackPageType>(
+      (state) => state.packPage
+    );
+  const isLoggedIn = useSelector<AppRootStateType, boolean>(
+    (state) => state.login.isLoggedIn
+  );
+  const userId = useSelector<AppRootStateType, string>(
+    (state) => state.profile._id
+  );
 
-    const dispatch = useDispatch()
+  const [searchValue, setSearchValue] = useState("");
+  const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.currentTarget.value);
+  };
 
-    useEffect(() => {
-        dispatch(setPacksError(''));
-        dispatch(getPacks())
-    }, [dispatch])
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setPacksError(""));
+    dispatch(getPacks(searchValue));
+  }, [searchValue, dispatch]);
 
     const addPackHandler = () => {
         dispatch(addPack('SuperMega Pack'));
@@ -80,14 +83,14 @@ export const Packs = () => {
     }
     const refreshHandler = () => dispatch(getPacks());
 
-    if (!isLoggedIn) {
-        return <Navigate to={'/login'}/>
-    }
+  if (!isLoggedIn) {
+    return <Navigate to={"/login"} />;
+  }
 
-
-    const packList = cardPacks.map(p => {
-        const deletePack = () => deletePackHandler(p._id)
-        const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
+  const packList = cardPacks.map((p) => {
+    const deletePack = () => deletePackHandler(p._id);
+    const updatePack = () =>
+      updatePackHandler(p._id, "New name for SuperMega Pack");
 
         return (
             <tr className={s.tr} key={p._id}>
@@ -95,18 +98,11 @@ export const Packs = () => {
                 <td className={s.td}>{p.cardsCount}</td>
                 <td className={s.td}>{p.updated}</td>
                 <td className={s.td}>{p.user_name}</td>
-        return (
-            <tr key={p._id}>
-                <td>{p.name}</td>
-                <td>{p.cardsCount}</td>
-                <td>{p.updated}</td>
                 <td>
                     <div>
                         <Link to={`/cards/${p._id}`}>
                             <SuperButton>
                                 Learn
-
-                                Cards
                             </SuperButton>
                         </Link>
                         {
@@ -117,11 +113,6 @@ export const Packs = () => {
                                 </SuperButton>
                                 <SuperButton onClick={updatePack}>
                                     Edit
-                                <SuperButton>
-                                    Delete
-                                </SuperButton>
-                                <SuperButton>
-                                    Update
                                 </SuperButton>
                             </>
                         }
@@ -133,41 +124,28 @@ export const Packs = () => {
 
     return (
     <div className={s.packsList}>
-            <div className={s.ContentAside}> 
-                <h3 className={s.TitleButtons}>Show pack cards</h3>
-                    <div className={s.btnWrap}></div> {/*для кнопок My/All*/}
-                    <h3 className={s.TitleSlider}>Number of cards</h3> 
-                    <div className={s.sliderWrap}></div> {/*для слайдера*/}
-            </div>
-        <div className={s.ContentMain}>
-
-
-        <Subtitle subtitle='Packs list' style={{width:"max-content"}}/>
-
+      <div className={s.ContentAside}>
+        <h3 className={s.TitleButtons}>Show pack cards</h3>
+        <div className={s.btnWrap}></div> {/*для кнопок My/All*/}
+        <h3 className={s.TitleSlider}>Number of cards</h3>
+        <div className={s.sliderWrap}></div> {/*для слайдера*/}
+      </div>
+      <div className={s.ContentMain}>
+        <Subtitle subtitle="Packs list" style={{ width: "max-content" }} />
+        <SearchField
+          searchValue={searchValue}
+          setSearchValue={onChangeSearchValue}
+        />
         <div className={s.contentRightTop}>
-          <Paginator totalCount={cardPacksTotalCount}
-                     pageSize={pageCount}
-                     currentPage={page}
-                     onChangedPage={onChangedPage}/>
+            <Paginator totalCount={cardPacksTotalCount}
+                       pageSize={pageCount}
+                       currentPage={page}
+                       onChangedPage={onChangedPage}/>
             {error && <div>{error}</div>}
                 {/*Search component*/}
-                <div>
-                    <span>Packs number</span>
-                    <select onChange={onChangePageCountHandler}>
-        <div>
-            <section>
-                <div>
-                    <Paginator totalCount={cardPacksTotalCount}
-                               pageSize={pageCount}
-                               currentPage={page}
-                               onChangedPage={onChangedPage}/>
-                </div>
-                {error && <div>{error}</div>}
-                {/*Search component*/}
-                <div className={styles.packNumberWrapper}>
+            <div className={styles.packNumberWrapper}>
                     <span className={styles.labelSelectPageCounts}>Packs number</span>
-                    <select
-                        onChange={onChangePageCountHandler}>
+                    <select onChange={onChangePageCountHandler}>
                         <option value={10}>10</option>
                         <option value={20}>20</option>
                         <option value={30}>30</option>
@@ -233,46 +211,4 @@ export const Packs = () => {
     )
 
 
-                    </select>
-                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
-                </div>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>
-                            <Sort sortHandlerUp={sortNameHandlerUp}
-                                  sortHandlerDown={sortNameHandlerDown}
-                                  title={'Name'}/>
-                        </th>
-                        <th>
-                            <Sort sortHandlerUp={sortCardsCountHandlerUp}
-                                  sortHandlerDown={sortCardsCountHandlerDown}
-                                  title={'Cards Count'}/>
-                        </th>
-                        <th>
-                            <Sort sortHandlerUp={sortUpdatedHandlerUp}
-                                  sortHandlerDown={sortUpdatedHandlerDown}
-                                  title={'Updated'}/>
-                        </th>
-                        <th>
-                            <div>
-                                <label>
-                                    <input type={'checkbox'}
-                                           checked={user_id !== ''}/>
-                                    My Packs
-                                </label>
-                                <SuperButton>
-                                    Add pack
-                                </SuperButton>
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {packList}
-                    </tbody>
-                </table>
-            </section>
-        </div>
-    )
 }
