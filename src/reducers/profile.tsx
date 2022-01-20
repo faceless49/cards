@@ -63,6 +63,8 @@ export const setProfileDeleteData = () => {
     return {type: 'PROFILE/SET-PROFILE-DELETE-DATA'} as const
 }
 
+
+//Thunks
 export const updateProfileInfo = (data: MePutRequestType) => async (dispatch: Dispatch) => {
     try {
         const response = await profileApi.mePut(data);

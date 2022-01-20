@@ -6,6 +6,7 @@ import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {updateProfileInfo} from "../../reducers/profile";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Navigate} from 'react-router-dom'
+import {logOut} from "../../reducers/loginReducer";
 
 export const Profile = () => {
     const profileName = useSelector<AppRootStateType, string>(store => store.profile.name);
@@ -44,6 +45,8 @@ export const Profile = () => {
         onSubmitName()
     }
 
+    const onClickLogOutHandler = () => dispatch(logOut())
+
     const selectAllHandler = (e: ChangeEvent<HTMLInputElement>) => e.currentTarget.select();
 
     if (!isLoggedIn) {
@@ -78,6 +81,7 @@ export const Profile = () => {
 
             <SuperButton onClick={editNameHandler}>Edit</SuperButton>
             <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
+            <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
         </div>
     )
 }
