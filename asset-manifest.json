@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/cards/static/css/main.8465c801.css",
-    "main.js": "/cards/static/js/main.3f2c70fc.js",
+    "main.js": "/cards/static/js/main.a8be8038.js",
     "static/media/SFUIDisplay-Bold.ttf": "/cards/static/media/SFUIDisplay-Bold.1cd932c78a782a2a36b3.ttf",
     "static/media/Poppins-Medium.ttf": "/cards/static/media/Poppins-Medium.9e1bb626874ed49aa343.ttf",
     "static/media/Poppins-Bold.ttf": "/cards/static/media/Poppins-Bold.404e299be26d78e66794.ttf",
@@ -9,12 +9,11 @@
     "static/media/SFUIDisplay-Medium.woff": "/cards/static/media/SFUIDisplay-Medium.691073e2b9ef80d5c702.woff",
     "static/media/SFUIDisplay-Regular.woff": "/cards/static/media/SFUIDisplay-Regular.1b6ee1f6f9e80f37ff4e.woff",
     "index.html": "/cards/index.html",
-    "static/media/eyeIcon.svg": "/cards/static/media/eyeIcon.9c21d66c33457286b48ebf820326cb2f.svg",
     "main.8465c801.css.map": "/cards/static/css/main.8465c801.css.map",
-    "main.3f2c70fc.js.map": "/cards/static/js/main.3f2c70fc.js.map"
+    "main.a8be8038.js.map": "/cards/static/js/main.a8be8038.js.map"
   },
   "entrypoints": [
     "static/css/main.8465c801.css",
-    "static/js/main.3f2c70fc.js"
+    "static/js/main.a8be8038.js"
   ]
 }
