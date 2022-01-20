@@ -21,7 +21,6 @@ function App() {
         <NavLink to={"/profile"}>Profile</NavLink>---
         <NavLink to={"/newPass"}>newPass</NavLink>---
         <NavLink to={"/restore"}>restore</NavLink>---
-        <NavLink to={"/test"}>Test</NavLink>
       </div>
       <Routes>
         <Route path={"/*"} element={<div>404</div>} />
@@ -31,7 +30,7 @@ function App() {
         <Route path={"/registration"} element={<RegistrationContainer />} />
         <Route path={"/profile"} element={<Profile />} />
         <Route path={"/restore"} element={<Forgot />} />
-        <Route path={"/newPass/:token"} element={<NewPassword />} />
+        <Route path={"/newPass/"} element={<NewPassword />} />
         <Route path={"/restore"} element={<Forgot />} />
         <Route
           path={"/test"}

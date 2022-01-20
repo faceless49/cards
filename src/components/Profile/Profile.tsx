@@ -8,7 +8,6 @@ import {AppRootStateType} from "../../redux/store";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {updateProfileInfo} from "../../reducers/profile";
 import {SuperButton} from "../common/SuperButton/SuperButton";
-import {Navigate} from 'react-router-dom'
 import {logOut} from "../../reducers/loginReducer";
 import {Navigate} from 'react-router-dom';
 import Subtitle from '../common/Subtitle/Subtitle';
