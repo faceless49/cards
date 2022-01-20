@@ -81,7 +81,7 @@ export const Packs = () => {
     const packList = cardPacks.map(p => {
         const deletePack = () => deletePackHandler(p._id)
         const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
-        const getCards = () => deletePackHandler(p._id) // поменять функию
+        const getCards = () => deletePackHandler(p._id) // поменять функцию
 
         return (
             <tr className={s.tr} key={p._id}>
@@ -130,24 +130,19 @@ export const Packs = () => {
         <div className={s.ContentMain}>
 
 
-        <Subtitle subtitle='Packs list' style={{width:"max-content"}}/>
+        <Subtitle subtitle='Packs list' style={{width:"max-content", marginBottom:"15px"}}/>
 
         <div className={s.contentRightTop}>
-            {/*paginator*/}
+            
             {error && <div>{error}</div>}
-                {/*Search component*/}
-                <div>
-                    <span>Packs number</span>
-                    <select onChange={onChangePageCountHandler}>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
-                        <option value={30}>30</option>
-                        <option value={40}>40</option>
-                        <option value={50}>50</option>
-                        <option value={100}>100</option>
-                    </select>
-                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
-                </div>
+            
+            <div style={{ display:"flex",justifyContent:"space-between"}}>
+                {/*Search component*/}              
+                <SuperButton onClick={addPackHandler} style={{width:"184px"}}>
+                    Add new pack
+                </SuperButton>
+            </div>
+
         </div>
         
             <div className={s.tableMain}>
@@ -174,13 +169,10 @@ export const Packs = () => {
                                     sortHandlerDown={sortCreatedByHandlerDown}
                                     title={'Created by'}/>
                             </th>
-                            <th>
-                                <div>
-                                    
-                                    <SuperButton onClick={addPackHandler}>
-                                        Add new pack
-                                    </SuperButton>
-                                </div>
+                            <th className={s.th}>
+                                <Sort sortHandlerUp={sortCreatedByHandlerUp}
+                                    sortHandlerDown={sortCreatedByHandlerDown}
+                                    title={'Actions'}/>
                             </th>
                         </tr>
                         </thead>
@@ -189,6 +181,25 @@ export const Packs = () => {
                         {packList}
                         </tbody>
                 </table>
+            </div>
+
+            <div style={{display:"flex"}}>
+                {/*paginator*/}
+
+                    <div className={s.SelectWrap}>
+                        <span> Show </span>
+                        <select style={s.SelectBox} onChange={onChangePageCountHandler}>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                            <option value={30}>30</option>
+                            <option value={40}>40</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                        </select>
+                        <span>Cards per Page</span>
+                    </div>
+                    
+                    {/* <SuperButton onClick={refreshHandler}>Refresh page</SuperButton> */}
             </div>
             
         </div>
