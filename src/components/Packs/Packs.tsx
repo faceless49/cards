@@ -1,5 +1,6 @@
 // @ts-ignore
 import s from './Packs.module.scss';
+import BtnActions from './BtnActions/BtnActions';
 import {useDispatch, useSelector} from "react-redux";
 import {
     addPack, deletePack,
@@ -10,25 +11,25 @@ import {
     setPacksSortData, updatePack
 } from "../../reducers/packReducer";
 import {AppRootStateType} from "../../redux/store";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, useEffect, useState } from "react";
 import {Link, Navigate} from "react-router-dom";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Sort} from "../common/Sort/Sort";
 import Subtitle from '../common/Subtitle/Subtitle';
 import { SearchField } from "../SearchField/SearchField";
-//@ts-ignore
-import styles from "./Packs.module.css"
+
+
 export const Packs = () => {
-  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
-    useSelector<AppRootStateType, InitialStatePackPageType>(
-      (state) => state.packPage
-    );
-  const isLoggedIn = useSelector<AppRootStateType, boolean>(
-    (state) => state.login.isLoggedIn
-  );
-  const userId = useSelector<AppRootStateType, string>(
-    (state) => state.profile._id
-  );
+    const {
+        cardPacks,
+        cardPacksTotalCount,
+        page,
+        pageCount,
+        error,
+        user_id,
+    } = useSelector<AppRootStateType, InitialStatePackPageType>(state => state.packPage);
+    const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.login.isLoggedIn);
+    const userId = useSelector<AppRootStateType, string>(state => state.profile._id);
 
   const [searchValue, setSearchValue] = useState("");
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,10 +88,11 @@ export const Packs = () => {
     return <Navigate to={"/login"} />;
   }
 
-  const packList = cardPacks.map((p) => {
-    const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () =>
-      updatePackHandler(p._id, "New name for SuperMega Pack");
+
+    const packList = cardPacks.map(p => {
+        const deletePack = () => deletePackHandler(p._id)
+        const updatePack = () => updatePackHandler(p._id, 'New name for SuperMega Pack')
+        const getCards = () => deletePackHandler(p._id) // поменять функцию
 
         return (
             <tr className={s.tr} key={p._id}>
@@ -99,23 +101,21 @@ export const Packs = () => {
                 <td className={s.td}>{p.updated}</td>
                 <td className={s.td}>{p.user_name}</td>
                 <td>
-                    <div>
-                        <Link to={`/cards/${p._id}`}>
-                            <SuperButton>
-                                Learn
-                            </SuperButton>
-                        </Link>
+                    <div className={s.BtnBox}>
                         {
                             userId === p.user_id &&
                             <>
-                                <SuperButton onClick={deletePack}>
-                                    Delete
-                                </SuperButton>
-                                <SuperButton onClick={updatePack}>
-                                    Edit
-                                </SuperButton>
+                                <BtnActions name='Delete' onClick={deletePack} style={{color:"#FFFFFF", backgroundColor:"#F1453D" }}/>
+
+                                <BtnActions name='Edit' onClick={updatePack} style={{color:"#21268F", backgroundColor:"#D7D8EF"}}/>
                             </>
                         }
+                        <Link to={`/cards/${p._id}`}>
+
+                        <BtnActions name='Learn' onClick={getCards} style={{color:"#21268F", backgroundColor:"#D7D8EF"}}/>
+
+                        </Link>
+
                     </div>
                 </td>
             </tr>
@@ -124,37 +124,39 @@ export const Packs = () => {
 
     return (
     <div className={s.packsList}>
-      <div className={s.ContentAside}>
-        <h3 className={s.TitleButtons}>Show pack cards</h3>
-        <div className={s.btnWrap}></div> {/*для кнопок My/All*/}
-        <h3 className={s.TitleSlider}>Number of cards</h3>
-        <div className={s.sliderWrap}></div> {/*для слайдера*/}
-      </div>
-      <div className={s.ContentMain}>
-        <Subtitle subtitle="Packs list" style={{ width: "max-content" }} />
-        <SearchField
-          searchValue={searchValue}
-          setSearchValue={onChangeSearchValue}
-        />
+            <div className={s.ContentAside}> 
+                <h3 className={s.TitleButtons}>Show pack cards</h3>
+                    <div className={s.btnWrap}> <label style={{display:"flex", alignItems:"center",gap:"2px"}}>
+                        <input type={'checkbox'}
+                               checked={user_id !== ''}
+                               onChange={checkMyHandler}/>
+                        My Packs
+
+                    </label></div> {/*для кнопок My/All*/}
+                    <h3 className={s.TitleSlider}>Number of cards</h3> 
+                    <div className={s.sliderWrap}></div> {/*для слайдера*/}
+            </div>
+        <div className={s.ContentMain}>
+
+
+            <Subtitle subtitle='Packs list' style={{width:"max-content", marginBottom:"15px"}}/>
+
         <div className={s.contentRightTop}>
             <Paginator totalCount={cardPacksTotalCount}
                        pageSize={pageCount}
                        currentPage={page}
                        onChangedPage={onChangedPage}/>
             {error && <div>{error}</div>}
-                {/*Search component*/}
-            <div className={styles.packNumberWrapper}>
-                    <span className={styles.labelSelectPageCounts}>Packs number</span>
-                    <select onChange={onChangePageCountHandler}>
-                        <option value={10}>10</option>
-                        <option value={20}>20</option>
-                        <option value={30}>30</option>
-                        <option value={40}>40</option>
-                        <option value={50}>50</option>
-                        <option value={100}>100</option>
-                    </select>
-                    <SuperButton onClick={refreshHandler}>Refresh page</SuperButton>
-                </div>
+            <div style={{ display:"flex",justifyContent:"space-between"}}>
+                <SearchField
+                  searchValue={searchValue}
+                  setSearchValue={onChangeSearchValue}
+                />
+                <SuperButton onClick={addPackHandler} style={{width:"184px"}}>
+                    Add new pack
+                </SuperButton>
+            </div>
+
         </div>
         
             <div className={s.tableMain}>
@@ -181,18 +183,10 @@ export const Packs = () => {
                                     sortHandlerDown={sortCreatedByHandlerDown}
                                     title={'Created by'}/>
                             </th>
-                            <th>
-                                <div>
-                                    <label>
-                                        <input type={'checkbox'}
-                                            checked={user_id !== ''}
-                                            onChange={checkMyHandler}/>
-                                        My Packs
-                                    </label>
-                                    <SuperButton onClick={addPackHandler}>
-                                        Add new pack
-                                    </SuperButton>
-                                </div>
+                            <th className={s.th}>
+                                <Sort sortHandlerUp={sortCreatedByHandlerUp}
+                                    sortHandlerDown={sortCreatedByHandlerDown}
+                                    title={'Actions'}/>
                             </th>
                         </tr>
                         </thead>
@@ -202,7 +196,26 @@ export const Packs = () => {
                         </tbody>
                 </table>
             </div>
-            
+
+            <div style={{display:"flex"}}>
+                {/*paginator*/}
+
+                    <div className={s.SelectWrap}>
+                        <span> Show </span>
+                        <select style={s.SelectBox} onChange={onChangePageCountHandler}>
+                            <option value={10}>10</option>
+                            <option value={20}>20</option>
+                            <option value={30}>30</option>
+                            <option value={40}>40</option>
+                            <option value={50}>50</option>
+                            <option value={100}>100</option>
+                        </select>
+                        <span>Cards per Page</span>
+                    </div>
+
+                    {/* <SuperButton onClick={refreshHandler}>Refresh page</SuperButton> */}
+            </div>
+
         </div>
 
                 

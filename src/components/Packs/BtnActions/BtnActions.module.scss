@@ -1,0 +1,13 @@
+.btn {
+    border-radius: 2px;
+    font-family: "SFUIDisplay-Semibold";
+    font-style: normal;
+    font-size: 12px;
+    line-height: 14px;
+    border:none;
+    padding: 5px 6px 4px 6px ;
+    cursor:pointer;
+}
+.btn:disabled {
+    opacity: 0.6;
+}

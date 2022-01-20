@@ -1,5 +1,8 @@
+//@ts-ignore
+import s from '../../styles/common/AuthStyles.module.scss';
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
-import './profile.module.scss'
+//@ts-ignore
+import style from './profile.module.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../redux/store";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
@@ -7,6 +10,8 @@ import {updateProfileInfo} from "../../reducers/profile";
 import {SuperButton} from "../common/SuperButton/SuperButton";
 import {Navigate} from 'react-router-dom'
 import {logOut} from "../../reducers/loginReducer";
+import {Navigate} from 'react-router-dom';
+import Subtitle from '../common/Subtitle/Subtitle';
 
 export const Profile = () => {
     const profileName = useSelector<AppRootStateType, string>(store => store.profile.name);
@@ -55,12 +60,14 @@ export const Profile = () => {
 
 
     return (
-        <div>
-            <h1>Personal Information</h1>
+        <div className={s.AuthShape} style={{paddingTop:"36px"}}>
+            <Subtitle subtitle="Personal Information" style={{marginBottom:"15px"}}/>
             <div className={'avatar'}>
                 <img src={profileAvatar ? profileAvatar : 'http://s1.iconbird.com/ico/2013/11/504/w128h1281385326502profle.png'} alt={'avatar'}/>
             </div>
-            <div className={'profileInfo'}>
+
+
+            <div className={style.profileInfo}>
                 {
                     editName ?
                         <SuperInputText type={'text'}
@@ -79,9 +86,15 @@ export const Profile = () => {
 
             <div className={'profileInfo'}> Email: {profileEmail}</div>
 
-            <SuperButton onClick={editNameHandler}>Edit</SuperButton>
-            <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
-            <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
+            <div className={style.btnWrap}>
+                <SuperButton style={{background:"#D7D8EF", color:"#21268F"}} onClick={editNameHandler}>Edit</SuperButton>
+                <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
+                <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
+            </div>
+
+
+
+
         </div>
     )
 }

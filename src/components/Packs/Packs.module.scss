@@ -24,6 +24,11 @@
     text-align: left;
     margin-bottom: 20px;
 }
+
+.btnWrap{
+    margin-bottom: 45px;
+}
+
 .TitleSlider {
     font-family: "SFUIDisplay-Semibold";
     font-style: normal;
@@ -55,6 +60,7 @@
     overflow: auto;
     max-height: 432px;
     width: 100%;
+    margin-bottom: 24px;
 }
 
 .table {
@@ -90,6 +96,7 @@
     cursor: pointer;
     align-items: center;
     padding: 0 5px; 
+    font-family: 'SFUIDisplay-Bold';
 }
 
 .td{
@@ -108,6 +115,27 @@
 .th:last-child {
     padding: 0 24px 0 5px;
 }
+
+.BtnBox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 25px;
+    justify-content: flex-end;
+}
+
+.SelectWrap {
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-family: 'SFUIDisplay-Medium';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #2D2E46;
+}
+
 
 ::-webkit-scrollbar {
 	width: 6px;
