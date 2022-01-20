@@ -1,6 +1,7 @@
-import {Dispatch} from "react";
 import {authApi, LoginParamsType} from "../api/login-api";
-import {setProfileData} from "./profile";
+import {setProfileData, setProfileDeleteData, setProfileError} from "./profile";
+import {Dispatch} from "redux";
+import axios from "axios";
 
 export const initialState: InitialStateType = {
     isLoggedIn: false,
@@ -9,8 +10,8 @@ export const initialState: InitialStateType = {
 };
 
 export const loginReducer = (
-    state: InitialStateType = initialState,
-    action: ActionsType
+  state: InitialStateType = initialState,
+  action: ActionsType
 ): InitialStateType => {
     switch (action.type) {
         case "login/SET-IS-LOGGED-IN":
@@ -56,6 +57,21 @@ export const loginTC =
                 dispatch(setStatusAC("failed"));
             });
     };
+
+export const logOut = () => async (dispatch:Dispatch) => {
+  try {
+    await authApi.LogOut();
+    dispatch(setProfileDeleteData());
+    dispatch(setIsLoggedInAC(false))
+
+  } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+          dispatch(setProfileError(err.response.data.error))
+      }
+  } finally {
+      // dispatch loading (false)
+  }
+}
 
 //types
 

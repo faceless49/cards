@@ -1,8 +1,10 @@
 //@ts-ignore
 import s from "./Subtitle.module.scss";
+import { CSSProperties } from "react";
 
 interface SubtitleProps {
     subtitle: string
+    style?: CSSProperties | undefined
 }
 
 //Заголовок
@@ -10,9 +12,7 @@ interface SubtitleProps {
 export default function Subtitle(props: SubtitleProps) {
 
     return (
-        <div className={s.subtitleWrap}>
-            <h3 className={s.subtitle}>{props.subtitle}</h3>    
-        </div>
+            <h3 className={s.subtitle} style={props.style}>{props.subtitle}</h3>    
     )
 
 }

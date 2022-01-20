@@ -16,7 +16,7 @@ export const Forgot = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailSuccess = useAppSelector<boolean>(
-    (state) => state.restore.emailSuccess
+    (state) => state.restore.emailIsSuccess
   );
 
   useEffect(() => {

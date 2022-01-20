@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {registerTC} from "../../reducers/registration";
+import {registerTC, setEmailError, setPasswordError} from "../../reducers/registration";
 import {AppRootStateType} from "../../redux/store";
 import {Navigate} from "react-router-dom";
 import {Registration} from "./Registration";
+
 
 
 export type RegistrationContainerTypeProps = {}

@@ -8,6 +8,9 @@ export const authApi = {
       data
     );
   },
+  LogOut() {
+    return instance.delete<{}, AxiosResponse<InfoResponseType, {}>>(`auth/me`)
+  },
 };
 
 //Types
@@ -32,3 +35,8 @@ export type CommonResponseType = {
   rememberMe: boolean;
   error: string;
 };
+
+export type InfoResponseType = {
+  info: string
+  error: string
+}
