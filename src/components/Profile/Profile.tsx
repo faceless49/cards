@@ -8,6 +8,7 @@ import {AppRootStateType} from "../../redux/store";
 import {SuperInputText} from "../common/SuperInputText/SuperInputText";
 import {updateProfileInfo} from "../../reducers/profile";
 import {SuperButton} from "../common/SuperButton/SuperButton";
+import {logOut} from "../../reducers/loginReducer";
 import {Navigate} from 'react-router-dom';
 import Subtitle from '../common/Subtitle/Subtitle';
 
@@ -48,6 +49,8 @@ export const Profile = () => {
         onSubmitName()
     }
 
+    const onClickLogOutHandler = () => dispatch(logOut())
+
     const selectAllHandler = (e: ChangeEvent<HTMLInputElement>) => e.currentTarget.select();
 
     if (!isLoggedIn) {
@@ -66,8 +69,7 @@ export const Profile = () => {
             <div className={style.profileInfo}>
                 {
                     editName ?
-                        <SuperInputText style={{width:"100%"}}
-                                        type={'text'}
+                        <SuperInputText type={'text'}
                                         value={name}
                                         onChange={changeNameHandler}
                                         onFocus={selectAllHandler}
@@ -76,18 +78,19 @@ export const Profile = () => {
                         />
                         :
                         <span>
-                            Nickname : {profileName}
+                            Name : {profileName}
                         </span>
                 }
             </div>
 
-            <div className={style.profileInfo}> Email: {profileEmail}</div>
+            <div className={'profileInfo'}> Email: {profileEmail}</div>
 
             <div className={style.btnWrap}>
                 <SuperButton style={{background:"#D7D8EF", color:"#21268F"}} onClick={editNameHandler}>Edit</SuperButton>
                 <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
+                <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
             </div>
-            
+
 
 
 

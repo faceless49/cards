@@ -7,7 +7,7 @@ import {
 
 const initState = {
   email: null as string | null,
-  emailSuccess: false,
+  emailIsSuccess: false,
   newPassword: false,
 };
 type InitStateType = typeof initState;
@@ -20,7 +20,7 @@ export const restoreReducer = (
     case "restore/SET-EMAIL":
       return { ...state, email: action.email };
     case "restore/GET-EMAIL-SUCCESS":
-      return { ...state, emailSuccess: action.success };
+      return { ...state, emailIsSuccess: action.success };
     case "restore/SEND-RECOVERY-EMAIL":
       return { ...state, newPassword: action.newPassword };
     default:

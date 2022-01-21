@@ -2,14 +2,13 @@
 import s from '../../styles/common/AuthStyles.module.scss';
 // @ts-ignore
 import style from './Forgot.module.scss';
-import {NavLink} from "react-router-dom";
-import React, { ChangeEvent, MouseEvent, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { SuperButton } from "../common/SuperButton/SuperButton";
-import { SuperInputText } from "../common/SuperInputText/SuperInputText";
-import { forgotPassword } from "../../reducers/restore";
-import { useAppSelector } from "../../redux/store";
-import { useNavigate } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import React, {ChangeEvent, MouseEvent, useEffect, useState} from "react";
+import {useDispatch} from "react-redux";
+import {SuperButton} from "../common/SuperButton/SuperButton";
+import {SuperInputText} from "../common/SuperInputText/SuperInputText";
+import {forgotPassword} from "../../reducers/restore";
+import {useAppSelector} from "../../redux/store";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 
@@ -17,7 +16,7 @@ export const Forgot = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const emailSuccess = useAppSelector<boolean>(
-    (state) => state.restore.emailSuccess
+    (state) => state.restore.emailIsSuccess
   );
 
   useEffect(() => {
