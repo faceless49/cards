@@ -166,7 +166,7 @@ export const Packs = () => {
 
         <div className={s.contentRightTop}>
           {error && <div>{error}</div>}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+         
             <SearchField
               searchValue={searchValue}
               setSearchValue={onChangeSearchValue}
@@ -174,7 +174,7 @@ export const Packs = () => {
             <SuperButton onClick={addPackHandler} style={{ width: "184px" }}>
               Add new pack
             </SuperButton>
-          </div>
+          
         </div>
 
         <div className={s.tableMain}>

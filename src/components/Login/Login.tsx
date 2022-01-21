@@ -31,8 +31,8 @@ export const Login = React.memo(() => {
 
   const disabled = status === "loading";
 
-  const [username, setUsername] = useState<string>("faceless49@ya.ru");
-  const [password, setPassword] = useState<string>("Qwerty1234");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [eye, setEye] = useState<string>("password");
 
@@ -71,7 +71,7 @@ export const Login = React.memo(() => {
       <Subtitle subtitle="Sign in" />
       <div>{error}</div>
       {status === "loading" && <span>{status}</span>}
-    <form className={style.FormBox}>
+    <div className={style.FormBox}>
       <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
         <label className={s.InputLabel}>Email</label>
         <SuperInputText
@@ -133,7 +133,7 @@ export const Login = React.memo(() => {
             Sign Up
           </NavLink>
         </div>
-      </form>
+      </div>
     </div>
   );
 });
