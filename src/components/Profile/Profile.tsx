@@ -66,7 +66,7 @@ export const Profile = () => {
             <div className={style.profileInfo}>
                 {
                     editName ?
-                        <SuperInputText 
+                        <SuperInputText style={{width:"100%"}}
                                         type={'text'}
                                         value={name}
                                         onChange={changeNameHandler}
