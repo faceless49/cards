@@ -86,7 +86,7 @@ export const Registration: React.FC<RegistrationTypeProps> = ({
         </div>
 
         <div className={style.btnWrap}>
-          <SuperButton className={style.btnLeft} onClick={onClickCancel}>
+          <SuperButton className={style.btnLight} onClick={onClickCancel}>
             Cancel
           </SuperButton>
           <SuperButton className={style.btnRight} onClick={onClickHandler}>
