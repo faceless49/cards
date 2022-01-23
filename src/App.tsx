@@ -1,9 +1,6 @@
 import React from "react";
 import "./App.css";
-import { NavLink, Route, Routes } from "react-router-dom";
-import { SuperInputText } from "./components/common/SuperInputText/SuperInputText";
-import { SuperButton } from "./components/common/SuperButton/SuperButton";
-import { SuperCheckbox } from "./components/common/SuperCheckbox/SuperCheckbox";
+import { Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login/Login";
 import { Profile } from "./components/Profile/Profile";
 import { RegistrationContainer } from "./components/Register/RegisterContainer";
@@ -21,7 +18,6 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/registration"} element={<RegistrationContainer />} />
         <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/restore"} element={<Forgot />} />
         <Route path={"/newPass/"} element={<NewPassword />} />
         <Route path={"/restore"} element={<Forgot />} />
       </Routes>
