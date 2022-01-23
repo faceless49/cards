@@ -210,11 +210,7 @@ export const Packs = () => {
                   />
                 </th>
                 <th className={s.th}>
-                  <Sort
-                    sortHandlerUp={sortCreatedByHandlerUp}
-                    sortHandlerDown={sortCreatedByHandlerDown}
-                    title={"Actions"}
-                  />
+                  <Sort title={"Actions"} />
                 </th>
               </tr>
             </thead>

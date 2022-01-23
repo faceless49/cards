@@ -14,14 +14,6 @@ import { NewPassword } from "./components/NewPassword/NewPassword";
 function App() {
   return (
     <div className="App">
-      <div>
-        <NavLink to={"/"}>Main</NavLink>---
-        <NavLink to={"/login"}>Login</NavLink>---
-        <NavLink to={"/registration"}>Form Registration</NavLink>---
-        <NavLink to={"/profile"}>Profile</NavLink>---
-        <NavLink to={"/newPass"}>newPass</NavLink>---
-        <NavLink to={"/restore"}>restore</NavLink>---
-      </div>
       <Routes>
         <Route path={"/*"} element={<div>404</div>} />
 
@@ -32,16 +24,6 @@ function App() {
         <Route path={"/restore"} element={<Forgot />} />
         <Route path={"/newPass/"} element={<NewPassword />} />
         <Route path={"/restore"} element={<Forgot />} />
-        <Route
-          path={"/test"}
-          element={
-            <div>
-              <SuperInputText />
-              <SuperButton>Push</SuperButton>
-              <SuperCheckbox />
-            </div>
-          }
-        />
       </Routes>
     </div>
   );
