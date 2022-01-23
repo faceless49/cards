@@ -207,9 +207,7 @@ export const Packs = () => {
                     title={"Created by"}
                   />
                 </th>
-                <th className={s.th}>
-                  <Sort title={"Actions"} />
-                </th>
+                <th className={s.th}>Actions</th>
               </tr>
             </thead>
 
