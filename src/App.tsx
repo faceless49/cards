@@ -18,7 +18,7 @@ function App() {
         <Route path={"/login"} element={<Login />} />
         <Route path={"/registration"} element={<RegistrationContainer />} />
         <Route path={"/profile"} element={<Profile />} />
-        <Route path={"/newPass/"} element={<NewPassword />} />
+        <Route path={"/newPass/:token"} element={<NewPassword />} />
         <Route path={"/restore"} element={<Forgot />} />
       </Routes>
     </div>

@@ -1,6 +1,11 @@
 import { Dispatch } from "redux";
-import { cardsApi } from "../api/cards-api";
+import {
+  AddCardDataType,
+  cardsApi,
+  RequestUpdateCardType,
+} from "../api/cards-api";
 import { AppRootStateType } from "../redux/store";
+import { ThunkAction } from "redux-thunk";
 
 export type CardType = {
   answer: string;
@@ -41,6 +46,7 @@ const initState = {
   currentPage: 1 as number,
   packUserId: null as string | null,
   cardsPack_id: "",
+  isInitialize: false,
 };
 export const cardsReducer = (
   state: InitStateType = initState,
@@ -62,12 +68,18 @@ export const cardsReducer = (
         ...state,
         page: action.page,
       };
+    case "cards/SET-INIT":
+      return { ...state, isInitialize: true };
     default:
       return state;
   }
 };
 
 // action creators
+
+export const setInit = () => {
+  return { type: "cards/SET-INIT" } as const;
+};
 
 export const fetchCards = (
   cards: Array<CardType>,
@@ -92,18 +104,27 @@ export const setPages = (page: number) => {
   return { type: "cards/SET-PAGES", page } as const;
 };
 
-export const addCard = (cardsPack_id: string) => ({
-  type: "cards/ADD-CARD",
-  cardsPack_id,
-});
+export const addCard = (cardsPack_id: string) =>
+  ({
+    type: "cards/ADD-CARD",
+    cardsPack_id,
+  } as const);
+export const removeCard = (id: string) =>
+  ({ type: "cards/REMOVE-CARD", id } as const);
 
 // thunk creators
 
 export const fetchCardsTC =
-  (cardsPack_Id: string) =>
-  async (dispatch: Dispatch<ActionsType>, getState: () => AppRootStateType) => {
+  (cardsPack_Id: string): ThunkType =>
+  async (dispatch, getState: () => AppRootStateType) => {
     try {
       const { queryParams } = getState().cards;
+
+      if (cardsPack_Id !== getState().cards.cardsPack_id) {
+        for (const key in queryParams) {
+          queryParams[key] = "";
+        }
+      }
 
       let optionalString = "";
       for (const key in queryParams) {
@@ -137,9 +158,49 @@ export const fetchCardsTC =
       );
     } catch (e) {
       console.log(e);
+    } finally {
+      setInit();
     }
   };
+
+export const addCardTC =
+  (data: AddCardDataType): ThunkType =>
+  async (dispatch) => {
+    try {
+      await cardsApi.addCard(data);
+      dispatch(fetchCardsTC(data.cardsPack_id));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const removeCardTC =
+  (id: string, cardsPack_id: string): ThunkType =>
+  async (dispatch) => {
+    try {
+      await cardsApi.removeCard(id);
+      dispatch(fetchCardsTC(cardsPack_id));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+export const editCardTC =
+  (data: RequestUpdateCardType, cardsPack_id: string): ThunkType =>
+  async (dispatch) => {
+    try {
+      await cardsApi.updateCard(data);
+      dispatch(fetchCardsTC(cardsPack_id));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
 type ActionsType =
   | ReturnType<typeof fetchCards>
   | ReturnType<typeof setPages>
-  | ReturnType<typeof addCard>;
+  | ReturnType<typeof addCard>
+  | ReturnType<typeof removeCard>
+  | ReturnType<typeof setInit>;
+
+type ThunkType = ThunkAction<void, AppRootStateType, unknown, ActionsType>;

@@ -2,7 +2,7 @@ import { Dispatch } from "redux";
 import {
   ForgotRequestType,
   restoreAPI,
-  RecoverRequestType
+  RecoverRequestType,
 } from "../api/restore-api";
 
 const initState = {
@@ -41,7 +41,7 @@ export const changePasswordSuccess = (newPassword: boolean) =>
 
 // TC
 
-let recoveryMessageAddress = `<div style="padding: 15px">Password recovery link: <a href='http://localhost:3000/#/set-new-password/$token$'>click here</a></div>`;
+let recoveryMessageAddress = `<div style="padding: 15px">Password recovery link: <a href='http://faceless49.github.io/cards#/newPass/$token$'>click here</a></div>`;
 let recoveryMessage = "test-front-admin <ai73a@yandex.by>";
 export const forgotPassword =
   (email: string) => async (dispatch: Dispatch<RestoreActionsType>) => {
