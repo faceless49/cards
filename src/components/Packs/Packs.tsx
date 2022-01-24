@@ -100,7 +100,7 @@ export const Packs = () => {
     const deletePack = () => deletePackHandler(p._id);
     const updatePack = () =>
       updatePackHandler(p._id, "New name for SuperMega Pack");
-    const getCards = () => deletePackHandler(p._id); // поменять функцию
+    const requestToLearnCard = () => deletePackHandler(p._id); // поменять функцию
 
     return (
       <tr className={s.tr} key={p._id}>
@@ -128,7 +128,7 @@ export const Packs = () => {
             <Link to={`/cards/${p._id}`}>
               <BtnActions
                 name="Learn"
-                onClick={getCards}
+                onClick={requestToLearnCard}
                 style={{ color: "#21268F", backgroundColor: "#D7D8EF" }}
               />
             </Link>
