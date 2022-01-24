@@ -86,9 +86,9 @@ export const Profile = () => {
             <div className={'profileInfo'}> Email: {profileEmail}</div>
 
             <div className={style.btnWrap}>
-                <SuperButton className={style.btnLight}  onClick={editNameHandler}>Edit</SuperButton>
+                <SuperButton className={style.btnLight} onClick={editNameHandler}>Edit</SuperButton>
                 <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
-                <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
+                <SuperButton className={style.btnLogout} onClick={onClickLogOutHandler}>Log out</SuperButton>
             </div>
 
 

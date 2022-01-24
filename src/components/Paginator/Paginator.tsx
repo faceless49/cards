@@ -2,6 +2,10 @@ import React, {useState} from "react";
 //@ts-ignore
 import styles from './Paginator.module.css'
 import {SuperButton} from "../common/SuperButton/SuperButton";
+//@ts-ignore
+import arrowLeft from '../../images/arrowLeft.svg';
+//@ts-ignore
+import arrowRight from '../../images/arrowRight.svg';
 
 export type PaginatorTypeProps = {
     totalCount: number
@@ -43,12 +47,11 @@ export const Paginator: React.FC<PaginatorTypeProps> =
             <div className={styles.pagesWrapper}>
                 {portionNumber > 1 &&
                 <>
-                    <SuperButton className={styles.prevButton}
-                                 style={{width: "70px", height: "30px", textAlign: "center",}}
+                    <button className={styles.paginatorArrow}
                                  onClick={() => {
                                      onChangedPage((portionSize * (portionNumber - 2)) + 1)
                                      setPortionNumber(portionNumber - 1)
-                                 }}>Prev</SuperButton>
+                                 }}><img src={arrowLeft}/></button>
                     <div className={styles.item} onClick={onFirstPageClick}>1</div>
                     <div className={styles.points}>...</div>
                 </>}
@@ -73,10 +76,13 @@ export const Paginator: React.FC<PaginatorTypeProps> =
                 }
                 {
                     portionCount > portionNumber &&
-                    <SuperButton style={{width: "70px", height: "30px"}} onClick={() => {
+
+                    <button className={styles.paginatorArrow} onClick={() => {
                         setPortionNumber(portionNumber + 1)
                         onChangedPage(portionSize * portionNumber + 1)
-                    }}>Next</SuperButton>
+                    }}><img src={arrowRight}/></button>
+
+                
                 }
             </div>
         )

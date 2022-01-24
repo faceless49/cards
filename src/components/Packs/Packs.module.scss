@@ -60,6 +60,7 @@
     max-height: 432px;
     width: 100%;
     margin-bottom: 24px;
+    max-width: 700px; //оставлять ли?
 }
 
 .table {
@@ -135,6 +136,39 @@
     color: #2D2E46;
 }
 
+select {
+    outline: none;
+    border:  1px solid rgba(99, 93, 128, 0.4);
+    font-family: 'SFUIDisplay-Regular';
+    font-size: 12px;
+    line-height: 14px;
+    padding: 3px 6px 2px 0px; 
+    width: 40px;
+    box-sizing: border-box; 
+    display: block; 
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04); 
+    border-radius: .5em;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff; 
+    background-image: url('../../images/selectArrow.svg'), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); 
+    background-repeat: no-repeat, repeat;
+    background-position: right .3em top 50%, 0 0;
+}
+
+    select::-ms-expand { display: none; } 
+    select:hover { border-color: #888; } 
+    select:focus { border-color: #aaa; 
+    color: #222;
+    outline: none; 
+    } 
+
+
+select option {
+    text-align: center;
+    color: #2D2E46;
+}
 
 ::-webkit-scrollbar {
 	width: 6px;

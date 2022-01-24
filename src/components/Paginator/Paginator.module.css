@@ -1,11 +1,11 @@
 .pagesWrapper {
     display: flex;
+    align-items:center;
     margin: 10px 0;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
-    font-family: Bahnschrift, sans-serif;
-    font-size: 22px;
-    font-weight: bold;
+    font-family: "SFUIDisplay-Regular";
+    font-size: 12px;
     color: black;
 }
 
@@ -16,8 +16,14 @@
 }
 
 .currentPage {
-    color: #280c77;
-    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #21268F;
+    color: #F2F5F7;
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
     user-select: none;
 }
 
@@ -38,3 +44,15 @@
 .item:hover {
     color: #280c77;
 }
+
+.paginatorArrow {
+    border:none;
+    text-decoration: none;
+    background-color:inherit;
+    cursor: pointer;
+    width: 6px;
+    height: 5px;
+    display: flex;
+    align-items:center;
+}
+

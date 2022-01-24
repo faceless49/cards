@@ -223,12 +223,18 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex" }}>
-          {/*paginator*/}
+        <div style={{ display: "flex", gap:"25px"}}>
+        
+        <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
 
           <div className={s.SelectWrap}>
             <span> Show </span>
-            <select style={s.SelectBox} onChange={onChangePageCountHandler}>
+            <select onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -238,12 +244,7 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
+          
           {/* <SuperButton onClick={refreshHandler}>Refresh page</SuperButton> */}
         </div>
       </div>
