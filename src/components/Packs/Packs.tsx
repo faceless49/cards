@@ -20,9 +20,11 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
+import {SuperRange} from "../common/SuperRange/SuperRange";
 
 export const Packs = () => {
-  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
+  debugger
+  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id, maxCardsCount, minCardsCount } =
     useSelector<AppRootStateType, InitialStatePackPageType>(
       (state) => state.packPage
     );
@@ -154,7 +156,15 @@ export const Packs = () => {
         </div>{" "}
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
-        <div className={s.sliderWrap}></div> {/*для слайдера*/}
+        <div className={s.sliderWrap}> {/*для слайдера*/}
+          <SuperRange
+              //onAfterChange={}
+              allowCross={false}
+              min={minCardsCount}
+              max={maxCardsCount}
+              defaultValue={[minCardsCount, maxCardsCount]}
+          />
+        </div>
       </div>
       <div className={s.ContentMain}>
         <Subtitle

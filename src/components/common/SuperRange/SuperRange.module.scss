@@ -1,0 +1,15 @@
+.range{
+&__box{
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 5px;
+     font-size: 14px;
+     line-height: 17px;
+ }
+&__spanMin{
+     margin-left: -4px;
+ }
+&__spanMax{
+     margin-right: -10px;
+ }
+}
