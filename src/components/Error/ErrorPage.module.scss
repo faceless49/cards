@@ -1,0 +1,96 @@
+
+.logo404Wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.four {
+        font-family: 'SFUIDisplay-Regular';
+        font-size: 230px;
+        color: #d27a3d;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: #230203;
+    }
+
+    .four.one {
+        margin-left: 10px;
+    }
+
+    .logo {
+        margin-top: 75px;
+        width: 180px;
+        height: 180px;
+        
+    
+}
+
+@media only screen and (max-width: 500px) {
+    .logo404Wrapper {
+        .four {
+            font-size: 170px;
+        }
+
+        .logo {
+            margin-top: 70px;
+
+            img {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    }
+}
+
+.messageWrapper {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 36px;
+    width: 670px;
+}
+
+.pageName {
+    color: #d27a3d;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+@media only screen and (max-width: 720px) {
+    .messageWrapper {
+        font-size: 26px;
+        width: 360px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .messageWrapper {
+        font-size: 20px;
+        width: 300px;
+    }
+}
+
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 150px;
+}
+
+.goHomeButton {
+    width: 217px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    font-family: 'SFUIDisplay-Regular';
+    cursor: pointer;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+    background: linear-gradient(0deg, rgb(211, 134, 18) 0%, rgb(211, 99, 52) 100%);
+    line-height: 42px;
+    border: none;
+    &:hover {
+        background: linear-gradient(0deg, rgb(158, 108, 33) 0%, rgb(211, 99, 52) 100%);
+    }
+}

@@ -67,7 +67,7 @@ export const Login = React.memo(() => {
       <Subtitle subtitle="Sign in" />
       <div>{error}</div>
       {status === "loading" && <span>{status}</span>}
-      
+
     <div className={style.FormBox}>
       <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
         <label className={s.InputLabel}>Email</label>

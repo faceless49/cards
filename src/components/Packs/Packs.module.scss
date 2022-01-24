@@ -88,6 +88,13 @@
     text-overflow: ellipsis;
 }
 
+.tr .td {
+    max-width: 160px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: normal;
+}
+
 .tr:nth-child(even) {
     background-color:#F8F7FD;
 }
