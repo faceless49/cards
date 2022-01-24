@@ -20,6 +20,7 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
+import { fetchCardsTC } from "../../reducers/cards";
 
 export const Packs = () => {
   const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
@@ -100,7 +101,7 @@ export const Packs = () => {
     const deletePack = () => deletePackHandler(p._id);
     const updatePack = () =>
       updatePackHandler(p._id, "New name for SuperMega Pack");
-    const requestToLearnCard = () => deletePackHandler(p._id); // поменять функцию
+    const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
     return (
       <tr className={s.tr} key={p._id}>
