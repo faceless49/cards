@@ -236,12 +236,7 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
+        
         </div>
       </div>
     </div>
