@@ -23,7 +23,6 @@ import { Paginator } from "../Paginator/Paginator";
 import {SuperRange} from "../common/SuperRange/SuperRange";
 
 export const Packs = () => {
-  debugger
   const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id, maxCardsCount, minCardsCount } =
     useSelector<AppRootStateType, InitialStatePackPageType>(
       (state) => state.packPage
