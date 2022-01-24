@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 // @ts-ignore
-import s from '../../styles/common/AuthStyles.module.scss';
+import s from "../../styles/common/AuthStyles.module.scss";
 // @ts-ignore
-import style from './Login.module.scss';
+import style from "./Login.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { AppRootStateType } from "../../redux/store";
 import { SuperButton } from "../common/SuperButton/SuperButton";
@@ -12,9 +12,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Title from "../common/Title/Title";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SuperCheckbox } from "../common/SuperCheckbox/SuperCheckbox";
-// @ts-ignore
-import eyeIcon from "../../images/eyeIcon.svg";
-
 export const Login = React.memo(() => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -60,10 +57,9 @@ export const Login = React.memo(() => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/profile");
+      navigate("/");
     }
   }, [isLoggedIn]);
-
 
   return (
     <div className={s.AuthShape} style={{ paddingTop: "30px" }}>
@@ -71,6 +67,7 @@ export const Login = React.memo(() => {
       <Subtitle subtitle="Sign in" />
       <div>{error}</div>
       {status === "loading" && <span>{status}</span>}
+      
     <div className={style.FormBox}>
       <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
         <label className={s.InputLabel}>Email</label>
@@ -92,7 +89,21 @@ export const Login = React.memo(() => {
 
           <div className={style.psRelative}>
             <button className={style.EyeButton} onClick={openEye}>
-              <img src={eyeIcon} />
+              {/*<img src={eyeIcon} />*/}
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12 4.5C7 4.5 2.73 7.61 1 12C2.73 16.39 7 19.5 12 19.5C17 19.5 21.27 16.39 23 12C21.27 7.61 17 4.5 12 4.5ZM12 17C9.23997 17 6.99997 14.76 6.99997 12C6.99997 9.24 9.23997 6.99999 12 6.99999C14.76 6.99999 17 9.24 17 12C17 14.76 14.76 17 12 17ZM12 9C10.34 9 8.99997 10.34 8.99997 12C8.99997 13.66 10.34 15 12 15C13.66 15 15 13.66 15 12C15 10.34 13.66 9 12 9Z"
+                  fill="#2D2E46"
+                />
+              </svg>
             </button>
           </div>
 

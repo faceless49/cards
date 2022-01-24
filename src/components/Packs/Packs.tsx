@@ -91,7 +91,6 @@ export const Packs = () => {
     dispatch(setPacksData({ page: currentPage }));
     dispatch(getPacks());
   };
-  const refreshHandler = () => dispatch(getPacks());
 
   if (!isLoggedIn) {
     return <Navigate to={"/login"} />;
@@ -144,7 +143,6 @@ export const Packs = () => {
       <div className={s.ContentAside}>
         <h3 className={s.TitleButtons}>Show pack cards</h3>
         <div className={s.btnWrap}>
-          {" "}
           <label style={{ display: "flex", alignItems: "center", gap: "2px" }}>
             <input
               type={"checkbox"}
@@ -209,13 +207,7 @@ export const Packs = () => {
                     title={"Created by"}
                   />
                 </th>
-                <th className={s.th}>
-                  <Sort
-                    sortHandlerUp={sortCreatedByHandlerUp}
-                    sortHandlerDown={sortCreatedByHandlerDown}
-                    title={"Actions"}
-                  />
-                </th>
+                <th className={s.th}>Actions</th>
               </tr>
             </thead>
 
@@ -244,8 +236,12 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          
-          {/* <SuperButton onClick={refreshHandler}>Refresh page</SuperButton> */}
+          <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
         </div>
       </div>
     </div>
