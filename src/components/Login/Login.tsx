@@ -118,6 +118,7 @@ export const Login = React.memo(() => {
             <SuperCheckbox onChange={rememberMeHandler}>
               Remember me
             </SuperCheckbox>
+
             <NavLink
               className={s.LinkBasic}
               to={"/restore"}
