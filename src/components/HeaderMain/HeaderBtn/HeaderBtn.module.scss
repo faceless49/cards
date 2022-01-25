@@ -1,0 +1,24 @@
+.headerBtn {
+    font-family: "SFUIDisplay-Regular";
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.4px;
+    background-color: #EBE0E9;
+    color: #2D2E46;
+    opacity: 0.4;
+    width: 173px;
+    height: 60px;
+    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:8px;
+    cursor:pointer;
+}
+
+.headerBtn:hover {
+    background-color: #DCCCDB;
+    opacity:1;
+    border-bottom: 3px solid rgba(33, 38, 143, 1);
+}

@@ -6,12 +6,17 @@ import { Profile } from "./components/Profile/Profile";
 import { RegistrationContainer } from "./components/Register/RegisterContainer";
 import { Packs } from "./components/Packs/Packs";
 import { Forgot } from "./components/Forgot/Forgot";
+import HeaderMain from "./components/HeaderMain/HeaderMain";
 import { NewPassword } from "./components/NewPassword/NewPassword";
 import {ErrorPage} from './components/Error/ErrorPage';
+
 
 function App() {
   return (
     <div className="App">
+
+      <HeaderMain/>
+
       <Routes>
         <Route path={"/*"} element={<ErrorPage/>} />
         <Route path={"/"} element={<Packs />} />
