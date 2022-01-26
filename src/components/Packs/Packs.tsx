@@ -21,8 +21,8 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
-import { SuperRange } from "../common/SuperRange/SuperRange";
 import { fetchCardsTC } from "../../reducers/cards";
+import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 
 export const Packs = () => {
   const {
@@ -175,13 +175,7 @@ export const Packs = () => {
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}>
-          <SuperRange
-            onAfterChange={onChangeRange}
-            allowCross={false}
-            min={minCardsCount}
-            max={maxCardsCount}
-            defaultValue={[minCardsCount, maxCardsCount]}
-          />
+          {/*<SuperDoubleRange min={minCardsCount} max={maxCardsCount} onChange={}/>*/}
         </div>
       </div>
       <div className={s.ContentMain}>
