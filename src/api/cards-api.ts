@@ -45,11 +45,24 @@ export type AddCardDataType = {
 };
 
 export type RequestUpdateCardType = {
-  _id: string;
-  question?: string;
-  comments?: string;
+  card: UpdateCardDataType;
 };
 
 export type RequestAddCardType = {
   card: AddCardDataType;
+};
+
+export type UpdateCardDataType = {
+  _id: string;
+  question?: string;
+  answer?: string;
+  grade?: number;
+  shots?: number;
+  rating?: number;
+  answerImg?: string;
+  questionImg?: string;
+  questionVideo?: string;
+  answerVideo?: string;
+  type?: string;
+  comments?: string;
 };

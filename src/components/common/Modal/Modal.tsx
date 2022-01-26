@@ -25,7 +25,7 @@ export const Modal = (props: ModalPropsType) => {
 // types
 
 type ModalPropsType = {
+  children: ReactChild;
   active: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
-  children: ReactChild;
 };

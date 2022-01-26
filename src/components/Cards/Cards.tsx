@@ -1,13 +1,18 @@
 import { useAppSelector } from "../../redux/store";
-import { addCardTC, CardType, fetchCardsTC } from "../../reducers/cards";
+import {
+  addCardTC,
+  CardType,
+  editCardTC,
+  fetchCardsTC,
+} from "../../reducers/cards";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
-import { ModalEditCard } from "../common/Modal/ModalChildrens/ModalEditCard";
-import { AddCardDataType } from "../../api/cards-api";
+import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
+import { AddCardDataType, UpdateCardDataType } from "../../api/cards-api";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
@@ -15,14 +20,15 @@ export const Cards = () => {
     (state) => state.login.isLoggedIn
   );
 
-  // const [cardId, setCardId] = useState<string | null>(null);
+  const [cardId, setCardId] = useState<string | null>(null);
+  const [packId, setPackId] = useState<string | null>(null);
   const [modalActive, setModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
-  // const [question, setQuestion] = useState<string>("");
+  const [question, setQuestion] = useState<string>("");
   const [searchValue, setSearchValue] = useState("");
-  // const [answer, setAnswer] = useState<string>("");
+  const [answer, setAnswer] = useState<string>("");
 
-  const { cardsPack_id } = useParams<{ cardsPack_id?: string }>();
+  const { cardsPack_id } = useParams<{ cardsPack_id: string }>();
 
   const dispatch = useDispatch();
 
@@ -31,7 +37,7 @@ export const Cards = () => {
   }, [dispatch, cardsPack_id]);
 
   const addCardHandler = () => {
-    // setModalActive(true);
+    setModalActive(true);
     if (cardsPack_id) {
       const card: AddCardDataType = {
         cardsPack_id,
@@ -39,6 +45,16 @@ export const Cards = () => {
         answer: "World",
       };
       dispatch(addCardTC({ card }));
+    }
+  };
+  const editPackRequestHandler = (question: string, answer: string) => {
+    if (cardId) {
+      let card: UpdateCardDataType = {
+        _id: cardId,
+        question,
+        answer,
+      };
+      packId && dispatch(editCardTC({ card }, packId));
     }
   };
 
@@ -56,7 +72,6 @@ export const Cards = () => {
       </tr>
     );
   });
-  console.log(isInitialize);
   return (
     <div>
       <SearchField
@@ -83,7 +98,14 @@ export const Cards = () => {
         </tbody>
       </table>
       <Modal active={modalActive} setActive={setModalActive}>
-        <ModalEditCard />
+        {cardsPack_id ? (
+          <ModalAddCard
+            cardsPack_id={cardsPack_id}
+            setModalActive={setEditModalActive}
+          />
+        ) : (
+          ""
+        )}
       </Modal>
     </div>
   );
