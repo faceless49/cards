@@ -186,7 +186,13 @@ export const Packs = () => {
 
         <div className={s.contentRightTop}>
           {error && <div>{error}</div>}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <SearchField
               searchValue={searchValue}
               setSearchValue={onChangeSearchValue}
@@ -237,8 +243,14 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", gap: "25px" }}>
           <div className={s.SelectWrap}>
+            <Paginator
+              totalCount={cardPacksTotalCount}
+              pageSize={pageCount}
+              currentPage={page}
+              onChangedPage={onChangedPage}
+            />
             <span> Show </span>
             <select style={s.SelectBox} onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
@@ -250,12 +262,6 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
         </div>
       </div>
     </div>
