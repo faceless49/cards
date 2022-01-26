@@ -3,7 +3,6 @@ import { Dispatch } from "redux";
 import { AppRootStateType, AppThunk } from "../redux/store";
 import axios from "axios";
 
-
 export type InitialStatePackPageType = {
   cardPacks: PackType[];
   cardPacksTotalCount: number;
@@ -157,9 +156,10 @@ export const packReducer = (
       return state;
     case "PACK/SET-SEARCH-DATA":
       return { ...state, cardPacks: state.cardPacks.filter((cards) =>
-          action.value === '' ? state : cards.name.toLowerCase().includes(action.value)
+            action.value === '' ? state : cards.name.toLowerCase().includes(action.value)
         )};
-
+    case "PACK/SET-CARDS-PACK":
+      return { ...state, minCardsCount: action.min, maxCardsCount: action.max };
     default:
       return state;
   }
@@ -179,6 +179,9 @@ export const setPacksSortData = (
 export const setSearchData = (value: string) =>
   ({ type: "PACK/SET-SEARCH-DATA", value } as const);
 
+//range
+export const setCardsPack = (min: number, max: number) =>
+  ({ type: "PACK/SET-CARDS-PACK", min, max } as const);
 //Thunks
 
 export const getPacks =
@@ -193,6 +196,28 @@ export const getPacks =
         user_id: getState().packPage.user_id,
         pageCount: getState().packPage.pageCount,
         packName: someParams && someParams,
+      });
+      dispatch(setPacksData(response.data));
+    } catch (err) {
+      if (axios.isAxiosError(err) && err.response) {
+        dispatch(setPacksError(err.response.data.error));
+      } else if (axios.isAxiosError(err)) {
+        dispatch(setPacksError(err.message));
+      }
+      // finally {
+      //     //dispatch(диспатч на лоадинг)
+      // }
+    }
+  };
+
+export const setCardsPackTC =
+  (min: number, max: number) => async (dispatch: Dispatch) => {
+    dispatch(setCardsPack(min, max));
+    dispatch(setPacksError(""));
+    try {
+      const response = await packsApi.getPacks({
+        min: min,
+        max: max,
       });
       dispatch(setPacksData(response.data));
     } catch (err) {
@@ -266,4 +291,5 @@ type PackActionsType =
   | ReturnType<typeof clearPacksData>
   | ReturnType<typeof setPacksError>
   | ReturnType<typeof setPacksSortData>
-  | ReturnType<typeof setSearchData>;
+  | ReturnType<typeof setSearchData>
+  | ReturnType<typeof setCardsPack>;

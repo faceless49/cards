@@ -20,13 +20,22 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
+import { SuperRange } from "../common/SuperRange/SuperRange";
 import { fetchCardsTC } from "../../reducers/cards";
 
 export const Packs = () => {
-  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id } =
-    useSelector<AppRootStateType, InitialStatePackPageType>(
-      (state) => state.packPage
-    );
+  const {
+    cardPacks,
+    cardPacksTotalCount,
+    page,
+    pageCount,
+    error,
+    user_id,
+    maxCardsCount,
+    minCardsCount,
+  } = useSelector<AppRootStateType, InitialStatePackPageType>(
+    (state) => state.packPage
+  );
   const isLoggedIn = useSelector<AppRootStateType, boolean>(
     (state) => state.login.isLoggedIn
   );
@@ -35,6 +44,9 @@ export const Packs = () => {
   );
 
   const [searchValue, setSearchValue] = useState("");
+  const [min, setMin] = useState(minCardsCount);
+  const [max, setMax] = useState(maxCardsCount);
+
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -91,6 +103,12 @@ export const Packs = () => {
     dispatch(setPacksError(""));
     dispatch(setPacksData({ page: currentPage }));
     dispatch(getPacks());
+  };
+
+  const onChangeRange = (value: number[]) => {
+    dispatch(setCardsPackTC(value[0], value[1]));
+    setMin(value[0]);
+    setMax(value[1]);
   };
 
   if (!isLoggedIn) {
@@ -155,10 +173,16 @@ export const Packs = () => {
         </div>{" "}
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
-        <div className={s.sliderWrap}></div> {/*для слайдера*/}
+        <div className={s.sliderWrap}>
+          <SuperRange
+            onAfterChange={onChangeRange}
+            allowCross={false}
+            min={minCardsCount}
+            max={maxCardsCount}
+            defaultValue={[minCardsCount, maxCardsCount]}
+          />
+        </div>
       </div>
-
-
       <div className={s.ContentMain}>
         <Subtitle
           subtitle="Packs list"
@@ -167,7 +191,7 @@ export const Packs = () => {
 
         <div className={s.contentRightTop}>
           {error && <div>{error}</div>}
-         
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <SearchField
               searchValue={searchValue}
               setSearchValue={onChangeSearchValue}
@@ -175,10 +199,9 @@ export const Packs = () => {
             <SuperButton onClick={addPackHandler} style={{ width: "184px" }}>
               Add new pack
             </SuperButton>
-          
+          </div>
         </div>
 
-      
         <div className={s.tableMain}>
           <table className={s.table}>
             <thead className={s.tableHeader}>
@@ -219,18 +242,10 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex", gap:"25px"}}>
-        
-        <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
-
+        <div style={{ display: "flex" }}>
           <div className={s.SelectWrap}>
             <span> Show </span>
-            <select onChange={onChangePageCountHandler}>
+            <select style={s.SelectBox} onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -240,12 +255,13 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-        
+          <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
         </div>
-      
-
-        
-
       </div>
     </div>
   );
