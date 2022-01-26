@@ -91,7 +91,6 @@ export const Packs = () => {
     dispatch(setPacksData({ page: currentPage }));
     dispatch(getPacks());
   };
-  const refreshHandler = () => dispatch(getPacks());
 
   if (!isLoggedIn) {
     return <Navigate to={"/login"} />;
@@ -144,7 +143,6 @@ export const Packs = () => {
       <div className={s.ContentAside}>
         <h3 className={s.TitleButtons}>Show pack cards</h3>
         <div className={s.btnWrap}>
-          {" "}
           <label style={{ display: "flex", alignItems: "center", gap: "2px" }}>
             <input
               type={"checkbox"}
@@ -209,13 +207,7 @@ export const Packs = () => {
                     title={"Created by"}
                   />
                 </th>
-                <th className={s.th}>
-                  <Sort
-                    sortHandlerUp={sortCreatedByHandlerUp}
-                    sortHandlerDown={sortCreatedByHandlerDown}
-                    title={"Actions"}
-                  />
-                </th>
+                <th className={s.th}>Actions</th>
               </tr>
             </thead>
 
@@ -224,8 +216,6 @@ export const Packs = () => {
         </div>
 
         <div style={{ display: "flex" }}>
-          {/*paginator*/}
-
           <div className={s.SelectWrap}>
             <span> Show </span>
             <select style={s.SelectBox} onChange={onChangePageCountHandler}>
@@ -244,7 +234,6 @@ export const Packs = () => {
             currentPage={page}
             onChangedPage={onChangedPage}
           />
-          {/* <SuperButton onClick={refreshHandler}>Refresh page</SuperButton> */}
         </div>
       </div>
     </div>
