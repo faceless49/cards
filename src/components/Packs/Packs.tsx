@@ -156,6 +156,8 @@ export const Packs = () => {
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}></div> {/*для слайдера*/}
       </div>
+
+
       <div className={s.ContentMain}>
         <Subtitle
           subtitle="Packs list"
@@ -175,6 +177,7 @@ export const Packs = () => {
           
         </div>
 
+      
         <div className={s.tableMain}>
           <table className={s.table}>
             <thead className={s.tableHeader}>
@@ -238,6 +241,10 @@ export const Packs = () => {
           </div>
         
         </div>
+      
+
+        
+
       </div>
     </div>
   );
