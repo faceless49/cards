@@ -1,0 +1,39 @@
+.SearchField{
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        background-image: url('../../images/SearchIcon.svg');
+        left: 16px;
+        top: 10px;
+        width: 16px;
+        height: 16px;
+    }
+    &:active, :focus {
+        outline: 0;
+        outline-offset: 0;
+    }
+}
+
+.SearchInput {
+    width: 460px;
+    padding: 6px 20px 6px 40px;
+    // height: 36px;
+    padding-left: 40px;
+    font-family: 'SFUIDisplay-Regular';
+    font-size: 14px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    background: #ECECF9;
+    border: 1px solid #635D80;
+    color: #2D2E46;
+    box-sizing: border-box;
+    border-radius: 2px;
+    &:active, :hover, :focus {
+        outline: 0;
+        outline-offset: 0;
+    }
+}
+
+

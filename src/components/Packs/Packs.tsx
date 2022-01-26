@@ -157,6 +157,8 @@ export const Packs = () => {
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}></div> {/*для слайдера*/}
       </div>
+
+
       <div className={s.ContentMain}>
         <Subtitle
           subtitle="Packs list"
@@ -165,7 +167,7 @@ export const Packs = () => {
 
         <div className={s.contentRightTop}>
           {error && <div>{error}</div>}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+         
             <SearchField
               searchValue={searchValue}
               setSearchValue={onChangeSearchValue}
@@ -173,9 +175,10 @@ export const Packs = () => {
             <SuperButton onClick={addPackHandler} style={{ width: "184px" }}>
               Add new pack
             </SuperButton>
-          </div>
+          
         </div>
 
+      
         <div className={s.tableMain}>
           <table className={s.table}>
             <thead className={s.tableHeader}>
@@ -216,10 +219,18 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", gap:"25px"}}>
+        
+        <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
+
           <div className={s.SelectWrap}>
             <span> Show </span>
-            <select style={s.SelectBox} onChange={onChangePageCountHandler}>
+            <select onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
               <option value={20}>20</option>
               <option value={30}>30</option>
@@ -229,13 +240,12 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
+        
         </div>
+      
+
+        
+
       </div>
     </div>
   );

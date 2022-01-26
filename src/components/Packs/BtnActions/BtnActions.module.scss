@@ -1,3 +1,4 @@
+
 .btn {
     border-radius: 2px;
     font-family: "SFUIDisplay-Semibold";
@@ -7,7 +8,12 @@
     border:none;
     padding: 5px 6px 4px 6px ;
     cursor:pointer;
+        &:hover {
+            background-color:#21268F!important;
+            color: rgb(255, 255, 255)!important;
+            }
 }
+
 .btn:disabled {
     opacity: 0.6;
 }

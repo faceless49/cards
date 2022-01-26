@@ -28,8 +28,8 @@ export const Login = React.memo(() => {
 
   const disabled = status === "loading";
 
-  const [username, setUsername] = useState<string>("faceless49@ya.ru");
-  const [password, setPassword] = useState<string>("Qwerty1234");
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [checked, setChecked] = useState<boolean>(false);
   const [eye, setEye] = useState<string>("password");
 
@@ -67,28 +67,25 @@ export const Login = React.memo(() => {
       <Subtitle subtitle="Sign in" />
       <div>{error}</div>
       {status === "loading" && <span>{status}</span>}
-      <form className={style.FormBox}>
-        <div
-          className={s.formWrap}
-          style={{ textAlign: "left", marginBottom: "38px" }}
-        >
-          <label className={s.InputLabel}>Email</label>
-          <SuperInputText
-            style={{ width: "100%", marginBottom: "24px" }}
-            value={username}
-            disabled={disabled}
-            placeholder="j&johnson@gmail.com"
-            onChange={onChangeUsername}
-          />
-          <label className={s.InputLabel}>Password</label>
-          <SuperInputText
-            style={{ width: "100%", marginBottom: "5px" }}
-            type={eye}
-            value={password}
-            disabled={disabled}
-            placeholder="*********"
-            onChange={onChangePassword}
-          />
+
+    <div className={style.FormBox}>
+      <div className={s.formWrap} style={{ textAlign: "left", marginBottom: "38px" }}>
+        <label className={s.InputLabel}>Email</label>
+        <SuperInputText
+          style={{width:"100%",marginBottom:"24px"}}
+          value={username}
+          disabled={disabled}
+          placeholder="j&johnson@gmail.com"
+          onChange={onChangeUsername} />
+        <label className={s.InputLabel}>Password</label>
+        <SuperInputText
+          style={{ width: "100%", marginBottom: "5px" }}
+          type={eye}
+          value={password}
+          disabled={disabled}
+          placeholder="*********"
+          onChange={onChangePassword}
+        />
 
           <div className={style.psRelative}>
             <button className={style.EyeButton} onClick={openEye}>
@@ -121,6 +118,7 @@ export const Login = React.memo(() => {
             <SuperCheckbox onChange={rememberMeHandler}>
               Remember me
             </SuperCheckbox>
+
             <NavLink
               className={s.LinkBasic}
               to={"/restore"}
@@ -147,7 +145,7 @@ export const Login = React.memo(() => {
             Sign Up
           </NavLink>
         </div>
-      </form>
+      </div>
     </div>
   );
 });

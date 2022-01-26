@@ -1,4 +1,6 @@
 import {ChangeEvent} from 'react';
+//@ts-ignore
+import s from './SearchField.module.scss';
 
 type SearchFieldPropsType = {
   searchValue: string;
@@ -9,8 +11,8 @@ export const SearchField = (props: SearchFieldPropsType) => {
   const { searchValue, setSearchValue } = props;
 
   return (
-    <div>
-      <input
+    <div className={s.SearchField}>
+      <input className={s.SearchInput}
         type="text"
         placeholder="Search..."
         value={searchValue}

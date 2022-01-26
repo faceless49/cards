@@ -61,7 +61,7 @@ export const Profile = () => {
     return (
         <div className={s.AuthShape} style={{paddingTop:"36px"}}>
             <Subtitle subtitle="Personal Information" style={{marginBottom:"15px"}}/>
-            <div className={'avatar'}>
+            <div className={style.avatar}>
                 <img src={profileAvatar ? profileAvatar : 'http://s1.iconbird.com/ico/2013/11/504/w128h1281385326502profle.png'} alt={'avatar'}/>
             </div>
 
@@ -86,9 +86,9 @@ export const Profile = () => {
             <div className={'profileInfo'}> Email: {profileEmail}</div>
 
             <div className={style.btnWrap}>
-                <SuperButton style={{background:"#D7D8EF", color:"#21268F"}} onClick={editNameHandler}>Edit</SuperButton>
+                <SuperButton className={style.btnLight} onClick={editNameHandler}>Edit</SuperButton>
                 <SuperButton onClick={onClickSaveHandler}>Save</SuperButton>
-                <SuperButton onClick={onClickLogOutHandler}>Log out</SuperButton>
+                <SuperButton className={style.btnLogout} onClick={onClickLogOutHandler}>Log out</SuperButton>
             </div>
 
 
