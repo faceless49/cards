@@ -21,8 +21,8 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
-import { SuperRange } from "../common/SuperRange/SuperRange";
 import { fetchCardsTC } from "../../reducers/cards";
+import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 
 export const Packs = () => {
   const {
@@ -175,13 +175,7 @@ export const Packs = () => {
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}>
-          <SuperRange
-            onAfterChange={onChangeRange}
-            allowCross={false}
-            min={minCardsCount}
-            max={maxCardsCount}
-            defaultValue={[minCardsCount, maxCardsCount]}
-          />
+          {/*<SuperDoubleRange min={minCardsCount} max={maxCardsCount} onChange={}/>*/}
         </div>
       </div>
       <div className={s.ContentMain}>
@@ -192,7 +186,13 @@ export const Packs = () => {
 
         <div className={s.contentRightTop}>
           {error && <div>{error}</div>}
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <SearchField
               searchValue={searchValue}
               setSearchValue={onChangeSearchValue}
@@ -243,8 +243,14 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", gap: "25px" }}>
           <div className={s.SelectWrap}>
+            <Paginator
+              totalCount={cardPacksTotalCount}
+              pageSize={pageCount}
+              currentPage={page}
+              onChangedPage={onChangedPage}
+            />
             <span> Show </span>
             <select style={s.SelectBox} onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
@@ -256,12 +262,6 @@ export const Packs = () => {
             </select>
             <span>Cards per Page</span>
           </div>
-          <Paginator
-            totalCount={cardPacksTotalCount}
-            pageSize={pageCount}
-            currentPage={page}
-            onChangedPage={onChangedPage}
-          />
         </div>
       </div>
     </div>
