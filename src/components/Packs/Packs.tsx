@@ -7,6 +7,7 @@ import {
   deletePack,
   getPacks,
   InitialStatePackPageType,
+  setCardsPackTC,
   setPacksData,
   setPacksError,
   setPacksSortData,
