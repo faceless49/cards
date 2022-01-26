@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../redux/store";
-import { CardType, fetchCardsTC } from "../../reducers/cards";
+import { addCardTC, CardType, fetchCardsTC } from "../../reducers/cards";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,6 +7,7 @@ import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
 import { ModalEditCard } from "../common/Modal/ModalChildrens/ModalEditCard";
+import { AddCardDataType } from "../../api/cards-api";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
@@ -30,7 +31,15 @@ export const Cards = () => {
   }, [dispatch, cardsPack_id]);
 
   const addCardHandler = () => {
-    setModalActive(true);
+    // setModalActive(true);
+    if (cardsPack_id) {
+      const card: AddCardDataType = {
+        cardsPack_id,
+        question: "Hello",
+        answer: "World",
+      };
+      dispatch(addCardTC({ card }));
+    }
   };
 
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {

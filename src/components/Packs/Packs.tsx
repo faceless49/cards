@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore TODO: Fix scss modules
 import s from "./Packs.module.scss";
 import BtnActions from "./BtnActions/BtnActions";
 import { useDispatch, useSelector } from "react-redux";
