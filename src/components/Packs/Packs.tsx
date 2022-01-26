@@ -7,6 +7,7 @@ import {
   deletePack,
   getPacks,
   InitialStatePackPageType,
+  setCardsPackTC,
   setPacksData,
   setPacksError,
   setPacksSortData,
@@ -20,13 +21,21 @@ import { Sort } from "../common/Sort/Sort";
 import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
-import {SuperRange} from "../common/SuperRange/SuperRange";
+import { SuperRange } from "../common/SuperRange/SuperRange";
 
 export const Packs = () => {
-  const { cardPacks, cardPacksTotalCount, page, pageCount, error, user_id, maxCardsCount, minCardsCount } =
-    useSelector<AppRootStateType, InitialStatePackPageType>(
-      (state) => state.packPage
-    );
+  const {
+    cardPacks,
+    cardPacksTotalCount,
+    page,
+    pageCount,
+    error,
+    user_id,
+    maxCardsCount,
+    minCardsCount,
+  } = useSelector<AppRootStateType, InitialStatePackPageType>(
+    (state) => state.packPage
+  );
   const isLoggedIn = useSelector<AppRootStateType, boolean>(
     (state) => state.login.isLoggedIn
   );
@@ -35,6 +44,9 @@ export const Packs = () => {
   );
 
   const [searchValue, setSearchValue] = useState("");
+  const [min, setMin] = useState(minCardsCount);
+  const [max, setMax] = useState(maxCardsCount);
+
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -91,6 +103,12 @@ export const Packs = () => {
     dispatch(setPacksError(""));
     dispatch(setPacksData({ page: currentPage }));
     dispatch(getPacks());
+  };
+
+  const onChangeRange = (value: number[]) => {
+    dispatch(setCardsPackTC(value[0], value[1]));
+    setMin(value[0]);
+    setMax(value[1]);
   };
 
   if (!isLoggedIn) {
@@ -155,13 +173,15 @@ export const Packs = () => {
         </div>{" "}
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
-        <div className={s.sliderWrap}> {/*для слайдера*/}
+        <div className={s.sliderWrap}>
+          {" "}
+          {/*для слайдера*/}
           <SuperRange
-              //onAfterChange={}
-              allowCross={false}
-              min={minCardsCount}
-              max={maxCardsCount}
-              defaultValue={[minCardsCount, maxCardsCount]}
+            onAfterChange={onChangeRange}
+            allowCross={false}
+            min={minCardsCount}
+            max={maxCardsCount}
+            defaultValue={[minCardsCount, maxCardsCount]}
           />
         </div>
       </div>
