@@ -13,6 +13,7 @@ import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
 import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
 import { AddCardDataType, UpdateCardDataType } from "../../api/cards-api";
+import { ModalEditCard } from "../common/Modal/ModalChildrens/ModalEditCard";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
@@ -22,8 +23,10 @@ export const Cards = () => {
 
   const [cardId, setCardId] = useState<string | null>(null);
   const [packId, setPackId] = useState<string | null>(null);
+
   const [modalActive, setModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
+
   const [question, setQuestion] = useState<string>("");
   const [searchValue, setSearchValue] = useState("");
   const [answer, setAnswer] = useState<string>("");
@@ -47,6 +50,7 @@ export const Cards = () => {
       dispatch(addCardTC({ card }));
     }
   };
+
   const editPackRequestHandler = (question: string, answer: string) => {
     if (cardId) {
       let card: UpdateCardDataType = {
@@ -102,6 +106,17 @@ export const Cards = () => {
           <ModalAddCard
             cardsPack_id={cardsPack_id}
             setModalActive={setEditModalActive}
+          />
+        ) : (
+          ""
+        )}
+      </Modal>
+      <Modal active={modalActive} setActive={setModalActive}>
+        {cardsPack_id ? (
+          <ModalEditCard
+            cardsPack_id={cardsPack_id}
+            setModalActive={setModalActive}
+            action={editPackRequestHandler}
           />
         ) : (
           ""
