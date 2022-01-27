@@ -7,7 +7,7 @@ import {
 } from "../../../../api/cards-api";
 import { addCardTC } from "../../../../reducers/cards";
 
-export const ModalEditCard = (props: ModalEditCardType) => {
+export const ModalWithTwoInput = (props: ModalWithTwoInputs) => {
   const { question, answer, action, setModalActive } = props;
 
   const [questionValue, setQuestionValue] = useState("");
@@ -46,7 +46,7 @@ export const ModalEditCard = (props: ModalEditCardType) => {
   );
 };
 
-type ModalEditCardType = {
+type ModalWithTwoInputs = {
   setModalActive: Dispatch<SetStateAction<boolean>>;
   action: any;
   question: string;

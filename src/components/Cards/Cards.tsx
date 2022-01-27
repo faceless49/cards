@@ -14,7 +14,7 @@ import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
 import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
 import { UpdateCardDataType } from "../../api/cards-api";
-import { ModalEditCard } from "../common/Modal/ModalChildrens/ModalEditCard";
+import { ModalWithTwoInput } from "../common/Modal/ModalChildrens/ModalWithTwoInput";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
@@ -155,7 +155,7 @@ export const Cards = () => {
       </Modal>
       <Modal active={editModalActive} setActive={setModalActive}>
         {cardsPack_id ? (
-          <ModalEditCard
+          <ModalWithTwoInput
             question={question}
             answer={answer}
             setModalActive={setEditModalActive}

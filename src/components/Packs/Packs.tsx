@@ -22,7 +22,8 @@ import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
-import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
+import { Modal } from "../common/Modal/Modal";
+import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
 
 export const Packs = () => {
   const {
@@ -47,7 +48,8 @@ export const Packs = () => {
   const [searchValue, setSearchValue] = useState("");
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
-
+  const [modalActive, setModalActive] = useState(false);
+  // const [editModalActive, setEditModalActive] = useState(false);
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -60,7 +62,7 @@ export const Packs = () => {
   }, [searchValue, dispatch]);
 
   const addPackHandler = () => {
-    dispatch(addPack("SuperMega Pack"));
+    setModalActive(true);
   };
 
   const checkMyHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -118,8 +120,9 @@ export const Packs = () => {
 
   const packList = cardPacks.map((p) => {
     const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () =>
-      updatePackHandler(p._id, "New name for SuperMega Pack");
+    const updatePack = () => {
+      // setEditModalActive(true);
+    };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
     return (
@@ -268,6 +271,9 @@ export const Packs = () => {
           </div>
         </div>
       </div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
+      </Modal>
     </div>
   );
 };
