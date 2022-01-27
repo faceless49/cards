@@ -1,4 +1,10 @@
 import { useAppSelector } from "../../redux/store";
+//@ts-ignore
+import s from './Cards.module.scss';
+import Subtitle from "../common/Subtitle/Subtitle";
+//@ts-ignore
+import img1 from '../../images/ArrowBtn.svg';
+// import { Paginator } from "../Paginator/Paginator";
 import {
   addCardTC,
   CardType,
@@ -64,40 +70,105 @@ export const Cards = () => {
 
   const cardsElems = cards.map((card) => {
     return (
-      <tr key={card._id}>
-        <td>{card.question}</td>
-        <td>{card.answer}</td>
-        <td>{card.updated}</td>
-        <td>{card.grade}</td>
+      <tr className={s.tr} key={card._id}>
+        <td className={s.td}>{card.question}</td>
+        <td className={s.td}>{card.answer}</td>
+        <td className={s.td}>{card.updated}</td>
+        <td className={s.td}>{card.grade}</td>
       </tr>
     );
   });
   return (
-    <div>
-      <SearchField
-        searchValue={searchValue}
-        setSearchValue={onChangeSearchValue}
-      />
-      <SuperButton onClick={addCardHandler} style={{ width: "184px" }}>
-        Add new pack
-      </SuperButton>
-      <table>
-        <thead>
-          <tr>
-            <th>Question</th>
-            <th>Answer</th>
-            <th>Updated</th>
-            <th>Grade </th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cards.length > 1
-            ? cardsElems
-            : "This pack is empty. Click add new card to fill this pack"}
-        </tbody>
-      </table>
-      <Modal active={modalActive} setActive={setModalActive}>
+
+    <div className={s.cardsList}>
+
+      <div className={s.titleBox}>
+
+
+        <button className={s.rowBtn}>
+          <img className={s.arrowImg} src={img1}></img>
+        </button>
+
+        <Subtitle style={{margin:"0"}}
+            subtitle="Packs Name"
+          />
+
+      </div>
+
+      <div style={{
+              display: "flex",
+              justifyContent:"space-between",
+              width: "100%",
+            }}>
+
+              <div style={{width:"750px"}}>
+                  <SearchField
+              searchValue={searchValue}
+              setSearchValue={onChangeSearchValue}
+            />
+              </div>
+      
+        <SuperButton onClick={addCardHandler} style={{ width: "184px" }}>
+          Add new pack
+        </SuperButton>
+      </div>
+       
+          <div className={s.tableCards}>
+
+          <table className={s.table}>
+
+            <thead className={s.tableHeader}>
+
+              <tr className={s.tr}>
+                <th className={s.th}>
+                  Question
+                </th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Answer
+                </th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Last Updated
+                </th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Grade
+                </th> 
+              </tr>
+            </thead>
+
+            <tbody>
+              {cards.length > 1
+                ? cardsElems
+                : <p className={s.centerText}> This pack is empty. Click add new card to fill this pack</p>}
+            </tbody>
+
+          </table>
+
+          </div>
+
+            
+         
+          <div className={s.SelectWrap}>
+               {/* paginator */}
+
+                <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
+                      <span> Show </span>
+                      <select style={s.SelectBox}>
+                        <option value={10}>10</option>
+                        <option value={20}>20</option>
+                        <option value={30}>30</option>
+                        <option value={40}>40</option>
+                        <option value={50}>50</option>
+                        <option value={100}>100</option>
+                      </select>
+                      <span>Cards per Page</span>
+                </div>
+
+            </div>
+
+   
+
+
+     <Modal active={modalActive} setActive={setModalActive}>
         {cardsPack_id ? (
           <ModalAddCard
             cardsPack_id={cardsPack_id}
@@ -107,6 +178,10 @@ export const Cards = () => {
           ""
         )}
       </Modal>
+      
+    
     </div>
+
+    
   );
 };
