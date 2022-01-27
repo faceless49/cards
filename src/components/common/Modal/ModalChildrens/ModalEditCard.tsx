@@ -8,20 +8,13 @@ import {
 import { addCardTC } from "../../../../reducers/cards";
 
 export const ModalEditCard = (props: ModalEditCardType) => {
+  const { question, answer, action, setModalActive } = props;
+
   const [questionValue, setQuestionValue] = useState("");
   const [answerValue, setAnswerValue] = useState("");
-  const dispatch = useDispatch();
   const onEditCard = () => {
-    if (cardId) {
-      const card: RequestUpdateCardType = {
-        _id: cardId,
-        question: questionValue,
-        answer: answerValue,
-      };
-    }
-
-    dispatch(addCardTC({ card }));
-    props.setModalActive(false);
+    action(questionValue, setQuestionValue);
+    setModalActive(false);
     setQuestionValue("");
     setAnswerValue("");
   };
@@ -33,7 +26,7 @@ export const ModalEditCard = (props: ModalEditCardType) => {
         <legend>Question</legend>
         <input
           type="text"
-          value={questionValue}
+          value={questionValue === null ? question : questionValue}
           onChange={(e) => setQuestionValue(e.currentTarget.value)}
         />
       </fieldset>
@@ -41,12 +34,12 @@ export const ModalEditCard = (props: ModalEditCardType) => {
         <legend>Answer</legend>
         <input
           type="text"
-          value={answerValue}
+          value={answerValue === null ? answer : answerValue}
           onChange={(e) => setAnswerValue(e.currentTarget.value)}
         />
       </fieldset>
       <div>
-        <button onClick={() => props.setModalActive(false)}>Cancel</button>
+        <button onClick={() => setModalActive(false)}>Cancel</button>
         <button onClick={onEditCard}>Save</button>
       </div>
     </div>
@@ -54,7 +47,8 @@ export const ModalEditCard = (props: ModalEditCardType) => {
 };
 
 type ModalEditCardType = {
-  cardsPack_id: string;
   setModalActive: Dispatch<SetStateAction<boolean>>;
   action: any;
+  question: string;
+  answer: string;
 };

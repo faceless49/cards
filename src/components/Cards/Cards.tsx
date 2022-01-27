@@ -17,15 +17,11 @@ import { ModalEditCard } from "../common/Modal/ModalChildrens/ModalEditCard";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
-  const isInitialize = useAppSelector<boolean>(
-    (state) => state.login.isLoggedIn
-  );
 
   const [cardId, setCardId] = useState<string | null>(null);
   const [packId, setPackId] = useState<string | null>(null);
 
   const [modalActive, setModalActive] = useState(false);
-  const [editModalActive, setEditModalActive] = useState(false);
 
   const [question, setQuestion] = useState<string>("");
   const [searchValue, setSearchValue] = useState("");
@@ -105,7 +101,7 @@ export const Cards = () => {
         {cardsPack_id ? (
           <ModalAddCard
             cardsPack_id={cardsPack_id}
-            setModalActive={setEditModalActive}
+            setModalActive={setModalActive}
           />
         ) : (
           ""
@@ -114,7 +110,8 @@ export const Cards = () => {
       <Modal active={modalActive} setActive={setModalActive}>
         {cardsPack_id ? (
           <ModalEditCard
-            cardsPack_id={cardsPack_id}
+            question={question}
+            answer={answer}
             setModalActive={setModalActive}
             action={editPackRequestHandler}
           />
