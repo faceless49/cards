@@ -28,8 +28,8 @@ export const Login = React.memo(() => {
 
   const disabled = status === "loading";
 
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("faceless49@ya.ru");
+  const [password, setPassword] = useState<string>("Qwerty1234");
   const [checked, setChecked] = useState<boolean>(false);
   const [eye, setEye] = useState<string>("password");
 

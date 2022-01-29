@@ -22,7 +22,8 @@ import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
-import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
+import { Modal } from "../common/Modal/Modal";
+import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
 
 export const Packs = () => {
   const {
@@ -47,7 +48,8 @@ export const Packs = () => {
   const [searchValue, setSearchValue] = useState("");
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
-
+  const [modalActive, setModalActive] = useState(false);
+  // const [editModalActive, setEditModalActive] = useState(false);
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -60,7 +62,7 @@ export const Packs = () => {
   }, [searchValue, dispatch]);
 
   const addPackHandler = () => {
-    dispatch(addPack("SuperMega Pack"));
+    setModalActive(true);
   };
 
   const checkMyHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -118,8 +120,9 @@ export const Packs = () => {
 
   const packList = cardPacks.map((p) => {
     const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () =>
-      updatePackHandler(p._id, "New name for SuperMega Pack");
+    const updatePack = () => {
+      // setEditModalActive(true);
+    };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
     return (
@@ -189,18 +192,17 @@ export const Packs = () => {
           <div
             style={{
               display: "flex",
-              gap:"40px",
+              gap: "40px",
               width: "100%",
             }}
           >
-
-            <div style={{width:"460px"}}>
-            <SearchField
-              searchValue={searchValue}
-              setSearchValue={onChangeSearchValue}
-            />
+            <div style={{ width: "460px" }}>
+              <SearchField
+                searchValue={searchValue}
+                setSearchValue={onChangeSearchValue}
+              />
             </div>
-          
+
             <SuperButton onClick={addPackHandler} style={{ width: "184px" }}>
               Add new pack
             </SuperButton>
@@ -247,33 +249,31 @@ export const Packs = () => {
           </table>
         </div>
 
-      
-          <div className={s.SelectWrap}>
+        <div className={s.SelectWrap}>
+          <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
 
-            <Paginator
-              totalCount={cardPacksTotalCount}
-              pageSize={pageCount}
-              currentPage={page}
-              onChangedPage={onChangedPage}
-            />
-
-            
-            <div style={{display:"flex", alignItems:"center", gap:"5px"}}>
-                  <span> Show </span>
-                  <select style={s.SelectBox} onChange={onChangePageCountHandler}>
-                    <option value={10}>10</option>
-                    <option value={20}>20</option>
-                    <option value={30}>30</option>
-                    <option value={40}>40</option>
-                    <option value={50}>50</option>
-                    <option value={100}>100</option>
-                  </select>
-                  <span>Cards per Page</span>
-            </div>
-            
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <span> Show </span>
+            <select style={s.SelectBox} onChange={onChangePageCountHandler}>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={40}>40</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+            <span>Cards per Page</span>
           </div>
-        
+        </div>
       </div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
+      </Modal>
     </div>
   );
 };
