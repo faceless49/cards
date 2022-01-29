@@ -70,3 +70,20 @@
     color: #ECECF9;
     text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
 }
+
+//ModalWithOneInput
+
+
+.formInner {
+    border:none;
+    margin-top: 28px;
+    text-align: left;
+}
+
+.btnBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+    
+}
