@@ -6,7 +6,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import classNames from "classnames";
+// import classNames from "classnames";
 import "./SuperDoubleRange.css";
 
 type SuperDoubleRangeType = {
@@ -71,9 +71,9 @@ const SuperDoubleRange: FC<SuperDoubleRangeType> = ({ min, max, onChange }) => {
           setMinVal(value);
           event.target.value = value.toString();
         }}
-        className={classNames("thumb thumb--zindex-3", {
-          "thumb--zindex-5": minVal > max - 100,
-        })}
+        // className={classNames("thumb thumb--zindex-3", {
+        //   "thumb--zindex-5": minVal > max - 100,
+        // })}
       />
       <input
         type="range"
