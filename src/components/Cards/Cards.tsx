@@ -67,7 +67,7 @@ export const Cards = () => {
       </tr>
     );
   });
-  return (
+  return ( <>
     <div className={s.cardsList}>
       <div className={s.titleBox}>
         <button className={s.rowBtn} onClick={onPrevPage}>
@@ -143,7 +143,11 @@ export const Cards = () => {
         </div>
       </div>
 
-      <Modal active={modalActive} setActive={setModalActive}>
+      
+    </div>
+
+
+    <Modal active={modalActive} setActive={setModalActive}>
         {cardsPack_id ? (
           <ModalAddCard
             cardsPack_id={cardsPack_id}
@@ -165,6 +169,7 @@ export const Cards = () => {
           ""
         )}
       </Modal>
-    </div>
+
+      </>
   );
 };
