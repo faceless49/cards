@@ -13,7 +13,7 @@ export const ModalWithTwoInput = (props: ModalWithTwoInputs) => {
   const [questionValue, setQuestionValue] = useState("");
   const [answerValue, setAnswerValue] = useState("");
   const onEditCard = () => {
-    action(questionValue, setQuestionValue);
+    // action(questionValue, setQuestionValue);
     setModalActive(false);
     setQuestionValue("");
     setAnswerValue("");
@@ -48,7 +48,7 @@ export const ModalWithTwoInput = (props: ModalWithTwoInputs) => {
 
 type ModalWithTwoInputs = {
   setModalActive: Dispatch<SetStateAction<boolean>>;
-  action: any;
+  action: (question: string, answer: string) => void;
   question: string;
   answer: string;
 };

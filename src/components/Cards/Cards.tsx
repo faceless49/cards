@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
-import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
 import { UpdateCardDataType } from "../../api/cards-api";
 import { ModalWithTwoInput } from "../common/Modal/ModalChildrens/ModalWithTwoInput";
 
@@ -32,7 +31,7 @@ export const Cards = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCardsTC(cardsPack_id as string));
+    dispatch(fetchCardsTC(cardsPack_id || ""));
   }, [dispatch, cardsPack_id]);
 
   const addCardHandler = () => {
@@ -143,16 +142,7 @@ export const Cards = () => {
         </div>
       </div>
 
-      <Modal active={modalActive} setActive={setModalActive}>
-        {cardsPack_id ? (
-          <ModalAddCard
-            cardsPack_id={cardsPack_id}
-            setModalActive={setModalActive}
-          />
-        ) : (
-          ""
-        )}
-      </Modal>
+      {/*<Modal active={modalActive} setActive={setModalActive}></Modal>*/}
       <Modal active={editModalActive} setActive={setModalActive}>
         {cardsPack_id ? (
           <ModalWithTwoInput

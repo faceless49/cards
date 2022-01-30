@@ -7,12 +7,14 @@ import React, {
   useState,
 } from "react";
 import classNames from "classnames";
+
 import "./SuperDoubleRange.css";
 
 type SuperDoubleRangeType = {
   min: number;
   max: number;
   onChange: (p: { min: number; max: number }) => void;
+  onAfterChange: (p: { min: number; max: number }) => void;
 };
 
 const SuperDoubleRange: FC<SuperDoubleRangeType> = ({ min, max, onChange }) => {

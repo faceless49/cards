@@ -24,6 +24,8 @@ import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
 import { Modal } from "../common/Modal/Modal";
 import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
+import SuperRange from "../common/SuperRange/SuperRange";
+import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 
 export const Packs = () => {
   const {
@@ -48,12 +50,17 @@ export const Packs = () => {
   const [searchValue, setSearchValue] = useState("");
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
+  const [value1, setValue1] = useState(0);
+
   const [modalActive, setModalActive] = useState(false);
   // const [editModalActive, setEditModalActive] = useState(false);
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
 
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue1(Number(e.currentTarget.value));
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -178,7 +185,16 @@ export const Packs = () => {
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}>
-          {/*<SuperDoubleRange min={minCardsCount} max={maxCardsCount} onChange={}/>*/}
+          <SuperDoubleRange
+            min={0}
+            max={100}
+            onChange={({ min, max }: { min: number; max: number }) =>
+              console.log(`min = ${min}, max = ${max}`)
+            }
+            onAfterChange={({ min, max }: { min: number; max: number }) =>
+              console.log(`min = ${min}, max = ${max}`)
+            }
+          />
         </div>
       </div>
       <div className={s.ContentMain}>
