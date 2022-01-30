@@ -67,96 +67,97 @@ export const Cards = () => {
       </tr>
     );
   });
-  return ( <>
-    <div className={s.cardsList}>
-      <div className={s.titleBox}>
-        <button className={s.rowBtn} onClick={onPrevPage}>
-          <img className={s.arrowImg} src={img1}></img>
-        </button>
+  return (
+    <>
+      <div className={s.cardsList}>
+        <div className={s.titleBox}>
+          <button className={s.rowBtn} onClick={onPrevPage}>
+            <img className={s.arrowImg} src={img1}></img>
+          </button>
 
-        <Subtitle style={{ margin: "0" }} subtitle="Packs Name" />
-      </div>
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          width: "100%",
-        }}
-      >
-        <div style={{ width: "750px" }}>
-          <SearchField
-            searchValue={searchValue}
-            setSearchValue={onChangeSearchValue}
-          />
+          <Subtitle style={{ margin: "0" }} subtitle="Packs Name" />
         </div>
 
-        <SuperButton onClick={addCardHandler} style={{ width: "184px" }}>
-          Add new pack
-        </SuperButton>
-      </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+          }}
+        >
+          <div style={{ width: "750px" }}>
+            <SearchField
+              searchValue={searchValue}
+              setSearchValue={onChangeSearchValue}
+            />
+          </div>
 
-      <div className={s.tableCards}>
-        <table className={s.table}>
-          <thead className={s.tableHeader}>
-            <tr className={s.tr}>
-              <th className={s.th}>Question</th>
-              <th className={s.th} style={{ textAlign: "center" }}>
-                Answer
-              </th>
-              <th className={s.th} style={{ textAlign: "center" }}>
-                Last Updated
-              </th>
-              <th className={s.th} style={{ textAlign: "center" }}>
-                Grade
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {cards.length > 1 ? (
-              cardsElems
-            ) : (
-              <p className={s.centerText}>
-                {" "}
-                This pack is empty. Click add new card to fill this pack
-              </p>
-            )}
-          </tbody>
-        </table>
-      </div>
-
-      <div className={s.SelectWrap}>
-        {/* paginator */}
-
-        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-          <span> Show </span>
-          <select style={s.SelectBox}>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={30}>30</option>
-            <option value={40}>40</option>
-            <option value={50}>50</option>
-            <option value={100}>100</option>
-          </select>
-          <span>Cards per Page</span>
+          <SuperButton onClick={addCardHandler} style={{ width: "184px" }}>
+            Add new pack
+          </SuperButton>
         </div>
+
+        <div className={s.tableCards}>
+          <table className={s.table}>
+            <thead className={s.tableHeader}>
+              <tr className={s.tr}>
+                <th className={s.th}>Question</th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Answer
+                </th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Last Updated
+                </th>
+                <th className={s.th} style={{ textAlign: "center" }}>
+                  Grade
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {cards.length > 1 ? (
+                cardsElems
+              ) : (
+                <p className={s.centerText}>
+                  {" "}
+                  This pack is empty. Click add new card to fill this pack
+                </p>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        <div className={s.SelectWrap}>
+          {/* paginator */}
+
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <span> Show </span>
+            <select style={s.SelectBox}>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={30}>30</option>
+              <option value={40}>40</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
+            </select>
+            <span>Cards per Page</span>
+          </div>
+        </div>
+
+        {/*<Modal active={modalActive} setActive={setModalActive}></Modal>*/}
+        <Modal active={editModalActive} setActive={setModalActive}>
+          {cardsPack_id ? (
+            <ModalWithTwoInput
+              question={question}
+              answer={answer}
+              setModalActive={setEditModalActive}
+              action={editPackRequestHandler}
+            />
+          ) : (
+            ""
+          )}
+        </Modal>
       </div>
-
-      {/*<Modal active={modalActive} setActive={setModalActive}></Modal>*/}
-      <Modal active={editModalActive} setActive={setModalActive}>
-        {cardsPack_id ? (
-          <ModalWithTwoInput
-            question={question}
-            answer={answer}
-            setModalActive={setEditModalActive}
-            action={editPackRequestHandler}
-          />
-        ) : (
-          ""
-        )}
-      </Modal>
-
-      </>
+    </>
   );
 };
