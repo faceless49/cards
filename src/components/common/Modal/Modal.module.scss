@@ -5,3 +5,85 @@
  .active{
      display: block;
  }
+
+
+ .formBox {
+    border:none;
+    margin-bottom:20px;
+    text-align: left;
+ }
+
+ .formLink {
+    text-align:left;
+    margin-top:"10px";
+    text-decoration: none;
+    font-family: 'SFUIDisplay-Medium';
+    font-size: 13px;
+    line-height: 16px;
+    color: #21268F;
+    &:hover{
+        color: #430b53; 
+    }
+ }
+
+ .InputLegend {
+    font-family: 'SFUIDisplay-Regular';
+    font-size: 13px;
+    line-height: 20px;
+    color: #24254A;
+    opacity: 0.5;
+ }
+
+ .btnWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+    margin-top: 84px;
+    margin-bottom: 45px;
+}
+
+//пока пусть будет тут, позже зарефакторю
+
+.btnLight {
+    max-width: 124px;
+    letter-spacing: 0.01em;
+    color: #21268F;
+    opacity: 0.8;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    font-family: "SFUIDisplay-Medium";
+    font-weight: 500;
+    line-height: 19px;
+    padding: 8px 16px;
+    background-color: #D7D8EF;
+    &:hover{
+        background-color: #866ba8
+    }
+}
+
+.btnRight {
+    max-width: 187px;
+    padding: 8px 16px;
+    font-family: "SFUIDisplay-Medium";
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #ECECF9;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+//ModalWithOneInput
+
+
+.formInner {
+    border:none;
+    margin-top: 28px;
+    text-align: left;
+}
+
+.btnBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+    
+}

@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
+import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
 import { UpdateCardDataType } from "../../api/cards-api";
 import { ModalWithTwoInput } from "../common/Modal/ModalChildrens/ModalWithTwoInput";
 
@@ -66,7 +67,7 @@ export const Cards = () => {
       </tr>
     );
   });
-  return (
+  return ( <>
     <div className={s.cardsList}>
       <div className={s.titleBox}>
         <button className={s.rowBtn} onClick={onPrevPage}>
@@ -155,6 +156,7 @@ export const Cards = () => {
           ""
         )}
       </Modal>
-    </div>
+
+      </>
   );
 };
