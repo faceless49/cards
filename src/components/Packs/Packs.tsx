@@ -191,9 +191,9 @@ export const Packs = () => {
             onChange={({ min, max }: { min: number; max: number }) =>
               console.log(`min = ${min}, max = ${max}`)
             }
-            onAfterChange={({ min, max }: { min: number; max: number }) =>
-              console.log(`min = ${min}, max = ${max}`)
-            }
+            // onAfterChange={({ min, max }: { min: number; max: number }) =>
+            //   console.log(`min = ${min}, max = ${max}`)
+            // }
           />
         </div>
       </div>
