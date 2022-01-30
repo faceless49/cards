@@ -12,7 +12,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
-import { ModalAddCard } from "../common/Modal/ModalChildrens/ModalAddCard";
 import { UpdateCardDataType } from "../../api/cards-api";
 import { ModalWithTwoInput } from "../common/Modal/ModalChildrens/ModalWithTwoInput";
 
