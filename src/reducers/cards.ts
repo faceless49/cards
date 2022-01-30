@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import {
   AddCardDataType,
   cardsApi,
+  RequestAddCardType,
   RequestUpdateCardType,
 } from "../api/cards-api";
 import { AppRootStateType } from "../redux/store";
@@ -164,11 +165,11 @@ export const fetchCardsTC =
   };
 
 export const addCardTC =
-  (data: AddCardDataType): ThunkType =>
+  (data: RequestAddCardType): ThunkType =>
   async (dispatch) => {
     try {
       await cardsApi.addCard(data);
-      dispatch(fetchCardsTC(data.cardsPack_id));
+      dispatch(fetchCardsTC(data.card.cardsPack_id));
     } catch (e) {
       console.log(e);
     }

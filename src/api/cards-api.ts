@@ -9,7 +9,7 @@ export const cardsApi = {
     }
     return instance.get<CardsResponseType>(requestString);
   },
-  addCard(data: AddCardDataType) {
+  addCard(data: RequestAddCardType) {
     return instance.post(`cards/card`, data);
   },
   removeCard(id: string) {
@@ -45,7 +45,24 @@ export type AddCardDataType = {
 };
 
 export type RequestUpdateCardType = {
+  card: UpdateCardDataType;
+};
+
+export type RequestAddCardType = {
+  card: AddCardDataType;
+};
+
+export type UpdateCardDataType = {
   _id: string;
   question?: string;
+  answer?: string;
+  grade?: number;
+  shots?: number;
+  rating?: number;
+  answerImg?: string;
+  questionImg?: string;
+  questionVideo?: string;
+  answerVideo?: string;
+  type?: string;
   comments?: string;
 };

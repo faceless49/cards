@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore TODO: Fix scss modules
 import s from "./Packs.module.scss";
 import BtnActions from "./BtnActions/BtnActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,9 @@ import Subtitle from "../common/Subtitle/Subtitle";
 import { SearchField } from "../SearchField/SearchField";
 import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
+import { Modal } from "../common/Modal/Modal";
+import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
+import SuperRange from "../common/SuperRange/SuperRange";
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 
 export const Packs = () => {
@@ -47,11 +50,17 @@ export const Packs = () => {
   const [searchValue, setSearchValue] = useState("");
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
+  const [value1, setValue1] = useState(0);
 
+  const [modalActive, setModalActive] = useState(false);
+  // const [editModalActive, setEditModalActive] = useState(false);
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
 
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue1(Number(e.currentTarget.value));
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -60,7 +69,7 @@ export const Packs = () => {
   }, [searchValue, dispatch]);
 
   const addPackHandler = () => {
-    dispatch(addPack("SuperMega Pack"));
+    setModalActive(true);
   };
 
   const checkMyHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -118,8 +127,9 @@ export const Packs = () => {
 
   const packList = cardPacks.map((p) => {
     const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () =>
-      updatePackHandler(p._id, "New name for SuperMega Pack");
+    const updatePack = () => {
+      // setEditModalActive(true);
+    };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
     return (
@@ -175,7 +185,16 @@ export const Packs = () => {
         {/*для кнопок My/All*/}
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}>
-          {/*<SuperDoubleRange min={minCardsCount} max={maxCardsCount} onChange={}/>*/}
+          <SuperDoubleRange
+            min={0}
+            max={100}
+            onChange={({ min, max }: { min: number; max: number }) =>
+              console.log(`min = ${min}, max = ${max}`)
+            }
+            onAfterChange={({ min, max }: { min: number; max: number }) =>
+              console.log(`min = ${min}, max = ${max}`)
+            }
+          />
         </div>
       </div>
       <div className={s.ContentMain}>
@@ -189,14 +208,17 @@ export const Packs = () => {
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              gap: "40px",
               width: "100%",
             }}
           >
-            <SearchField
-              searchValue={searchValue}
-              setSearchValue={onChangeSearchValue}
-            />
+            <div style={{ width: "460px" }}>
+              <SearchField
+                searchValue={searchValue}
+                setSearchValue={onChangeSearchValue}
+              />
+            </div>
+
             <SuperButton onClick={addPackHandler} style={{ width: "184px" }}>
               Add new pack
             </SuperButton>
@@ -243,14 +265,15 @@ export const Packs = () => {
           </table>
         </div>
 
-        <div style={{ display: "flex", gap: "25px" }}>
-          <div className={s.SelectWrap}>
-            <Paginator
-              totalCount={cardPacksTotalCount}
-              pageSize={pageCount}
-              currentPage={page}
-              onChangedPage={onChangedPage}
-            />
+        <div className={s.SelectWrap}>
+          <Paginator
+            totalCount={cardPacksTotalCount}
+            pageSize={pageCount}
+            currentPage={page}
+            onChangedPage={onChangedPage}
+          />
+
+          <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
             <span> Show </span>
             <select style={s.SelectBox} onChange={onChangePageCountHandler}>
               <option value={10}>10</option>
@@ -264,6 +287,9 @@ export const Packs = () => {
           </div>
         </div>
       </div>
+      <Modal active={modalActive} setActive={setModalActive}>
+        <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
+      </Modal>
     </div>
   );
 };
