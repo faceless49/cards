@@ -1,4 +1,4 @@
-// @ts-ignore TODO: Fix scss modules
+// @ts-ignore
 import s from "./Packs.module.scss";
 import BtnActions from "./BtnActions/BtnActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,10 +24,8 @@ import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
 import { Modal } from "../common/Modal/Modal";
 import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
-import SuperRange from "../common/SuperRange/SuperRange";
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 import { ModalEditPack } from "../common/Modal/ModalChildrens/ModalEditPack";
-import { strict } from "assert";
 import { ModalDeletePack } from "../common/Modal/ModalChildrens/ModalDeletePack";
 
 export const Packs = () => {
