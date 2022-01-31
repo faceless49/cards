@@ -26,6 +26,8 @@ import { Modal } from "../common/Modal/Modal";
 import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
 import SuperRange from "../common/SuperRange/SuperRange";
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
+import { ModalEditPack } from "../common/Modal/ModalChildrens/ModalEditPack";
+import { strict } from "assert";
 
 export const Packs = () => {
   const {
@@ -53,7 +55,7 @@ export const Packs = () => {
   const [value1, setValue1] = useState(0);
 
   const [modalActive, setModalActive] = useState(false);
-  // const [editModalActive, setEditModalActive] = useState(false);
+  const [editModalActive, setEditModalActive] = useState(false);
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -128,7 +130,7 @@ export const Packs = () => {
   const packList = cardPacks.map((p) => {
     const deletePack = () => deletePackHandler(p._id);
     const updatePack = () => {
-      // setEditModalActive(true);
+      updatePackHandler(p._id, p.name);
     };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
@@ -289,6 +291,12 @@ export const Packs = () => {
       </div>
       <Modal active={modalActive} setActive={setModalActive}>
         <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
+      </Modal>
+      <Modal active={editModalActive} setActive={setEditModalActive}>
+        <ModalEditPack
+          setModalActive={setEditModalActive}
+          action={updatePack}
+        />
       </Modal>
     </div>
   );
