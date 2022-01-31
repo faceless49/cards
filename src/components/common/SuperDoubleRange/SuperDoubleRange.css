@@ -23,13 +23,16 @@
 }
 
 .slider__track {
-  background-color: #ced4da;
+  background: #21268F;
+  opacity: 0.5;
+  border-radius: 10px;
   width: 100%;
   z-index: 1;
 }
 
 .slider__range {
-  background-color: #f58a5a;
+  background: #21268F;
+  border-radius: 10px;
   z-index: 2;
 }
 
@@ -75,7 +78,7 @@
 }
 
 .thumb::-webkit-slider-thumb {
-  background-color: #8a2be2;
+  background-color: #21268F;
   border: none;
   border-radius: 50%;
   box-shadow: 0 0 1px 1px #ced4da;
