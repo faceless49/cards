@@ -10,20 +10,21 @@ import { SuperButton } from "../../SuperButton/SuperButton";
 import style from "../../Modal/Modal.module.scss";
 
 export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
-  const [packValue, setPackValue] = useState("");
-  const dispatch = useDispatch();
+  const [packValue, setPackValue] = useState(props.packName);
 
-  const onEditPack = () => {
-    dispatch(props.action(packValue));
+  const updatePackName = () => {
+    props.action(packValue);
     props.setModalActive(false);
-    setPackValue("");
   };
 
   return (
     <div className={s.ModalShape}>
       <div className={s.titleBox}>
         <h2 className={s.modalTile}>Add new pack</h2>
-        <button className={s.crossBtn}>
+        <button
+          className={s.crossBtn}
+          onClick={() => props.setModalActive(false)}
+        >
           <img src={crossBtn} alt="" />
         </button>
       </div>
@@ -51,7 +52,7 @@ export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
           <SuperButton
             className={style.btnRight}
             style={{ width: "127px" }}
-            onClick={onEditPack}
+            onClick={updatePackName}
           >
             Save
           </SuperButton>
@@ -64,4 +65,6 @@ export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
 type ModalWithOneInputPropsType = {
   action: Function;
   setModalActive: Dispatch<SetStateAction<boolean>>;
+  packId: string | null;
+  packName: string | number | readonly string[] | undefined;
 };

@@ -53,9 +53,13 @@ export const Packs = () => {
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
   const [value1, setValue1] = useState(0);
-
+  const [packId, setPackId] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
+  const [packName, setPackName] = useState<
+    string | number | readonly string[] | undefined
+  >("");
+
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -129,8 +133,13 @@ export const Packs = () => {
 
   const packList = cardPacks.map((p) => {
     const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () => {
-      updatePackHandler(p._id, p.name);
+    const editPackRequest = (name: string) => {
+      packId && dispatch(updatePack(packId, name));
+    };
+    const editPackModal = (id?: string, packName?: string) => {
+      id && setPackId(id);
+      packName && setPackName(packName);
+      setEditModalActive(true);
     };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
@@ -152,9 +161,17 @@ export const Packs = () => {
 
                 <BtnActions
                   name="Edit"
-                  onClick={updatePack}
+                  onClick={() => editPackModal(p._id, p.name)}
                   style={{ color: "#21268F", backgroundColor: "#D7D8EF" }}
                 />
+                <Modal active={editModalActive} setActive={setEditModalActive}>
+                  <ModalEditPack
+                    setModalActive={setEditModalActive}
+                    action={editPackRequest}
+                    packId={packId}
+                    packName={p.name}
+                  />
+                </Modal>
               </>
             )}
             <Link to={`/cards/${p._id}`}>
@@ -291,12 +308,6 @@ export const Packs = () => {
       </div>
       <Modal active={modalActive} setActive={setModalActive}>
         <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
-      </Modal>
-      <Modal active={editModalActive} setActive={setEditModalActive}>
-        <ModalEditPack
-          setModalActive={setEditModalActive}
-          action={updatePack}
-        />
       </Modal>
     </div>
   );
