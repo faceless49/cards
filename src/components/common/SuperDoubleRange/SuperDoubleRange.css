@@ -38,7 +38,7 @@
 
 .slider__left-value,
 .slider__right-value {
-  color: #1e9c96;
+  color: #21268F;
   font-size: 12px;
   margin-top: 20px;
 }
@@ -78,13 +78,13 @@
 }
 
 .thumb::-webkit-slider-thumb {
-  background-color: #21268F;
+  background: url('../../../images/ellipse.svg');
+  background-repeat: no-repeat ;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ced4da;
   cursor: pointer;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
   margin-top: 4px;
   pointer-events: all;
   position: relative;
