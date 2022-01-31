@@ -9,18 +9,16 @@ import { SuperButton } from "../../SuperButton/SuperButton";
 //@ts-ignore
 import style from "../../Modal/Modal.module.scss";
 
-export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
-  const [packValue, setPackValue] = useState(props.packName);
-
-  const updatePackName = () => {
-    props.action(packValue);
+export const ModalDeletePack = (props: ModalWithOneInputPropsType) => {
+  const deletePack = () => {
+    props.action(props.packId);
     props.setModalActive(false);
   };
 
   return (
     <div className={s.ModalShape}>
       <div className={s.titleBox}>
-        <h2 className={s.modalTile}>Edit pack name</h2>
+        <h2 className={s.modalTile}>Delete Pack</h2>
         <button
           className={s.crossBtn}
           onClick={() => props.setModalActive(false)}
@@ -30,17 +28,8 @@ export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
       </div>
 
       <div className={s.ModalContent}>
-        <fieldset className={style.formInner}>
-          <legend className={style.InputLegend}>Name pack</legend>
-          <SuperInputText
-            style={{ width: "100%" }}
-            type="text"
-            value={packValue}
-            onChange={(e) => setPackValue(e.currentTarget.value)}
-            placeholder="Name Pack"
-          />
-        </fieldset>
-
+        Do you really want to remove {props.packName} ? All cards will be
+        excluded from this course.
         <div className={style.btnBox}>
           <SuperButton
             className={style.btnLight}
@@ -52,9 +41,9 @@ export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
           <SuperButton
             className={style.btnRight}
             style={{ width: "127px" }}
-            onClick={updatePackName}
+            onClick={deletePack}
           >
-            Save
+            Delete
           </SuperButton>
         </div>
       </div>
