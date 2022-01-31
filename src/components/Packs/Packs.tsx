@@ -1,4 +1,4 @@
-// @ts-ignore TODO: Fix scss modules
+// @ts-ignore
 import s from "./Packs.module.scss";
 import BtnActions from "./BtnActions/BtnActions";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,10 +24,9 @@ import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
 import { Modal } from "../common/Modal/Modal";
 import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
-import SuperRange from "../common/SuperRange/SuperRange";
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 import { ModalEditPack } from "../common/Modal/ModalChildrens/ModalEditPack";
-import { strict } from "assert";
+import { ModalDeletePack } from "../common/Modal/ModalChildrens/ModalDeletePack";
 
 export const Packs = () => {
   const {
@@ -53,9 +52,14 @@ export const Packs = () => {
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
   const [value1, setValue1] = useState(0);
-
+  const [packId, setPackId] = useState("");
   const [modalActive, setModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
+  const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [packName, setPackName] = useState<
+    string | number | readonly string[] | undefined
+  >("");
+
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
@@ -85,8 +89,6 @@ export const Packs = () => {
   };
 
   const deletePackHandler = (packId: string) => dispatch(deletePack(packId));
-  const updatePackHandler = (packId: string, name: string) =>
-    dispatch(updatePack(packId, name));
 
   const sortNameHandlerUp = () => dispatch(setPacksSortData("up", "name"));
   const sortNameHandlerDown = () => dispatch(setPacksSortData("down", "name"));
@@ -128,9 +130,21 @@ export const Packs = () => {
   }
 
   const packList = cardPacks.map((p) => {
-    const deletePack = () => deletePackHandler(p._id);
-    const updatePack = () => {
-      updatePackHandler(p._id, p.name);
+    const deletePackRequest = () => {
+      packId && dispatch(deletePack(packId));
+    };
+
+    const deletePackModalHandler = (id?: string) => {
+      id && setPackId(id);
+      setDeleteModalActive(true);
+    };
+    const editPackRequest = (name: string) => {
+      packId && dispatch(updatePack(packId, name));
+    };
+    const editPackModal = (id?: string, packName?: string) => {
+      id && setPackId(id);
+      packName && setPackName(packName);
+      setEditModalActive(true);
     };
     const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
 
@@ -146,15 +160,34 @@ export const Packs = () => {
               <>
                 <BtnActions
                   name="Delete"
-                  onClick={deletePack}
+                  onClick={() => deletePackModalHandler(p._id)}
                   style={{ color: "#FFFFFF", backgroundColor: "#F1453D" }}
                 />
 
                 <BtnActions
                   name="Edit"
-                  onClick={updatePack}
+                  onClick={() => editPackModal(p._id, p.name)}
                   style={{ color: "#21268F", backgroundColor: "#D7D8EF" }}
                 />
+                <Modal active={editModalActive} setActive={setEditModalActive}>
+                  <ModalEditPack
+                    setModalActive={setEditModalActive}
+                    action={editPackRequest}
+                    packId={packId}
+                    packName={p.name}
+                  />
+                </Modal>
+                <Modal
+                  active={deleteModalActive}
+                  setActive={setDeleteModalActive}
+                >
+                  <ModalDeletePack
+                    setModalActive={setDeleteModalActive}
+                    action={deletePackRequest}
+                    packId={packId}
+                    packName={p.name}
+                  />
+                </Modal>
               </>
             )}
             <Link to={`/cards/${p._id}`}>
@@ -291,12 +324,6 @@ export const Packs = () => {
       </div>
       <Modal active={modalActive} setActive={setModalActive}>
         <ModalWithOneInput setModalActive={setModalActive} action={addPack} />
-      </Modal>
-      <Modal active={editModalActive} setActive={setEditModalActive}>
-        <ModalEditPack
-          setModalActive={setEditModalActive}
-          action={updatePack}
-        />
       </Modal>
     </div>
   );
