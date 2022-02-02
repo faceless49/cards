@@ -24,7 +24,6 @@ import { Paginator } from "../Paginator/Paginator";
 import { fetchCardsTC } from "../../reducers/cards";
 import { Modal } from "../common/Modal/Modal";
 import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneInput";
-import SuperRange from "../common/SuperRange/SuperRange";
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 
 export const Packs = () => {
@@ -115,11 +114,17 @@ export const Packs = () => {
     dispatch(getPacks());
   };
 
-  const onChangeRange = (value: number[]) => {
-    dispatch(setCardsPackTC(value[0], value[1]));
-    setMin(value[0]);
-    setMax(value[1]);
+  const onChangeRange = ({ min, max }: { min: number; max: number }) => {
+    // dispatch(setCardsPackTC(value[0], value[1]));
+    // setMin(value[0]);
+    // setMax(value[1]);
+    console.log(`min = ${min}, max = ${max}`);
+    setMin(min)
+    setMax(max)
   };
+  const onClickApply = () => {
+    dispatch(setCardsPackTC(min, max))
+  }
 
   if (!isLoggedIn) {
     return <Navigate to={"/login"} />;
@@ -186,15 +191,13 @@ export const Packs = () => {
         <h3 className={s.TitleSlider}>Number of cards</h3>
         <div className={s.sliderWrap}>
           <SuperDoubleRange
-            min={0}
-            max={100}
-            onChange={({ min, max }: { min: number; max: number }) =>
-              console.log(`min = ${min}, max = ${max}`)
-            }
-            // onAfterChange={({ min, max }: { min: number; max: number }) =>
-            //   console.log(`min = ${min}, max = ${max}`)
-            // }
+            min={minCardsCount}
+            max={maxCardsCount}
+            onChange={onChangeRange}
           />
+          <SuperButton style={{marginTop: "50px"}} onClick={onClickApply}>
+            Apply
+          </SuperButton>
         </div>
       </div>
       <div className={s.ContentMain}>
