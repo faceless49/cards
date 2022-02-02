@@ -115,9 +115,6 @@ export const Packs = () => {
   };
 
   const onChangeRange = ({ min, max }: { min: number; max: number }) => {
-    // dispatch(setCardsPackTC(value[0], value[1]));
-    // setMin(value[0]);
-    // setMax(value[1]);
     console.log(`min = ${min}, max = ${max}`);
     setMin(min)
     setMax(max)
