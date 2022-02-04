@@ -14,6 +14,7 @@ export type InitialStatePackPageType = {
   user_id: string;
   token: string;
   packName: string;
+  setIsSearching: boolean;
 };
 const initialState: InitialStatePackPageType = {
   cardPacks: [],
@@ -26,6 +27,7 @@ const initialState: InitialStatePackPageType = {
   user_id: "",
   token: "",
   packName: "",
+  setIsSearching: false,
 };
 
 export const packReducer = (
@@ -155,11 +157,18 @@ export const packReducer = (
       }
       return state;
     case "PACK/SET-SEARCH-DATA":
-      return { ...state, cardPacks: state.cardPacks.filter((cards) =>
-            action.value === '' ? state : cards.name.toLowerCase().includes(action.value)
-        )};
+      return {
+        ...state,
+        cardPacks: state.cardPacks.filter((cards) =>
+          action.value === ""
+            ? state
+            : cards.name.toLowerCase().includes(action.value)
+        ),
+      };
     case "PACK/SET-CARDS-PACK":
       return { ...state, minCardsCount: action.min, maxCardsCount: action.max };
+    case "PACK/SET-IS-SEARCHING":
+      return { ...state, setIsSearching: action.isSearching };
     default:
       return state;
   }
@@ -178,6 +187,8 @@ export const setPacksSortData = (
 // search
 export const setSearchData = (value: string) =>
   ({ type: "PACK/SET-SEARCH-DATA", value } as const);
+export const setRequestIsSearching = (isSearching: boolean) =>
+  ({ type: "PACK/SET-IS-SEARCHING", isSearching } as const);
 
 //range
 export const setCardsPack = (min: number, max: number) =>
@@ -188,7 +199,10 @@ export const getPacks =
   (someParams?: string) =>
   async (dispatch: Dispatch, getState: () => AppRootStateType) => {
     //dispatch(диспатч на лоадинг)
-    if (someParams) dispatch(setSearchData(someParams));
+    if (someParams) {
+      // dispatch(setRequestIsSearching(true));
+      dispatch(setSearchData(someParams));
+    }
     dispatch(setPacksError(""));
     try {
       const response = await packsApi.getPacks({
@@ -204,9 +218,9 @@ export const getPacks =
       } else if (axios.isAxiosError(err)) {
         dispatch(setPacksError(err.message));
       }
-      // finally {
-      //     //dispatch(диспатч на лоадинг)
-      // }
+    } finally {
+      //dispatch(диспатч на лоадинг)
+      dispatch(setRequestIsSearching(false));
     }
   };
 
@@ -292,4 +306,5 @@ type PackActionsType =
   | ReturnType<typeof setPacksError>
   | ReturnType<typeof setPacksSortData>
   | ReturnType<typeof setSearchData>
-  | ReturnType<typeof setCardsPack>;
+  | ReturnType<typeof setCardsPack>
+  | ReturnType<typeof setRequestIsSearching>;
