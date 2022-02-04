@@ -137,16 +137,16 @@ export const fetchCardsTC =
         cardsPack_Id,
         optionalString
       );
-      dispatch(
-        fetchCards(
-          response.data.cards,
-          response.data.packUserId,
-          cardsPack_Id,
-          response.data.page,
-          response.data.pageCount,
-          response.data.cardsTotalCount
-        )
-      );
+      // dispatch(
+      //   fetchCards(
+      //     response.data.cards,
+      //     response.data.packUserId,
+      //     cardsPack_Id,
+      //     response.data.page,
+      //     response.data.pageCount,
+      //     response.data.cardsTotalCount
+      //   )
+      // );
       dispatch(
         setPages(
           response.data.cardsTotalCount % response.data.pageCount !== 0 ||

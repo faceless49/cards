@@ -88,8 +88,6 @@ export const Packs = () => {
     }
   };
 
-  const deletePackHandler = (packId: string) => dispatch(deletePack(packId));
-
   const sortNameHandlerUp = () => dispatch(setPacksSortData("up", "name"));
   const sortNameHandlerDown = () => dispatch(setPacksSortData("down", "name"));
 
@@ -146,7 +144,9 @@ export const Packs = () => {
       packName && setPackName(packName);
       setEditModalActive(true);
     };
-    const requestToLearnCard = () => dispatch(fetchCardsTC(p._id));
+    const requestToLearnCard = () => {
+      dispatch(fetchCardsTC(p._id));
+    };
 
     return (
       <tr className={s.tr} key={p._id}>
