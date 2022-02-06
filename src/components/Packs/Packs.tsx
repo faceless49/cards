@@ -11,6 +11,7 @@ import {
   setPacksData,
   setPacksError,
   setPacksSortData,
+  setRequestIsSearching,
   updatePack,
 } from "../../reducers/packReducer";
 import { AppRootStateType } from "../../redux/store";
@@ -27,6 +28,7 @@ import { ModalWithOneInput } from "../common/Modal/ModalChildrens/ModalWithOneIn
 import SuperDoubleRange from "../common/SuperDoubleRange/SuperDoubleRange";
 import { ModalEditPack } from "../common/Modal/ModalChildrens/ModalEditPack";
 import { ModalDeletePack } from "../common/Modal/ModalChildrens/ModalDeletePack";
+import { useDebounce } from "../../hooks/useDebounce";
 
 export const Packs = () => {
   const {
@@ -38,6 +40,7 @@ export const Packs = () => {
     user_id,
     maxCardsCount,
     minCardsCount,
+    setIsSearching,
   } = useSelector<AppRootStateType, InitialStatePackPageType>(
     (state) => state.packPage
   );
@@ -48,7 +51,7 @@ export const Packs = () => {
     (state) => state.profile._id
   );
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState<string>("");
   const [min, setMin] = useState(minCardsCount);
   const [max, setMax] = useState(maxCardsCount);
   const [value1, setValue1] = useState(0);
@@ -63,6 +66,7 @@ export const Packs = () => {
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
   };
+  const debouncedSearchTerm = useDebounce(searchValue, 500);
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue1(Number(e.currentTarget.value));
@@ -70,9 +74,12 @@ export const Packs = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setPacksError(""));
-    dispatch(getPacks(searchValue));
-  }, [searchValue, dispatch]);
+    if (searchValue) {
+      dispatch(setRequestIsSearching(true));
+      dispatch(setPacksError(""));
+      dispatch(getPacks(searchValue));
+    }
+  }, [debouncedSearchTerm, dispatch]);
 
   const addPackHandler = () => {
     setModalActive(true);
