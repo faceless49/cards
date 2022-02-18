@@ -15,7 +15,7 @@ import {
   updatePack,
 } from "../../reducers/packReducer";
 import { AppRootStateType } from "../../redux/store";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { SuperButton } from "../common/SuperButton/SuperButton";
 import { Sort } from "../common/Sort/Sort";

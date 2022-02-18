@@ -92,7 +92,7 @@ export const Cards = () => {
           </div>
 
           <SuperButton onClick={addCardHandler} style={{ width: "184px" }}>
-            Add new pack
+            Add new card
           </SuperButton>
         </div>
 
@@ -143,8 +143,7 @@ export const Cards = () => {
           </div>
         </div>
 
-        {/*<Modal active={modalActive} setActive={setModalActive}></Modal>*/}
-        <Modal active={editModalActive} setActive={setModalActive}>
+        <Modal active={modalActive} setActive={setModalActive}>
           {cardsPack_id ? (
             <ModalWithTwoInput
               question={question}
