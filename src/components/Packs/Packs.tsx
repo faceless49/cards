@@ -81,6 +81,10 @@ export const Packs = () => {
     }
   }, [debouncedSearchTerm, dispatch]);
 
+  useEffect(() => {
+    dispatch(getPacks());
+  }, []);
+
   const addPackHandler = () => {
     setModalActive(true);
   };
@@ -126,12 +130,12 @@ export const Packs = () => {
 
   const onChangeRange = ({ min, max }: { min: number; max: number }) => {
     console.log(`min = ${min}, max = ${max}`);
-    setMin(min)
-    setMax(max)
+    setMin(min);
+    setMax(max);
   };
   const onClickApply = () => {
-    dispatch(setCardsPackTC(min, max))
-  }
+    dispatch(setCardsPackTC(min, max));
+  };
 
   if (!isLoggedIn) {
     return <Navigate to={"/login"} />;
@@ -235,7 +239,7 @@ export const Packs = () => {
             max={maxCardsCount}
             onChange={onChangeRange}
           />
-          <SuperButton style={{marginTop: "50px"}} onClick={onClickApply}>
+          <SuperButton style={{ marginTop: "50px" }} onClick={onClickApply}>
             Apply
           </SuperButton>
         </div>
