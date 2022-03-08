@@ -23,19 +23,22 @@
 }
 
 .slider__track {
-  background-color: #ced4da;
+  background: #21268F;
+  opacity: 0.5;
+  border-radius: 10px;
   width: 100%;
   z-index: 1;
 }
 
 .slider__range {
-  background-color: #f58a5a;
+  background: #21268F;
+  border-radius: 10px;
   z-index: 2;
 }
 
 .slider__left-value,
 .slider__right-value {
-  color: #1e9c96;
+  color: #21268F;
   font-size: 12px;
   margin-top: 20px;
 }
@@ -75,13 +78,13 @@
 }
 
 .thumb::-webkit-slider-thumb {
-  background-color: #8a2be2;
+  background: url('../../../images/ellipse.svg');
+  background-repeat: no-repeat ;
   border: none;
   border-radius: 50%;
-  box-shadow: 0 0 1px 1px #ced4da;
   cursor: pointer;
-  height: 18px;
-  width: 18px;
+  height: 16px;
+  width: 16px;
   margin-top: 4px;
   pointer-events: all;
   position: relative;

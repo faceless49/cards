@@ -9,20 +9,18 @@ import { SuperButton } from "../../SuperButton/SuperButton";
 //@ts-ignore
 import style from "../../Modal/Modal.module.scss";
 
-export const ModalWithOneInput = (props: ModalWithOneInputPropsType) => {
-  const [packValue, setPackValue] = useState("");
-  const dispatch = useDispatch();
+export const ModalEditPack = (props: ModalWithOneInputPropsType) => {
+  const [packValue, setPackValue] = useState(props.packName);
 
-  const sendAddPack = () => {
-    dispatch(props.action(packValue));
+  const updatePackName = () => {
+    props.action(packValue);
     props.setModalActive(false);
-    setPackValue("");
   };
 
   return (
     <div className={s.ModalShape}>
       <div className={s.titleBox}>
-        <h2 className={s.modalTile}>Add new pack</h2>
+        <h2 className={s.modalTile}>Edit pack name</h2>
         <button
           className={s.crossBtn}
           onClick={() => props.setModalActive(false)}
@@ -54,7 +52,7 @@ export const ModalWithOneInput = (props: ModalWithOneInputPropsType) => {
           <SuperButton
             className={style.btnRight}
             style={{ width: "127px" }}
-            onClick={sendAddPack}
+            onClick={updatePackName}
           >
             Save
           </SuperButton>
@@ -67,4 +65,6 @@ export const ModalWithOneInput = (props: ModalWithOneInputPropsType) => {
 type ModalWithOneInputPropsType = {
   action: Function;
   setModalActive: Dispatch<SetStateAction<boolean>>;
+  packId: string | null;
+  packName: string | number | readonly string[] | undefined;
 };
