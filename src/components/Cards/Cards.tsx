@@ -14,6 +14,7 @@ import { Modal } from "../common/Modal/Modal";
 import { SearchField } from "../SearchField/SearchField";
 import { UpdateCardDataType } from "../../api/cards-api";
 import { ModalWithTwoInput } from "../common/Modal/ModalChildrens/ModalWithTwoInput";
+import {Rating} from "../Rating/Rating";
 
 export const Cards = () => {
   const cards = useAppSelector<Array<CardType>>((state) => state.cards.cards);
@@ -62,7 +63,7 @@ export const Cards = () => {
         <td className={s.td}>{card.question}</td>
         <td className={s.td}>{card.answer}</td>
         <td className={s.td}>{card.updated}</td>
-        <td className={s.td}>{card.grade}</td>
+        <td className={s.td}><Rating ratingValue={card.grade}/></td>
       </tr>
     );
   });
